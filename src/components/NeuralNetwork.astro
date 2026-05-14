@@ -1,0 +1,173 @@
+---
+// Neural Network visualization component for psychology theme
+---
+
+<div class="neural-network-container">
+  <svg
+    class="neural-network"
+    viewBox="0 0 400 300"
+    preserveAspectRatio="xMidYMid meet"
+    aria-label="Neural network visualization"
+  >
+    <!-- Define gradients -->
+    <defs>
+      <linearGradient id="nodeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color: var(--color-primary); stop-opacity: 1" />
+        <stop offset="100%" style="stop-color: var(--color-secondary); stop-opacity: 0.7" />
+      </linearGradient>
+      <filter id="glow">
+        <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+        <feMerge>
+          <feMergeNode in="coloredBlur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+
+    <!-- Connection lines -->
+    <line x1="50" y1="50" x2="150" y2="80" class="connection" />
+    <line x1="50" y1="50" x2="150" y2="150" class="connection" />
+    <line x1="50" y1="50" x2="150" y2="220" class="connection" />
+
+    <line x1="50" y1="150" x2="150" y2="80" class="connection" />
+    <line x1="50" y1="150" x2="150" y2="150" class="connection" />
+    <line x1="50" y1="150" x2="150" y2="220" class="connection" />
+
+    <line x1="50" y1="250" x2="150" y2="80" class="connection" />
+    <line x1="50" y1="250" x2="150" y2="150" class="connection" />
+    <line x1="50" y1="250" x2="150" y2="220" class="connection" />
+
+    <line x1="150" y1="80" x2="280" y2="100" class="connection" />
+    <line x1="150" y1="80" x2="280" y2="200" class="connection" />
+
+    <line x1="150" y1="150" x2="280" y2="100" class="connection" />
+    <line x1="150" y1="150" x2="280" y2="200" class="connection" />
+
+    <line x1="150" y1="220" x2="280" y2="100" class="connection" />
+    <line x1="150" y1="220" x2="280" y2="200" class="connection" />
+
+    <line x1="280" y1="100" x2="350" y2="150" class="connection" />
+    <line x1="280" y1="200" x2="350" y2="150" class="connection" />
+
+    <!-- Input nodes -->
+    <circle cx="50" cy="50" r="5" class="node node--input" filter="url(#glow)" />
+    <circle cx="50" cy="150" r="5" class="node node--input" filter="url(#glow)" />
+    <circle cx="50" cy="250" r="5" class="node node--input" filter="url(#glow)" />
+
+    <!-- Hidden layer 1 -->
+    <circle cx="150" cy="80" r="5" class="node node--hidden" filter="url(#glow)" />
+    <circle cx="150" cy="150" r="5" class="node node--hidden" filter="url(#glow)" />
+    <circle cx="150" cy="220" r="5" class="node node--hidden" filter="url(#glow)" />
+
+    <!-- Hidden layer 2 -->
+    <circle cx="280" cy="100" r="5" class="node node--hidden" filter="url(#glow)" />
+    <circle cx="280" cy="200" r="5" class="node node--hidden" filter="url(#glow)" />
+
+    <!-- Output node -->
+    <circle cx="350" cy="150" r="6" class="node node--output" filter="url(#glow)" />
+  </svg>
+</div>
+
+<style>
+  .neural-network-container {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.15;
+    z-index: 0;
+  }
+
+  .neural-network {
+    width: 100%;
+    height: 100%;
+    max-width: 500px;
+    max-height: 400px;
+    position: absolute;
+    right: clamp(2rem, 6vw, 8rem);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .connection {
+    stroke: var(--color-foreground);
+    stroke-width: 0.5;
+    opacity: 0.4;
+    animation: pulse-line 3s ease-in-out infinite;
+  }
+
+  .connection:nth-child(n + 2) {
+    animation-delay: 0.2s;
+  }
+
+  .connection:nth-child(n + 5) {
+    animation-delay: 0.4s;
+  }
+
+  .connection:nth-child(n + 10) {
+    animation-delay: 0.6s;
+  }
+
+  .node {
+    fill: url(#nodeGradient);
+    animation: pulse-node 2s ease-in-out infinite;
+  }
+
+  .node--input {
+    animation-delay: 0s;
+  }
+
+  .node--hidden {
+    animation-delay: 0.4s;
+  }
+
+  .node--output {
+    animation-delay: 0.8s;
+  }
+
+  @keyframes pulse-node {
+    0%,
+    100% {
+      r: 5px;
+      opacity: 0.6;
+    }
+    50% {
+      r: 7px;
+      opacity: 1;
+    }
+  }
+
+  @keyframes pulse-line {
+    0%,
+    100% {
+      opacity: 0.2;
+      stroke-width: 0.5;
+    }
+    50% {
+      opacity: 0.6;
+      stroke-width: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .connection,
+    .node {
+      animation: none;
+      opacity: 0.4;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .neural-network-container {
+      opacity: 0.08;
+    }
+
+    .neural-network {
+      max-width: 300px;
+      max-height: 250px;
+      right: 1rem;
+    }
+  }
+</style>

@@ -1,0 +1,142 @@
+---
+import type { MdEntry } from "../lib/md-entries";
+
+interface Props {
+  items: MdEntry[];
+  basePath: string;
+  id: string;
+  label: string;
+}
+
+const { items, basePath, id, label } = Astro.props;
+---
+
+{
+  items.length > 0 && (
+    <div class="carousel" data-carousel>
+      <div
+        id={id}
+        class="carousel__track"
+        data-carousel-track
+        role="region"
+        aria-roledescription="carousel"
+        aria-label={label}
+        tabindex="0"
+      >
+        {items.map((item) => (
+          <a
+            class="content-card carousel__slide"
+            data-carousel-slide
+            href={`${basePath}/${item.slug}`}
+            draggable="false"
+          >
+            <img
+              class="content-card__image"
+              src={item.img}
+              alt=""
+              width="480"
+              height="270"
+              loading="lazy"
+              decoding="async"
+              draggable="false"
+            />
+            <div class="content-card__body">
+              <h3>{item.title}</h3>
+              {item.description && <p>{item.description}</p>}
+              {item.tags.length > 0 && (
+                <div class="content-card__tags" aria-label="Tags">
+                  {item.tags.map((tag) => <span class="content-card__label">{tag}</span>)}
+                </div>
+              )}
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+<script>
+  import "../scripts/carousel.ts";
+</script>
+
+<style>
+  .carousel {
+    position: relative;
+    margin-top: 1.25rem;
+  }
+
+  .carousel::before,
+  .carousel::after {
+    position: absolute;
+    top: 0;
+    bottom: 0.75rem;
+    z-index: 1;
+    width: clamp(1.25rem, 4vw, 3rem);
+    content: "";
+    pointer-events: none;
+    opacity: 0.88;
+    transition: opacity 0.2s ease;
+  }
+
+  .carousel__track {
+    display: flex;
+    gap: clamp(0.85rem, 2vw, 1.15rem);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 0.5rem;
+    padding: 0.15rem 0.5rem 0.75rem;
+    margin-inline: -0.5rem;
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+    scrollbar-width: none;
+    touch-action: pan-x pan-y pinch-zoom;
+    transition: scroll-padding 0.2s ease;
+  }
+
+  .carousel__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .carousel__track.is-dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    user-select: none;
+  }
+
+  .carousel:focus-within::before,
+  .carousel:focus-within::after,
+  .carousel:hover::before,
+  .carousel:hover::after {
+    opacity: 1;
+  }
+
+  .carousel__track:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 4px;
+    border-radius: 0.25rem;
+  }
+
+  .carousel__slide {
+    flex: 0 0 clamp(20rem, 52vw, 34rem);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    padding: 0;
+    overflow: hidden;
+    -webkit-user-drag: none;
+    user-select: none;
+  }
+
+  @media (max-width: 520px) {
+    .carousel__slide {
+      flex-basis: min(88vw, 28rem);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .carousel__track {
+      scroll-behavior: auto;
+    }
+  }
+</style>
