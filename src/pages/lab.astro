@@ -1,0 +1,76 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import Carousel from "../components/Carousel.astro";
+import labSectionConfig from "../data/lab-sections.json";
+import { entriesFromGlob, groupBySection, type MdModule } from "../lib/md-entries";
+
+type LabSectionConfig = {
+  order: string[];
+  sections: Record<string, { label: string; description: string }>;
+};
+
+const config = labSectionConfig as LabSectionConfig;
+const modules = import.meta.glob<MdModule>("../content/lab/**/*.md", { eager: true });
+const items = entriesFromGlob(modules, "lab");
+const sectionOrder = config.order;
+const sections = groupBySection(items).sort(([a], [b]) => {
+  const aIndex = sectionOrder.indexOf(a);
+  const bIndex = sectionOrder.indexOf(b);
+
+  if (aIndex === -1 && bIndex === -1) return a.localeCompare(b);
+  if (aIndex === -1) return 1;
+  if (bIndex === -1) return -1;
+  return aIndex - bIndex;
+});
+const basePath = "/lab";
+
+function titleFromKey(key: string): string {
+  return key
+    .split("-")
+    .filter(Boolean)
+    .map((word) => word[0]?.toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
+function sectionLabel(section: string): string {
+  return config.sections[section]?.label ?? titleFromKey(section);
+}
+
+function sectionDescription(section: string): string | undefined {
+  return config.sections[section]?.description;
+}
+---
+
+<PageLayout title="Lab | Daniel Ward" description="Notes, experiments, and prototypes from Daniel Ward.">
+  <Fragment slot="head">
+    <link rel="preload" href="/lab-sections.json" as="fetch" type="application/json" crossorigin="anonymous" />
+  </Fragment>
+  <div class="page">
+    <header class="page-hero">
+      <p class="eyebrow">Lab</p>
+      <h1>Lab</h1>
+      <p class="lead">
+        Markdown files in <code>src/content/lab</code> are grouped by their <code>section</code> front matter. Each section loads as its own carousel.
+      </p>
+    </header>
+
+    {
+      sections.length === 0 ? (
+        <p class="lead">No lab items yet. Add a <code>.md</code> file under <code>src/content/lab</code>.</p>
+      ) : (
+        sections.map(([section, sectionItems]) => (
+          <section class="content-section" aria-labelledby={`lab-${section}`}>
+            <h2 id={`lab-${section}`}>{sectionLabel(section)}</h2>
+            {sectionDescription(section) && <p class="section-note">{sectionDescription(section)}</p>}
+            <Carousel
+              items={sectionItems}
+              basePath={basePath}
+              id={`lab-carousel-${section}`}
+              label={sectionLabel(section)}
+            />
+          </section>
+        ))
+      )
+    }
+  </div>
+</PageLayout>

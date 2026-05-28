@@ -1,0 +1,40 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import Carousel from "../components/Carousel.astro";
+import { entriesFromGlob, groupBySection, type MdModule } from "../lib/md-entries";
+
+const modules = import.meta.glob<MdModule>("../content/work/**/*.md", { eager: true });
+const entries = entriesFromGlob(modules, "work");
+const sections = groupBySection(entries);
+const basePath = "/work";
+---
+
+<PageLayout title="Work | Daniel Ward" description="Projects and case studies by Daniel Ward.">
+  <div class="page">
+    <header class="page-hero">
+      <p class="eyebrow">Work</p>
+      <h1>Projects</h1>
+      <p class="lead">
+        Here are a list of my projects made for real clients. They are mostly accompanied by case studies that go into more detail about the project, the process, and the outcome.
+      </p>
+    </header>
+
+    {
+      entries.length === 0 ? (
+        <p class="lead">No work entries yet.</p>
+      ) : (
+        sections.map(([section, sectionEntries]) => (
+          <section class="content-section" aria-labelledby={`work-${section}`}>
+            <h2 id={`work-${section}`}>{section}</h2>
+            <Carousel
+              items={sectionEntries}
+              basePath={basePath}
+              id={`work-carousel-${section}`}
+              label={`${section} projects`}
+            />
+          </section>
+        ))
+      )
+    }
+  </div>
+</PageLayout>
