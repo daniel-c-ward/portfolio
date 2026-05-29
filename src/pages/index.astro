@@ -1,7 +1,6 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
 import Carousel from "../components/Carousel.astro";
-import NeuralNetwork from "../components/NeuralNetwork.astro";
 import { entriesFromGlob, type MdModule } from "../lib/md-entries";
 
 const workModules = import.meta.glob<MdModule>("../content/work/**/*.md", {
@@ -31,7 +30,6 @@ const labItems = entriesFromGlob(labModules, "lab");
         <a class="button button--primary" href="/contact">Get in touch</a>
       </div>
     </div>
-    <NeuralNetwork />
   </section>
 
   <section id="about" class="about page">
@@ -242,12 +240,9 @@ const labItems = entriesFromGlob(labModules, "lab");
     }
   }
 
-  .about,
-  .home-block {
-    padding: clamp(3rem, 8vw, 5rem) 0;
-    border-top: 1px solid
-      color-mix(in srgb, var(--color-foreground) 12%, transparent);
-  }
+
+  
+
 
   .about h2,
   .home-block h2 {

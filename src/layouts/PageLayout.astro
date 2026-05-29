@@ -22,5 +22,30 @@ const {
         <main>
             <slot />
         </main>
+        <script>
+            function normaliseProseLinks() {
+                const links = document.querySelectorAll(".prose a");
+                links.forEach((a) => {
+                    let href = a.getAttribute("href");
+                    if (!href) return;
+
+                    const isRelativePath = href.startsWith("/") || href.startsWith("#");
+                    const hasProtocol = href.startsWith("http://") || href.startsWith("https://") || href.startsWith("mailto:") || href.startsWith("tel:");
+
+                    if (!isRelativePath && !hasProtocol && href.includes(".")) {
+                        href = "https://" + href;
+                        a.setAttribute("href", href);
+                    }
+
+                    if (href.startsWith("http://") || href.startsWith("https://")) {
+                        a.setAttribute("target", "_blank");
+                        a.setAttribute("rel", "noopener noreferrer");
+                    }
+                });
+            }
+
+            normaliseProseLinks();
+            document.addEventListener("astro:page-load", normaliseProseLinks);
+        </script>
     </body>
 </html>
