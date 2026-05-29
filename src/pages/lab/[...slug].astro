@@ -8,12 +8,11 @@ export function getStaticPaths() {
 
   return entries.map((entry) => ({
     params: { slug: entry.slug },
-    props: { entry },
+    props: { entry, modules },
   }));
 }
 
-const { entry } = Astro.props;
-const modules = import.meta.glob<MdModule>("../../content/lab/**/*.md", { eager: true });
+const { entry, modules } = Astro.props;
 const mod = Object.entries(modules).find(([path]) => slugFromPath(path, "lab") === entry.slug)?.[1];
 ---
 

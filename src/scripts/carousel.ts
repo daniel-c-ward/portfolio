@@ -1,15 +1,11 @@
 function scrollBehavior(): ScrollBehavior {
-  return window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ? "auto"
-    : "smooth";
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
 }
 
 function getScrollStep(track: HTMLElement): number {
   const slide = track.querySelector<HTMLElement>("[data-carousel-slide]");
   if (!slide) return track.clientWidth;
-  const gap = parseFloat(
-    getComputedStyle(track).columnGap || getComputedStyle(track).gap || "0",
-  );
+  const gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || "0");
   return slide.offsetWidth + gap;
 }
 
@@ -21,9 +17,6 @@ function bindDragScroll(track: HTMLElement) {
 
   track.addEventListener("pointerdown", (event) => {
     if (event.pointerType === "touch" || event.button !== 0) return;
-
-    const target = event.target as HTMLElement;
-    if (target.closest("a, button, .button")) return;
 
     isDragging = true;
     didDrag = false;
@@ -37,9 +30,7 @@ function bindDragScroll(track: HTMLElement) {
     if (!isDragging) return;
 
     const delta = event.clientX - startX;
-    if (Math.abs(delta) > 5) {
-      didDrag = true;
-    }
+    if (Math.abs(delta) > 4) didDrag = true;
     track.scrollLeft = startScrollLeft - delta;
   });
 
@@ -63,13 +54,12 @@ function bindDragScroll(track: HTMLElement) {
   track.addEventListener(
     "click",
     (event) => {
-      if (didDrag) {
-        event.preventDefault();
-        event.stopPropagation();
-        didDrag = false;
-      }
+      if (!didDrag) return;
+      event.preventDefault();
+      event.stopPropagation();
+      didDrag = false;
     },
-    { capture: true },
+    true,
   );
 }
 
@@ -80,10 +70,7 @@ function bindCarousel(carousel: HTMLElement) {
   carousel.dataset.carouselReady = "true";
 
   const scrollByStep = (direction: -1 | 1) => {
-    track.scrollBy({
-      left: direction * getScrollStep(track),
-      behavior: scrollBehavior(),
-    });
+    track.scrollBy({ left: direction * getScrollStep(track), behavior: scrollBehavior() });
   };
 
   track.addEventListener("keydown", (event) => {
@@ -100,10 +87,7 @@ function bindCarousel(carousel: HTMLElement) {
 }
 
 function observeCarousel(carousel: HTMLElement) {
-  if (
-    carousel.dataset.carouselObserved === "true" ||
-    carousel.dataset.carouselReady === "true"
-  ) {
+  if (carousel.dataset.carouselObserved === "true" || carousel.dataset.carouselReady === "true") {
     return;
   }
 
@@ -130,9 +114,7 @@ function observeCarousel(carousel: HTMLElement) {
 }
 
 export function initCarousels(root: ParentNode = document) {
-  root
-    .querySelectorAll<HTMLElement>("[data-carousel]")
-    .forEach(observeCarousel);
+  root.querySelectorAll<HTMLElement>("[data-carousel]").forEach(observeCarousel);
 }
 
 if (typeof document !== "undefined") {

@@ -1,0 +1,390 @@
+---
+import { entriesFromGlob, type MdModule } from "../lib/md-entries";
+
+const workModules = import.meta.glob<MdModule>("../content/work/**/*.md", {
+  eager: true,
+});
+const workItems = entriesFromGlob(workModules, "work");
+
+// Generate node positions in a more organic, dense pattern
+interface Node {
+  id: string;
+  x: number;
+  y: number;
+  project?: typeof workItems[0];
+}
+
+const generateNodes = (projectCount: number): Node[] => {
+  const nodes: Node[] = [];
+  
+  // Create a grid with random offsets for organic feel
+  const gridSize = Math.ceil(Math.sqrt(projectCount + 5));
+  const nodeWidth = 400 / gridSize;
+  const nodeHeight = 300 / gridSize;
+  
+  let nodeIndex = 0;
+  
+  for (let row = 0; row < gridSize; row++) {
+    for (let col = 0; col < gridSize; col++) {
+      if (nodeIndex >= projectCount + 5) break;
+      
+      const baseX = col * nodeWidth + nodeWidth / 2;
+      const baseY = row * nodeHeight + nodeHeight / 2;
+      const offsetX = (Math.random() - 0.5) * (nodeWidth * 0.6);
+      const offsetY = (Math.random() - 0.5) * (nodeHeight * 0.6);
+      
+      const node: Node = {
+        id: `node-${nodeIndex}`,
+        x: baseX + offsetX,
+        y: baseY + offsetY,
+      };
+      
+      // Assign projects to nodes
+      if (nodeIndex < projectCount) {
+        node.project = workItems[nodeIndex];
+      }
+      
+      nodes.push(node);
+      nodeIndex++;
+    }
+  }
+  
+  return nodes;
+};
+
+const nodes = generateNodes(workItems.length);
+
+// Generate random connections (approximately 2-3 per node for visual interest)
+const generateConnections = (nodes: Node[]) => {
+  const connections: Array<[Node, Node]> = [];
+  
+  nodes.forEach((node, idx) => {
+    // Connect to 2-3 random other nodes
+    const connectionCount = Math.floor(Math.random() * 2) + 2;
+    
+    for (let i = 0; i < connectionCount; i++) {
+      const randomIdx = Math.floor(Math.random() * nodes.length);
+      if (randomIdx !== idx) {
+        connections.push([node, nodes[randomIdx]]);
+      }
+    }
+  });
+  
+  return connections;
+};
+
+const connections = generateConnections(nodes);
+---
+
+<div class="neural-network-container">
+  <svg
+    class="neural-network"
+    viewBox="0 0 400 300"
+    preserveAspectRatio="xMidYMid meet"
+    aria-label="Neural network of projects"
+  >
+    <!-- Define gradients -->
+    <defs>
+      <linearGradient id="nodeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color: var(--color-primary); stop-opacity: 1" />
+        <stop offset="100%" style="stop-color: var(--color-secondary); stop-opacity: 0.7" />
+      </linearGradient>
+      <filter id="glow">
+        <feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
+        <feMerge>
+          <feMergeNode in="coloredBlur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+
+    <!-- Connection lines -->
+    {connections.map((connection, idx) => (
+      <line
+        x1={connection[0].x}
+        y1={connection[0].y}
+        x2={connection[1].x}
+        y2={connection[1].y}
+        class="connection"
+        style={`animation-delay: ${(idx * 0.05) % 2}s`}
+      />
+    ))}
+
+    <!-- Nodes -->
+    {nodes.map((node, idx) => (
+      <g key={node.id} class="node-group" data-node-id={node.id}>
+        <circle
+          cx={node.x}
+          cy={node.y}
+          r="3"
+          class={`node ${node.project ? 'node--project' : 'node--connector'}`}
+          filter="url(#glow)"
+        />
+        {node.project && (
+          <title>{node.project.title}</title>
+        )}
+      </g>
+    ))}
+  </svg>
+
+  <!-- Tooltip for project info -->
+  <div class="project-tooltip" id="project-tooltip" style="display: none;">
+    <div class="tooltip-content">
+      <h3 id="tooltip-title"></h3>
+      <p id="tooltip-description"></p>
+      <a href="#" id="tooltip-link" class="tooltip-link">View project →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const nodes = document.querySelectorAll('.node-group');
+  const tooltip = document.getElementById('project-tooltip') as HTMLElement;
+  const tooltipTitle = document.getElementById('tooltip-title') as HTMLElement;
+  const tooltipDescription = document.getElementById('tooltip-description') as HTMLElement;
+  const tooltipLink = document.getElementById('tooltip-link') as HTMLAnchorElement;
+
+  const projectData = {
+    'retail-checkout': {
+      title: 'Retail checkout',
+      description: 'Guest checkout and delivery options with less cognitive load.',
+      path: '/work/retail-checkout'
+    },
+    'fintech-onboarding': {
+      title: 'Fintech onboarding',
+      description: 'Simplified account setup for financial services.',
+      path: '/work/fintech-onboarding'
+    },
+    'health-portal': {
+      title: 'Health portal',
+      description: 'Patient-centered interface for health data.',
+      path: '/work/health-portal'
+    },
+    'heritage-museum': {
+      title: 'Heritage museum',
+      description: 'Digital experience for cultural discovery.',
+      path: '/work/heritage-museum'
+    },
+    'local-council': {
+      title: 'Local council',
+      description: 'Civic services redesigned for accessibility.',
+      path: '/work/local-council'
+    },
+    'publisher-subscribe': {
+      title: 'Publisher subscribe',
+      description: 'Subscription flow optimized for conversion.',
+      path: '/work/publisher-subscribe'
+    },
+    'saas-pricing': {
+      title: 'SaaS pricing',
+      description: 'Pricing page that communicates value clearly.',
+      path: '/work/saas-pricing'
+    },
+    'charity-donate': {
+      title: 'Charity donate',
+      description: 'Donation experience that builds trust.',
+      path: '/work/charity-donate'
+    },
+    'studio-brand': {
+      title: 'Studio brand',
+      description: 'Visual identity and brand guidelines.',
+      path: '/work/studio-brand'
+    },
+    'sample-project': {
+      title: 'Sample project',
+      description: 'Example project showcase.',
+      path: '/work/sample-project'
+    }
+  };
+
+  nodes.forEach((nodeEl) => {
+    const projectNodes = Array.from(nodeEl.querySelectorAll('.node--project'));
+    
+    if (projectNodes.length === 0) return;
+
+    nodeEl.addEventListener('mouseenter', (e) => {
+      // Get a random project from the data
+      const projectKeys = Object.keys(projectData);
+      const randomKey = projectKeys[Math.floor(Math.random() * projectKeys.length)];
+      const project = projectData[randomKey as keyof typeof projectData];
+
+      tooltipTitle.textContent = project.title;
+      tooltipDescription.textContent = project.description;
+      tooltipLink.href = project.path;
+
+      const rect = (e.target as SVGElement).getBoundingClientRect();
+      tooltip.style.display = 'block';
+      tooltip.style.position = 'fixed';
+      tooltip.style.left = rect.right + 16 + 'px';
+      tooltip.style.top = rect.top - 30 + 'px';
+
+      nodeEl.classList.add('node-group--active');
+    });
+
+    nodeEl.addEventListener('mouseleave', () => {
+      tooltip.style.display = 'none';
+      nodeEl.classList.remove('node-group--active');
+    });
+  });
+</script>
+
+<style>
+  .neural-network-container {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.2;
+    z-index: 0;
+  }
+
+  .neural-network {
+    width: 100%;
+    height: 100%;
+    max-width: 500px;
+    max-height: 400px;
+    position: absolute;
+    right: clamp(2rem, 6vw, 8rem);
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: auto;
+  }
+
+  .connection {
+    stroke: var(--color-foreground);
+    stroke-width: 0.4;
+    opacity: 0.2;
+    animation: pulse-line 3s ease-in-out infinite;
+  }
+
+  .node {
+    fill: url(#nodeGradient);
+    animation: pulse-node 2.5s ease-in-out infinite;
+    cursor: pointer;
+    transition: r 0.2s ease;
+  }
+
+  .node--project {
+    animation-delay: 0.3s;
+  }
+
+  .node--connector {
+    animation-delay: 0s;
+    opacity: 0.5;
+  }
+
+  .node-group:hover .node {
+    r: 5px;
+  }
+
+  :global(.node-group--active) .node {
+    r: 6px;
+    opacity: 1;
+  }
+
+  @keyframes pulse-node {
+    0%,
+    100% {
+      r: 3px;
+      opacity: 0.6;
+    }
+    50% {
+      r: 4px;
+      opacity: 1;
+    }
+  }
+
+  @keyframes pulse-line {
+    0%,
+    100% {
+      opacity: 0.15;
+      stroke-width: 0.4;
+    }
+    50% {
+      opacity: 0.35;
+      stroke-width: 0.6;
+    }
+  }
+
+  .project-tooltip {
+    position: fixed;
+    background: var(--color-surface);
+    border: 1px solid color-mix(in srgb, var(--color-foreground) 15%, transparent);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    z-index: 1000;
+    pointer-events: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-width: 200px;
+    animation: tooltip-fade-in 0.2s ease;
+  }
+
+  .tooltip-content h3 {
+    margin: 0 0 0.25rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-foreground);
+  }
+
+  .tooltip-content p {
+    margin: 0 0 0.5rem;
+    font-size: 0.85rem;
+    color: color-mix(in srgb, var(--color-foreground) 75%, transparent);
+    line-height: 1.4;
+  }
+
+  .tooltip-link {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .tooltip-link:hover {
+    color: var(--color-secondary);
+  }
+
+  @keyframes tooltip-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .connection,
+    .node {
+      animation: none;
+      opacity: 0.4;
+    }
+    
+    .project-tooltip {
+      animation: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .neural-network-container {
+      opacity: 0.1;
+    }
+
+    .neural-network {
+      max-width: 300px;
+      max-height: 250px;
+      right: 1rem;
+    }
+
+    .project-tooltip {
+      max-width: 160px;
+      font-size: 0.85rem;
+    }
+  }
+</style>

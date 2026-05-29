@@ -4,15 +4,14 @@ export interface MdFrontmatter {
   section?: string;
   tags?: string[];
   description?: string;
-  url?: string;
   order?: number;
   date?: string | Date;
-  logo?: boolean;
 }
 
-import type { MarkdownInstance } from "astro";
-
-export type MdModule = MarkdownInstance<MdFrontmatter>;
+export interface MdModule {
+  frontmatter: MdFrontmatter;
+  Content: unknown;
+}
 
 export interface MdEntry {
   slug: string;
@@ -21,21 +20,17 @@ export interface MdEntry {
   img: string;
   tags: string[];
   section: string;
-  url?: string;
   order: number;
   date?: string | Date;
-  logo: boolean;
 }
 
 const defaultImage = "/images/placeholder.svg";
 
 export function slugFromPath(path: string, collection: string): string {
-  return (
-    path
-      .replace(/\\/g, "/")
-      .split(`/content/${collection}/`)[1]
-      ?.replace(/\.mdx?$/, "") ?? ""
-  );
+  return path
+    .replace(/\\/g, "/")
+    .split(`/content/${collection}/`)[1]
+    ?.replace(/\.mdx?$/, "") ?? "";
 }
 
 function sectionFromPath(path: string, collection: string): string {
@@ -44,24 +39,13 @@ function sectionFromPath(path: string, collection: string): string {
   return section || "uncategorised";
 }
 
-function normaliseSection(
-  section: string | undefined,
-  fallback: string,
-): string {
+function normaliseSection(section: string | undefined, fallback: string): string {
   return (section || fallback)
     .trim()
     .toLowerCase()
     .replace(/&/g, "and")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
-}
-
-function normaliseUrl(url: string | undefined): string | undefined {
-  if (!url) return undefined;
-  if (/^https?:\/\//i.test(url) || /^\/\//.test(url)) {
-    return url;
-  }
-  return `https://${url}`;
 }
 
 export function entriesFromGlob(
@@ -79,19 +63,14 @@ export function entriesFromGlob(
         description: frontmatter.description,
         img: frontmatter.img ?? defaultImage,
         tags: frontmatter.tags ?? [],
-        url: normaliseUrl(frontmatter.url),
         section: normaliseSection(frontmatter.section, fallbackSection),
         order: frontmatter.order ?? 0,
         date: frontmatter.date,
-        logo: frontmatter.logo ?? (
-          path.toLowerCase().includes("logo") ||
-          (frontmatter.img && frontmatter.img.toLowerCase().includes("logo"))
-        ) ?? false,
       };
     })
     .sort((a, b) => {
       if (a.order !== b.order) return a.order - b.order;
-      return (a.title || "").localeCompare(b.title || "");
+      return a.title.localeCompare(b.title);
     });
 }
 
