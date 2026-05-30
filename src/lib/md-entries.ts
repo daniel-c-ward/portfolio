@@ -6,6 +6,8 @@ export interface MdFrontmatter {
   description?: string;
   order?: number;
   date?: string | Date;
+  url?: string;
+  logo?: boolean;
 }
 
 export interface MdModule {
@@ -22,6 +24,8 @@ export interface MdEntry {
   section: string;
   order: number;
   date?: string | Date;
+  url?: string;
+  logo?: boolean;
 }
 
 const defaultImage = "/images/placeholder.svg";
@@ -66,6 +70,8 @@ export function entriesFromGlob(
         section: normaliseSection(frontmatter.section, fallbackSection),
         order: frontmatter.order ?? 0,
         date: frontmatter.date,
+        url: frontmatter.url,
+        logo: frontmatter.logo,
       };
     })
     .sort((a, b) => {

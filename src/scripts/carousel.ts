@@ -18,6 +18,9 @@ function bindDragScroll(track: HTMLElement) {
   track.addEventListener("pointerdown", (event) => {
     if (event.pointerType === "touch" || event.button !== 0) return;
 
+    const target = event.target as HTMLElement;
+    if (target.closest("a, button")) return;
+
     isDragging = true;
     didDrag = false;
     startX = event.clientX;

@@ -24,14 +24,9 @@ const { items, basePath, id, label } = Astro.props;
         tabindex="0"
       >
         {items.map((item) => (
-          <a
-            class="content-card carousel__slide"
-            data-carousel-slide
-            href={`${basePath}/${item.slug}`}
-            draggable="false"
-          >
+          <div class="content-card carousel__slide" data-carousel-slide>
             <img
-              class="content-card__image"
+              class={`content-card__image${item.logo ? ' content-card__image--logo' : ''}`}
               src={item.img}
               alt=""
               width="480"
@@ -45,11 +40,53 @@ const { items, basePath, id, label } = Astro.props;
               {item.description && <p>{item.description}</p>}
               {item.tags.length > 0 && (
                 <div class="content-card__tags" aria-label="Tags">
-                  {item.tags.map((tag) => <span class="content-card__label">{tag}</span>)}
+                  {item.tags.map((tag) => (
+                    <span class="content-card__label">{tag}</span>
+                  ))}
                 </div>
               )}
             </div>
-          </a>
+            <div class="content-card__actions">
+              {item.url && (
+                <a
+                  class="button button--secondary button--small"
+                  href={
+                    item.url.startsWith("http")
+                      ? item.url
+                      : `https://${item.url}`
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  draggable="false"
+                >
+                  Visit Site
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    aria-hidden="true"
+                    style="margin-left:0.3rem;"
+                  >
+                    <path
+                      d="M5 3h8v8M13 3L3 13"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </a>
+              )}
+              <a
+                class="button button--primary button--small"
+                href={`${basePath}/${item.slug}`}
+                draggable="false"
+              >
+                Case Study
+              </a>
+            </div>
+          </div>
         ))}
       </div>
     </div>
@@ -89,7 +126,6 @@ const { items, basePath, id, label } = Astro.props;
     padding: 0.15rem 0.5rem 0.75rem;
     margin-inline: -0.5rem;
     -webkit-overflow-scrolling: touch;
-    cursor: grab;
     scrollbar-width: none;
     touch-action: pan-x pan-y pinch-zoom;
     transition: scroll-padding 0.2s ease;
@@ -100,7 +136,6 @@ const { items, basePath, id, label } = Astro.props;
   }
 
   .carousel__track.is-dragging {
-    cursor: grabbing;
     scroll-snap-type: none;
     user-select: none;
   }
@@ -125,7 +160,17 @@ const { items, basePath, id, label } = Astro.props;
     padding: 0;
     overflow: hidden;
     -webkit-user-drag: none;
-    user-select: none;
+  }
+
+  .content-card__actions {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0 0.85rem 0.85rem;
+    margin-top: auto;
+  }
+
+  .content-card__actions .button {
+    flex: 1;
   }
 
   @media (max-width: 520px) {
