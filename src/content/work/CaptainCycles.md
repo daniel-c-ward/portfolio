@@ -73,16 +73,23 @@ These gave him the essentials without overwhelming him with too many tools.
 
 ---
 
-## Outcome
+## Outcome & Key takeaways
 
-The final site gave Captain Cycles exactly what he needed:
+### Outcome
+
+The final site gave them exactly what they needed:
 
 - A clean, simple design
-- A custom theme that matched his brand
+- A custom theme that matched their brand
 - Easy content management
 - Reliable hosting
 - Basic SEO and analytics built in
 
-Overall, it was a smooth project that gave the client a professional online presence without any unnecessary complexity.
+It was a smooth project that gave the client a professional online presence without any unnecessary 
+
+### Key takeaways
+
+Due to the simplicity of the site, I focused on my interactions with the client, making sure they were fully involved every step of the way, and letting then weigh in at key steps.
+I also made advancements in my adaptablity, the client was frequently delayed in replying and shareing information I required as a result of circumstances beyond their control, I learnt to maximise my time to work on thr parts I could and working without full design mockups and copy to meet deadlines without comprimising the concept, and most importantly keeping them involved and informed as I speed ahead.
 
 ---
