@@ -308,8 +308,21 @@ main {
 
 
 
+.content-card__image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}
+
 .content-card__image--logo {
   object-fit: contain;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  margin: 0 auto;
   padding: 1rem 2rem;
 }
 

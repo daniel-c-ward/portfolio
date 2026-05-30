@@ -1,7 +1,7 @@
 ---
 title: Captain Cycles
 description: A service site offering different packages and repairs for bikes of all sorts.
-img: https://lh3.googleusercontent.com/gps-cs-s/APNQkAFzENALC7n4N_CDMhPeKKuNAyFzserTokt20oHrNqvL7LgnAJDCBo7BIMCff0ymIfiaQu_8RupfjPXRJwve6h-dEBSq7hpVyxCoaqX-LpidMSftpayq5Fby-W-y4iJBrwYF8dKmcjdeM3ij=s1360-w1360-h1020-rw
+img: /images/captaincycles-logo.png
 tags:
   - Client Services
   - Wordpress

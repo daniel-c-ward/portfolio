@@ -154,7 +154,10 @@ const { items, basePath, id, label } = Astro.props;
   }
 
   .carousel__slide {
-    flex: 0 0 clamp(20rem, 52vw, 34rem);
+    width: clamp(18.75rem, 52vw, 37.5rem);
+    min-width: 18.75rem;
+    max-width: 37.5rem;
+    flex: 0 0 auto;
     scroll-snap-align: start;
     scroll-snap-stop: always;
     padding: 0;
@@ -175,7 +178,9 @@ const { items, basePath, id, label } = Astro.props;
 
   @media (max-width: 520px) {
     .carousel__slide {
-      flex-basis: min(88vw, 28rem);
+      width: min(88vw, 37.5rem);
+      min-width: 18.75rem;
+      max-width: 100%;
     }
   }
 
