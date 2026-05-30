@@ -1,0 +1,30 @@
+---
+// src/components/SocialIcons.astro
+---
+<style>
+  .social-links {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  .social-links a img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) saturate(100%) invert(36%) sepia(5%) saturate(1249%) hue-rotate(168deg) brightness(94%) contrast(86%);
+    transition: transform 0.2s ease;
+  }
+  .social-links a:hover img {
+    transform: translateY(-2px);
+  }
+</style>
+<div class="social-links">
+  <a href="https://github.com/danielcward" aria-label="GitHub" target="_blank" rel="noopener">
+    <img src="/images/github.svg" alt="GitHub" />
+  </a>
+  <a href="https://linkedin.com/in/danielcward" aria-label="LinkedIn" target="_blank" rel="noopener">
+    <img src="/images/linkedin.svg" alt="LinkedIn" />
+  </a>
+  <a href="/" aria-label="Home" target="_blank" rel="noopener">
+    <img src="/images/home.svg" alt="Home" />
+  </a>
+</div>
