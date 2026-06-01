@@ -3,9 +3,9 @@ import PageLayout from "../layouts/PageLayout.astro";
 
 /** Update these with your actual contact information. */
 const contact = {
-  linkedin: "https://www.linkedin.com/in/yourprofile",
+  linkedin: "https://www.linkedin.com/in/daniel-ward-927189397/",
   instagram: "https://www.instagram.com/yourprofile",
-  email: "danielclarkward@gmail.com",
+  email: "danielward.pw@gmail.com",
   phone: "+441234567890",
   phoneDisplay: "+44 1234 567890",
 };
@@ -13,21 +13,105 @@ const contact = {
 
 <PageLayout
   title="Contact | Daniel Ward"
-  description="Email Daniel Ward for inquiries and collaborations."
+  description="Get in touch with Daniel Ward via email or LinkedIn."
 >
   <div class="page">
     <header class="page-hero">
       <p class="eyebrow">Contact</p>
-      <h1>Email</h1>
-      <p class="lead">Reach me directly at the address below.</p>
+      <h1>Let's Connect</h1>
+      <p class="lead">Reach out through your preferred channel.</p>
     </header>
 
-    <section class="content-section" aria-labelledby="email-heading">
-      <h2 id="email-heading">Send an email</h2>
-      <p>
-        <a href={`mailto:${contact.email}`} class="text-link">{contact.email}</a
+    <section class="contact-cards">
+      <article class="contact-card">
+        <h2 class="contact-card__title">Email</h2>
+        <p class="contact-card__description">
+          Send me a direct message for inquiries and collaborations.
+        </p>
+        <a href={`mailto:${contact.email}`} class="contact-card__link">
+          {contact.email}
+        </a>
+      </article>
+
+      <article class="contact-card">
+        <h2 class="contact-card__title">LinkedIn</h2>
+        <p class="contact-card__description">
+          Connect with me on LinkedIn to see my professional profile and
+          updates.
+        </p>
+        <a
+          href={contact.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="contact-card__link"
         >
-      </p>
+          Visit LinkedIn →
+        </a>
+      </article>
     </section>
   </div>
 </PageLayout>
+
+<style>
+  .contact-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .contact-card {
+    padding: 2rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border, rgba(255, 255, 255, 0.1));
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .contact-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
+  }
+
+  .contact-card__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin: 0;
+  }
+
+  .contact-card__description {
+    color: var(--color-foreground);
+    opacity: 0.8;
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  .contact-card__link {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: var(--color-primary);
+    color: var(--color-surface);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-align: center;
+  }
+
+  .contact-card__link:hover {
+    opacity: 0.9;
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 640px) {
+    .contact-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
