@@ -1,5 +1,7 @@
 ---
 // Import all markdown modules for Lab and Work
+import { contactInfo } from "../config/contact";
+
 const labModules = import.meta.glob("../content/lab/**/*.md", { eager: true });
 const workModules = import.meta.glob("../content/work/**/*.md", {
   eager: true,
@@ -41,7 +43,7 @@ const workPosts = extractPosts(workModules);
       <hr />
       <div class="footer__social">
         <a
-          href="https://github.com/daniel-c-ward"
+          href={`https://github.com/${contactInfo.github}`}
           aria-label="GitHub"
           target="_blank"
           rel="noopener noreferrer"
@@ -61,7 +63,7 @@ const workPosts = extractPosts(workModules);
           </svg>
         </a>
         <a
-          href="https://www.linkedin.com/in/daniel-ward-927189397/"
+          href={`https://www.linkedin.com/in/${contactInfo.linkedin}`}
           aria-label="LinkedIn"
           target="_blank"
           rel="noopener noreferrer"
@@ -131,7 +133,7 @@ const workPosts = extractPosts(workModules);
 
     .footer {
       padding: 4rem 0;
-      background: var(--color-surface);
+      background: var(--color-background);
       color: var(--color-foreground);
       display: flex;
       justify-content: center;
@@ -145,11 +147,7 @@ const workPosts = extractPosts(workModules);
       flex-wrap: wrap;
       justify-content: space-between;
       gap: 2rem;
-      backdrop-filter: blur(12px);
-      background: rgba(255, 255, 255, 0.06);
-      border-radius: 12px;
       padding: 2rem;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
       box-sizing: border-box;
     }
     .footer__brand {

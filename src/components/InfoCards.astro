@@ -1,0 +1,219 @@
+---
+import type { SkillIconName } from "../config/skills";
+import SkillIcon from "./SkillIcon.astro";
+
+export type InfoCardItem = {
+  title: string;
+  description: string;
+  icon?: SkillIconName;
+  link?: {
+    href: string;
+    label: string;
+    external?: boolean;
+  };
+};
+
+type Props = {
+  items: InfoCardItem[];
+  label?: string;
+  titleTag?: "h2" | "h3" | "h4";
+  layout?: "row" | "grid";
+  size?: "default" | "compact";
+};
+
+const {
+  items,
+  label = "Cards",
+  titleTag = "h2",
+  layout = "row",
+  size = "default",
+} = Astro.props;
+const Title = titleTag;
+---
+
+<section
+  class:list={[
+    "info-cards",
+    layout === "grid" && "info-cards--grid",
+    size === "compact" && "info-cards--compact",
+  ]}
+  aria-label={label}
+>
+  {
+    items.map((item) => (
+      <article class="info-card">
+        {
+          item.icon ? (
+            <div class="info-card__icon">
+              <SkillIcon name={item.icon} />
+            </div>
+          ) : null
+        }
+        <Title class="info-card__title">{item.title}</Title>
+        <p class="info-card__description">{item.description}</p>
+        {
+          item.link ? (
+            <a
+              href={item.link.href}
+              class="info-card__link"
+              target={item.link.external ? "_blank" : undefined}
+              rel={item.link.external ? "noopener noreferrer" : undefined}
+            >
+              {item.link.label}
+            </a>
+          ) : null
+        }
+      </article>
+    ))
+  }
+</section>
+
+<style>
+  .info-cards {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    overflow-x: auto;
+    padding: 1rem 0;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .info-cards::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .info-cards::-webkit-scrollbar-track {
+    background: color-mix(in srgb, var(--color-foreground) 8%, transparent);
+    border-radius: 4px;
+  }
+
+  .info-cards::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 4px;
+  }
+
+  .info-cards::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
+    opacity: 0.8;
+  }
+
+  .info-card {
+    padding: 2rem;
+    background: var(--color-surface);
+    border: 1px solid color-mix(in srgb, var(--color-foreground) 10%, transparent);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 0 0 350px;
+    min-height: 280px;
+  }
+
+  .info-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 8px 32px color-mix(in srgb, var(--color-foreground) 18%, transparent);
+    transform: translateY(-4px);
+  }
+
+  .info-card__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    flex-shrink: 0;
+    color: var(--color-primary);
+  }
+
+  .info-card__icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .info-card__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin: 0;
+  }
+
+  .info-card__description {
+    color: var(--color-foreground);
+    opacity: 0.8;
+    margin: 0;
+    flex-grow: 1;
+    line-height: 1.6;
+  }
+
+  .info-card__link {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-align: center;
+  }
+
+  .info-card__link:hover {
+    opacity: 0.9;
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 640px) {
+    .info-card {
+      flex: 0 0 300px;
+      min-height: 260px;
+    }
+  }
+
+  .info-cards--grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10.5rem, 1fr));
+    gap: 0.85rem;
+    overflow: visible;
+    padding: 0;
+  }
+
+  .info-cards--grid .info-card {
+    flex: unset;
+    min-height: unset;
+  }
+
+  .info-cards--compact .info-card {
+    padding: 1rem 1.1rem;
+    gap: 0.45rem;
+    border-radius: 8px;
+  }
+
+  .info-cards--compact .info-card__icon {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .info-cards--compact .info-card__title {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .info-cards--compact .info-card__description {
+    font-size: 0.8125rem;
+    line-height: 1.45;
+  }
+
+  .info-cards--compact .info-card__link {
+    padding: 0.45rem 0.75rem;
+    font-size: 0.8125rem;
+    border-radius: 6px;
+  }
+
+  .info-cards--compact .info-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px color-mix(in srgb, var(--color-foreground) 14%, transparent);
+  }
+</style>

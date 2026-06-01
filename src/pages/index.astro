@@ -1,6 +1,8 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
 import Carousel from "../components/Carousel.astro";
+import InfoCards from "../components/InfoCards.astro";
+import { skills } from "../config/skills";
 import { entriesFromGlob, type MdModule } from "../lib/md-entries";
 
 const workModules = import.meta.glob<MdModule>("../content/work/**/*.md", {
@@ -17,34 +19,45 @@ const labItems = entriesFromGlob(labModules, "lab");
   title="Daniel Ward | Portfolio"
   description="Daniel Ward - UX and behavioural economics. Websites for how people decide."
 >
-  <section class="hero" aria-labelledby="hero-heading">
-    <div class="hero__inner page">
-      <p class="hero__wordmark">Daniel Ward</p>
-      <h1 id="hero-heading">Websites for how people decide</h1>
-      <p class="hero__lead">
-        UX and behavioural economics - designing interfaces that respect
-        attention, bias, and intent.
-      </p>
-      <div class="hero__actions">
-        <a class="button button--secondary" href="/work">View work</a>
-        <a class="button button--primary" href="/contact">Get in touch</a>
+  <div class="home-intro">
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero__inner page">
+        <p class="hero__wordmark">Daniel Ward</p>
+        <h1 id="hero-heading">Websites for how people decide</h1>
+        <p class="hero__lead">
+          UX and behavioural economics - designing interfaces that respect
+          attention, bias, and intent.
+        </p>
+        <div class="hero__actions">
+          <a class="button button--secondary" href="/work">View work</a>
+          <a class="button button--primary" href="/contact">Get in touch</a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="about" class="about page">
-    <h2>About</h2>
-    <p>
-      I design experiences that understand how people actually make decisions.
-      By combining UX principles with insights from behavioral economics, I
-      create interfaces that respect attention, acknowledge bias, and guide
-      intent.
-    </p>
-    <p>
-      My approach focuses on reducing friction, building trust, and creating
-      moments of clarity where it matters most.
-    </p>
-  </section>
+    <section id="about" class="about page">
+      <h2>About</h2>
+      <p>
+        I design experiences that understand how people actually make decisions.
+        By combining UX principles with insights from behavioral economics, I
+        create interfaces that respect attention, acknowledge bias, and guide
+        intent.
+      </p>
+      <p>
+        My approach focuses on reducing friction, building trust, and creating
+        moments of clarity where it matters most.
+      </p>
+
+      <h3 class="about__subheading">My skills</h3>
+      <InfoCards
+        items={skills}
+        label="My skills"
+        titleTag="h4"
+        layout="grid"
+        size="compact"
+      />
+    </section>
+  </div>
 
   <section id="work" class="home-block page">
     <h2>Work</h2>
@@ -89,9 +102,18 @@ const labItems = entriesFromGlob(labModules, "lab");
 </PageLayout>
 
 <style>
-  .hero {
+  .home-intro {
     position: relative;
-    overflow: hidden;
+    background:
+      radial-gradient(
+        100% 85% at 0% calc(100svh - 4.25rem),
+        color-mix(in srgb, var(--color-primary) 18%, transparent),
+        transparent 52%
+      ),
+      var(--color-background);
+  }
+
+  .hero {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -103,12 +125,7 @@ const labItems = entriesFromGlob(labModules, "lab");
         color-mix(in srgb, var(--color-secondary) 28%, transparent),
         transparent 55%
       ),
-      radial-gradient(
-        90% 70% at 0% 100%,
-        color-mix(in srgb, var(--color-primary) 18%, transparent),
-        transparent 50%
-      ),
-      var(--color-background);
+      transparent;
   }
 
   .hero__inner {
@@ -241,11 +258,16 @@ const labItems = entriesFromGlob(labModules, "lab");
     }
   }
 
-  .about,
   .home-block {
     padding: clamp(3rem, 8vw, 5rem) 0;
     border-top: 1px solid
       color-mix(in srgb, var(--color-foreground) 12%, transparent);
+  }
+
+  .about {
+    padding: clamp(3rem, 8vw, 5rem) 0;
+    border-top: none;
+    background: transparent;
   }
 
   .about h2,
@@ -253,6 +275,14 @@ const labItems = entriesFromGlob(labModules, "lab");
     margin: 0 0 1rem;
     font-size: clamp(1.75rem, 4vw, 2.5rem);
     letter-spacing: -0.02em;
+  }
+
+  .about__subheading {
+    margin: clamp(2rem, 5vw, 2.75rem) 0 0;
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--color-primary);
   }
 
   .about p,

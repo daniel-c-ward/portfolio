@@ -1,5 +1,6 @@
 ---
 // src/components/SocialIcons.astro
+import { socialUrls } from "../config/contact";
 ---
 <style>
   .social-links {
@@ -18,10 +19,10 @@
   }
 </style>
 <div class="social-links">
-  <a href="https://github.com/danielcward" aria-label="GitHub" target="_blank" rel="noopener">
+  <a href={socialUrls.github} aria-label="GitHub" target="_blank" rel="noopener">
     <img src="/images/github.svg" alt="GitHub" />
   </a>
-  <a href="https://linkedin.com/in/danielcward" aria-label="LinkedIn" target="_blank" rel="noopener">
+  <a href={socialUrls.linkedin} aria-label="LinkedIn" target="_blank" rel="noopener">
     <img src="/images/linkedin.svg" alt="LinkedIn" />
   </a>
   <a href="/" aria-label="Home" target="_blank" rel="noopener">

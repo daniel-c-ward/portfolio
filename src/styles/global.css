@@ -70,6 +70,25 @@
   --color-secondary: #b66f52;
   --color-on-primary: #f8f5ee;
   --font-lexend: "Lexend", sans-serif;
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+  --color-background: #1a221e;
+  --color-foreground: #e8ebe4;
+  --color-surface: #2a3530;
+  --color-primary: #6db896;
+  --color-secondary: #d4927a;
+  --color-on-primary: #0f1a16;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    transition:
+      background-color 0.35s ease,
+      color 0.35s ease;
+  }
 }
 
 html {
