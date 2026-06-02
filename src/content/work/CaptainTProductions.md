@@ -3,9 +3,9 @@ title: Captain T Productions
 description: A photography site for a local photographer, cinematography, and drone pilot.
 img: /images/captaintproductions-logo.png
 tags:
-- Client services
-- Wordpress Plugins
-- Adaptablitly
+  - Client services
+  - Wordpress Plugins
+  - Adaptablitly
 url: https://captaintproductions.com
 logo: true
 ---
