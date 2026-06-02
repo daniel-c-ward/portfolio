@@ -15,7 +15,7 @@ logo: true
 
 ## Background
 
-Captain Cycles was a project for a client who needed a simple, easy‑to‑manage website to sell his bike repair services. They didn’t want anything complicated — just something clean, clear, and reliable that they could update themselvs without worrying about breaking something and comprimising the site. With that in mind, I kept the design lightweight and straightforward so the upkeep would stay stress‑free.
+Captain Cycles was a project for a client who needed a simple, easy‑to‑manage website to advertise bike repair services. They didn’t want anything complicated — just something clean, clear, and reliable that they could update themselves without worrying about breaking something and compromising the site. With that in mind, I kept the design lightweight and straightforward so the upkeep would stay stress‑free.
 
 ---
 
@@ -23,7 +23,7 @@ Captain Cycles was a project for a client who needed a simple, easy‑to‑manag
 
 The brief was basically:
 
-- 'We need a website for my bike business'
+- 'We need a website for our bike business'
 - 'Use whatever method you deem correct'
 - 'We need to be able to add content'
 
@@ -54,7 +54,7 @@ Since this was a portfolio project and done at no cost, I gave them a final revi
 
 ## Hosting & Deployment
 
-For hosting, I recommended **[Bluehost](https://bluehost.com)** — it’s reliable, affordable, and simple enough for someone who isn’t super technical.
+For hosting, I recommended **[Bluehost](https://bluehost.com)** — it’s reliable, affordable, and easy to use, regardless of your level of technical experience.
 
 The setup process was straightforward:
 
@@ -63,13 +63,13 @@ The setup process was straightforward:
 - Updated URLs and configuration settings
 - Finished the WordPress setup and activated the custom theme
 
-To help him with SEO, analytics, and reviews, I installed:
+To help them with SEO, analytics, and reviews, I installed:
 
 - **Site Kit** for Google Analytics/Search Console
 - **Yoast SEO** for basic optimisation
 - **TrustIndex** to display customer reviews in a clean widget
 
-These gave him the essentials without overwhelming him with too many tools.
+These gave the client the essentials without overwhelming them with too many tools.
 
 ---
 
@@ -85,11 +85,11 @@ The final site gave them exactly what they needed:
 - Reliable hosting
 - Basic SEO and analytics built in
 
-It was a smooth project that gave the client a professional online presence without any unnecessary 
+It was a smooth project that gave the client a professional online presence without any unnecessary complexity.
 
 ### Key takeaways
 
-Due to the simplicity of the site, I focused on my interactions with the client, making sure they were fully involved every step of the way, and letting then weigh in at key steps.
-I also made advancements in my adaptablity, the client was frequently delayed in replying and shareing information I required as a result of circumstances beyond their control, I learnt to maximise my time to work on thr parts I could and working without full design mockups and copy to meet deadlines without comprimising the concept, and most importantly keeping them involved and informed as I speed ahead.
+Due to the simplicity of the site, I focused on my interactions with the client, making sure they were fully involved every step of the way, and letting them weigh in at key steps.
+I also strengthend my adaptablity throughout the project. At times, the client needed more time to respond or provide information due to other commitments, so I learned to make the most of my time by progressing with the elements I could. I worked flexibly, often moving forward without  full design mockups or final copy while still meeting deadlines without compromising the concept. Most  importantly, I ensured the client stayed  informed and involved as the project progressed.
 
 ---
