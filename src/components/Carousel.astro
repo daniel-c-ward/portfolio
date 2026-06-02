@@ -26,7 +26,7 @@ const { items, basePath, id, label } = Astro.props;
         {items.map((item) => (
           <div class="content-card carousel__slide" data-carousel-slide>
             <img
-              class={`content-card__image${item.logo ? ' content-card__image--logo' : ''}`}
+              class={`content-card__image${item.logo ? " content-card__image--logo" : ""}`}
               src={item.img}
               alt=""
               width="480"
