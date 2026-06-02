@@ -411,6 +411,7 @@ main {
   max-width: 100%;
   height: auto;
   box-sizing: border-box;
+  aspect-ratio: 16 / 9;  
 }
 .content-card__image--logo {
   object-fit: contain;
