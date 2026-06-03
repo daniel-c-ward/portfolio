@@ -9,7 +9,7 @@ tags:
   - User experience
 url: captaincycles.com
 logo: true
-date: 2024-05-14
+date: 2026-05-14
 ---
 
 ---
@@ -97,10 +97,10 @@ It was a smooth project that gave the client a professional online presence with
 Due to the simplicity of the site, I focused on my interactions with the client, making sure they were fully involved every step of the way, and letting them weigh in at key steps.
 I also strengthend my adaptablity throughout the project. At times, the client needed more time to respond or provide information due to other commitments, so I learned to make the most of my time by progressing with the elements I could. I worked flexibly, often moving forward without full design mockups or final copy while still meeting deadlines without compromising the concept. Most importantly, I ensured the client stayed informed and involved as the project progressed.
 
-## Hindsight
+### Hindsight
 
-In hindsignt, I would have definitly changed the way I handled onboarding. I initially sent them a quick form, No longer than 10 breif questions, but I would now say that a meeting would be more effective. It is somthing that cannot be overlooked, and the client can share in much greater detail, their ideas.
+In hindsight, I would have definitly changed the way I handled onboarding. I initially sent them a quick form, no longer than ten brief questions, but I would now say that a meeting would be more effective. It is something that cannot be overlooked, and the client can share in much greater detail, their ideas.
 
-Also I would have changed the way I had taught them to use Wordpress. In this instance, as the ultimate goal was for them to take full ownership of the site and handle the content changes, I would have sat with them, and as they make the first large content changes, helped them through it, that way they learn much better than me simply talking at them.
+Also I would have changed the way I taught them to use Wordpress. In this instance, as the ultimate goal was for them to take full ownership of the site and handle the content changes, I would have worked with them, as the first large content changes took place, I would have helped _them_ through it. This would mean they would learn better than me teaching them at a separate time.
 
 ---

@@ -57,40 +57,40 @@ const labItems = entriesFromGlob(labModules, "lab");
       <p>
         I have experimented with AI in various ways in building websites. Here
         is my current approach to using AI in my work:
-        <ul>
-          <li>
-            <b>Planning: </b>I use AI heavily in the planning phase. It excells
-            at generating ideas, finding similar sites, and dicovering new ways
-            to fix problems I may not have thought have.
-          </li>
-          <li>
-            <b>Design: </b>When creating mockups and prototypes, I use AI to
-            quickly generate different options, help me evlautate which is best
-            for my use case, and then refine it; this allows me to catch any
-            potential issues early on and iterate more quickly.
-          </li>
-          <li>
-            <b>Development: </b>In the past, I have used AI to fix certain bugs
-            and write code snippets. However in more recent times, I have found
-            that using an actaul tool that is designed for coding (e.g.,
-            Antigravity, Codex, Claude etc) is much more effective when paired
-            with a carefully crafted prompt, ensuring it runs everything past me
-            before it is added to the codebase. I have found that this approach
-            to be much more effective than using a general purpose tool like
-            ChatGPT for development work, as it is more likely to understand the
-            context of the codebase and produce more accurate and relevant code.
-          </li>
-
-          <h3 class="about__subheading">My skills</h3>
-          <InfoCards
-            items={skills}
-            label="My skills"
-            titleTag="h4"
-            layout="grid"
-            size="compact"
-          />
-        </ul>
       </p>
+      <ul>
+        <li>
+          <b>Planning: </b>I use AI heavily in the planning phase. It excells
+          at generating ideas, finding similar sites, and dicovering new ways
+          to fix problems I may not have thought have.
+        </li>
+        <li>
+          <b>Design: </b>When creating mockups and prototypes, I use AI to
+          quickly generate different options, help me evlautate which is best
+          for my use case, and then refine it; this allows me to catch any
+          potential issues early on and iterate more quickly.
+        </li>
+        <li>
+          <b>Development: </b>In the past, I have used AI to fix certain bugs
+          and write code snippets. However in more recent times, I have found
+          that using an actaul tool that is designed for coding (e.g.,
+          Antigravity, Codex, Claude etc) is much more effective when paired
+          with a carefully crafted prompt, ensuring it runs everything past me
+          before it is added to the codebase. I have found that this approach
+          to be much more effective than using a general purpose tool like
+          ChatGPT for development work, as it is more likely to understand the
+          context of the codebase and produce more accurate and relevant code.
+        </li>
+      </ul>
+
+      <h3 class="about__subheading">My skills</h3>
+      <InfoCards
+        items={skills}
+        label="My skills"
+        titleTag="h4"
+        layout="grid"
+        size="compact"
+      />
 
       <section id="work" class="home-block page">
         <h2>Work</h2>
@@ -320,11 +320,24 @@ const labItems = entriesFromGlob(labModules, "lab");
       }
 
       .about p,
+      .about ul,
       .home-block p {
         max-width: 40rem;
         margin: 0 0 1rem;
         line-height: 1.65;
         color: color-mix(in srgb, var(--color-foreground) 82%, transparent);
+      }
+
+      .about ul {
+        padding-left: 1.25rem;
+      }
+
+      .about li {
+        margin-bottom: 0.75rem;
+      }
+
+      .about li::marker {
+        color: var(--color-primary);
       }
 
       .home-empty {

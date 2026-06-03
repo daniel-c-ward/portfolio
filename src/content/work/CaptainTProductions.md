@@ -35,22 +35,21 @@ Due to the time contraints of this project, for brand design, I used a little tr
 
 ![Pictures of mockups done for the client](/images/captaintproductions/captaintproductions-mockups.png)
 
-My client decided on idea 5 as the basic premise for the style. Since this was a primarily photography based site, I didn't do much more mockups as at the time, my client had no images to use.
+My client decided on idea five as the basic premise for the style. Since this was primarily a photography based site, I didn't do many additional mockups as my client had limited content at that time.
 
 ---
 
 ## Design & Build
 
-I built the site using **WordPress**, and created a **custom theme** based on the client's colours and logo. The goal was to make something that made their work stand-out, while providing something the client could easily edit and maintain without digging through complicated settings.
+Using **Wordpress** and custom theme, I built this site based on the client initial logo and the colours and layout used in the **Idea 5** of the mockups as inspiration.
 
 A few things I focused on:
 
-- Keeping the layout clean and easy to navigate
-- Making sure the client could update text and images themselves
-- Avoiding unnecessary plugins
-- Ensuring the site worked smoothly on mobile
+- Keeping the focus clear to the user
+- Maintaining a simple layout to draw focus to the products
+- Avoiding weird layout shifts on mobile due to large amount of images
 
-Since this was a portfolio project and done at no cost, I gave them a final review round with free adjustments so they could fine‑tune anything before launch. However, done in a different way [Captain Cycles](./CaptainCycles). I worked with the client to make the changes, helping them through, which let them make worthwhile changes, and learning how to use Wordpress, speeding up the hand-off time.
+As this was a portfolio project, I offered a free round of edits to the site. However, learning from my last handover of the [Captain Cycles](./CaptainCycles) site. I worked with the client to make the changes, helping them through it, which let them make worthwhile changes, and learning how to use Wordpress, speeding up the hand-off time.
 
 ---
 
@@ -67,7 +66,7 @@ The setup process was straightforward:
 
 To help them with SEO, analytics, and reviews, I installed:
 
-- \*_Site Kit_ to get analytics so the client sees the progression
+- **Site Kit** to get analytics so the client sees the progression
 - **Spectra** for a custom feel and ease of viewing for large pieces of infomation
 - **Yoast SEO** for basic optimisation
 
@@ -91,10 +90,12 @@ It was a smooth project that gave the client a professional online presence with
 
 ### Key takeaways
 
-As this was slightly more complex than my last Wordpress project, it gave me more to do as I waited for the next lot of information to come through from the client, this helped me to learn how to manage time and be flexible with a client who as well as helping me with the infomation I needed, is starting to build a business.
+As this was slightly more complex than [Captain Cycles](./CaptainCycles), it gave me a greater volume of work. However, as Captain Cycles was finishing up, I had to create balance between working on both sites at the same time, to keep up momentum and keeping to the client's dealines.
 
 ### Hindsight
 
-If I was faced with a similar brief again, I would focus more on the intention of the site. As this is a photography, cinematography _and_ drone work, the purpose was unclear at the beginning, and the breath of the client's work was quite large, it resulted in an unguided start, significantly slowing the beginning start of the project.
+If I was faced with a similar brief again, I would focus more on the intention of the site. This site features photography, cinematography _and_ drone work, making the goal was unclear at the beginning, and the breadth of the client's work was quite large, which resulted in an unguided start, significantly slowing the start of the project.
+
+Also, while the Wordpress training was vastly improved, after learning about what some other companies do, I would create a simple user guide. It wouldn't cover the basics of page editing, but it would cover more intricate elements of the Wordpress dashboard.
 
 ---
