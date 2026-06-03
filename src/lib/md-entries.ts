@@ -31,10 +31,12 @@ export interface MdEntry {
 const defaultImage = "/images/placeholder.svg";
 
 export function slugFromPath(path: string, collection: string): string {
-  return path
-    .replace(/\\/g, "/")
-    .split(`/content/${collection}/`)[1]
-    ?.replace(/\.mdx?$/, "") ?? "";
+  return (
+    path
+      .replace(/\\/g, "/")
+      .split(`/content/${collection}/`)[1]
+      ?.replace(/\.mdx?$/, "") ?? ""
+  );
 }
 
 function sectionFromPath(path: string, collection: string): string {
@@ -43,7 +45,10 @@ function sectionFromPath(path: string, collection: string): string {
   return section || "uncategorised";
 }
 
-function normaliseSection(section: string | undefined, fallback: string): string {
+function normaliseSection(
+  section: string | undefined,
+  fallback: string,
+): string {
   return (section || fallback)
     .trim()
     .toLowerCase()
@@ -76,6 +81,11 @@ export function entriesFromGlob(
     })
     .sort((a, b) => {
       if (a.order !== b.order) return a.order - b.order;
+      if (a.date && b.date) {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      }
+      if (a.date) return -1;
+      if (b.date) return 1;
       return a.title.localeCompare(b.title);
     });
 }

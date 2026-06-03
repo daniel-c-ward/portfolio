@@ -1,20 +1,21 @@
 ---
 title: Captain T Productions
 description: A photography site for a local photographer, cinematography, and drone pilot.
-img: /images/captaintproductions-logo.png
+img: /images/captaintproductions/captaintproductions-logo.png
 tags:
   - Client services
   - Wordpress Plugins
   - Adaptablitly
 url: https://captaintproductions.com
 logo: true
+date: 2024-06-15
 ---
 
 ---
 
 ## Background
 
-Captain T Productions was a beautiful project involving photography and the client wanted a website that would both showcase and advertise their work. At set-up, the business was in it's infancy, so the build had to support growth and demonstrate the potential of the site.
+Captain T Productions was a beautiful project involving photography and the client wanted a website that would both showcase and advertise their work. At set-up, the business was in it's infancy, so the build had to support growth and demonstrate the potential of the site, however the uncertainty of where the site was going, created an interesting challenge.
 
 ---
 
@@ -28,9 +29,13 @@ The brief was basically:
 
 I researched similar websites, for ideas on best practice and to understand how best to showcase this kind of work. The client provided their logo and using this, I created mockups which explored layout, colours, and general vibe of their brand.
 
+Due to the time contraints of this project, for brand design, I used a little trick I used for my own site of developing **business cards**. This shows the logo on the background, the main font, and then the extra decorations identify the style and feeling the site will have. This alowed me to create the Wordpress which was most of the job, which expediated the process greatly.
+
 ### Final design
 
-![Pictures of mockups done for the client](/images/captaincycles-mockups.png)
+![Pictures of mockups done for the client](/images/captaintproductions/captaintproductions-mockups.png)
+
+My client decided on idea 5 as the basic premise for the style. Since this was a primarily photography based site, I didn't do much more mockups as at the time, my client had no images to use.
 
 ---
 
@@ -45,7 +50,7 @@ A few things I focused on:
 - Avoiding unnecessary plugins
 - Ensuring the site worked smoothly on mobile
 
-Since this was a portfolio project and done at no cost, I gave them a final review round with free adjustments so they could fine‑tune anything before launch.
+Since this was a portfolio project and done at no cost, I gave them a final review round with free adjustments so they could fine‑tune anything before launch. However, this was different to [Captain Cycles](danielcward.com/work/CaptainCycles)
 
 ---
 
@@ -88,6 +93,6 @@ It was a smooth project that gave the client a professional online presence with
 
 Due to the simplicity of the site, I focused on my interactions with the client, making sure they were fully involved every step of the way, and letting them weigh in at key steps.
 
-I also strengthend my adaptablity throughout the project. At times, the client needed more time to respond or provide information due to other commitments, so I learned to make the most of my time by progressing with the elements I could. I worked flexibly, often moving forward without  full design mockups or final copy while still meeting deadlines without compromising the concept. Most  importantly, I ensured the client stayed  informed and involved as the project progressed.
+I also strengthend my adaptablity throughout the project. At times, the client needed more time to respond or provide information due to other commitments, so I learned to make the most of my time by progressing with the elements I could. I worked flexibly, often moving forward without full design mockups or final copy while still meeting deadlines without compromising the concept. Most importantly, I ensured the client stayed informed and involved as the project progressed.
 
 ---

@@ -21,6 +21,15 @@ const mod = Object.entries(modules).find(([path]) => slugFromPath(path, "work") 
     <a class="back-link" href="/work">← Back to work</a>
     <p class="eyebrow">Work</p>
     <h1>{entry.title}</h1>
+    {entry.date && (
+      <p class="work-date">
+        {new Date(entry.date).toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })}
+      </p>
+    )}
     {entry.description && <p class="lead">{entry.description}</p>}
     <div class="prose">
       {mod && <mod.Content />}

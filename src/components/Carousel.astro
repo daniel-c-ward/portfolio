@@ -37,6 +37,15 @@ const { items, basePath, id, label } = Astro.props;
             />
             <div class="content-card__body">
               <h3>{item.title}</h3>
+              {item.date && (
+                <p class="content-card__date">
+                  {new Date(item.date).toLocaleDateString("en-UK", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </p>
+              )}
               {item.description && <p>{item.description}</p>}
               {item.tags.length > 0 && (
                 <div class="content-card__tags" aria-label="Tags">
