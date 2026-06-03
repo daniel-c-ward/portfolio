@@ -50,7 +50,7 @@ A few things I focused on:
 - Avoiding unnecessary plugins
 - Ensuring the site worked smoothly on mobile
 
-Since this was a portfolio project and done at no cost, I gave them a final review round with free adjustments so they could fine‑tune anything before launch. However, this was different to [Captain Cycles](danielcward.com/work/CaptainCycles)
+Since this was a portfolio project and done at no cost, I gave them a final review round with free adjustments so they could fine‑tune anything before launch. However, done in a different way [Captain Cycles](./CaptainCycles). I worked with the client to make the changes, helping them through, which let them make worthwhile changes, and learning how to use Wordpress, speeding up the hand-off time.
 
 ---
 
@@ -67,11 +67,11 @@ The setup process was straightforward:
 
 To help them with SEO, analytics, and reviews, I installed:
 
-- **Site Kit** for Google Analytics/Search Console
+- \*_Site Kit_ to get analytics so the client sees the progression
+- **Spectra** for a custom feel and ease of viewing for large pieces of infomation
 - **Yoast SEO** for basic optimisation
-- **TrustIndex** to display customer reviews in a clean widget
 
-These gave the client the essentials without overwhelming them with too many tools.
+This was deemed by the client and myself to be the esentials of what was needed.
 
 ---
 
@@ -91,8 +91,10 @@ It was a smooth project that gave the client a professional online presence with
 
 ### Key takeaways
 
-Due to the simplicity of the site, I focused on my interactions with the client, making sure they were fully involved every step of the way, and letting them weigh in at key steps.
+As this was slightly more complex than my last Wordpress project, it gave me more to do as I waited for the next lot of information to come through from the client, this helped me to learn how to manage time and be flexible with a client who as well as helping me with the infomation I needed, is starting to build a business.
 
-I also strengthend my adaptablity throughout the project. At times, the client needed more time to respond or provide information due to other commitments, so I learned to make the most of my time by progressing with the elements I could. I worked flexibly, often moving forward without full design mockups or final copy while still meeting deadlines without compromising the concept. Most importantly, I ensured the client stayed informed and involved as the project progressed.
+### Hindsight
+
+If I was faced with a similar brief again, I would focus more on the intention of the site. As this is a photography, cinematography _and_ drone work, the purpose was unclear at the beginning, and the breath of the client's work was quite large, it resulted in an unguided start, significantly slowing the beginning start of the project.
 
 ---

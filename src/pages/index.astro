@@ -38,274 +38,310 @@ const labItems = entriesFromGlob(labModules, "lab");
     <section id="about" class="about page">
       <h2>About</h2>
       <p>
-        I design experiences that understand how people actually make decisions.
-        By combining UX principles with insights from behavioral economics, I
-        create interfaces that respect attention, acknowledge bias, and guide
-        intent.
+        I design websites and products that are grounded in how people think and
+        interact with information. With an interest in behavioural economics and
+        cognitive science, I focus on creating user experiences that are
+        intuitive, engaging, and aligned with users' goals and biases. I believe
+        in the power of design to shape behaviour and am passionate about
+        crafting digital experiences that are both effective and ethical.
       </p>
       <p>
-        My approach focuses on reducing friction, building trust, and creating
-        moments of clarity where it matters most.
+        Similarly, I approach backend and technical architecture with a focus on
+        how the data will appear to uses, and how it can be structured to
+        support user needs and behaviours. I have experience with a varity of
+        backend both with real projects and in personal experiments. However, I
+        also try to prioritise simplicity and maintainability in my technical
+        work, so the DX (Developer Experience) is also taken into account.
+      </p>
+      <h3>AI</h3>
+      <p>
+        I have experimented with AI in various ways in building websites. Here
+        is my current approach to using AI in my work:
+        <ul>
+          <li>
+            <b>Planning: </b>I use AI heavily in the planning phase. It excells
+            at generating ideas, finding similar sites, and dicovering new ways
+            to fix problems I may not have thought have.
+          </li>
+          <li>
+            <b>Design: </b>When creating mockups and prototypes, I use AI to
+            quickly generate different options, help me evlautate which is best
+            for my use case, and then refine it; this allows me to catch any
+            potential issues early on and iterate more quickly.
+          </li>
+          <li>
+            <b>Development: </b>In the past, I have used AI to fix certain bugs
+            and write code snippets. However in more recent times, I have found
+            that using an actaul tool that is designed for coding (e.g.,
+            Antigravity, Codex, Claude etc) is much more effective when paired
+            with a carefully crafted prompt, ensuring it runs everything past me
+            before it is added to the codebase. I have found that this approach
+            to be much more effective than using a general purpose tool like
+            ChatGPT for development work, as it is more likely to understand the
+            context of the codebase and produce more accurate and relevant code.
+          </li>
+
+          <h3 class="about__subheading">My skills</h3>
+          <InfoCards
+            items={skills}
+            label="My skills"
+            titleTag="h4"
+            layout="grid"
+            size="compact"
+          />
+        </ul>
       </p>
 
-      <h3 class="about__subheading">My skills</h3>
-      <InfoCards
-        items={skills}
-        label="My skills"
-        titleTag="h4"
-        layout="grid"
-        size="compact"
-      />
+      <section id="work" class="home-block page">
+        <h2>Work</h2>
+        <p>Selected projects and case studies.</p>
+        {
+          workItems.length > 0 ? (
+            <Carousel
+              items={workItems}
+              basePath="/work"
+              id="home-work-carousel"
+              label="Work projects"
+            />
+          ) : (
+            <p class="home-empty">
+              Add Markdown files to <code>src/content/work</code> to show
+              projects here.
+            </p>
+          )
+        }
+        <a class="text-link home-link" href="/work">View all work -></a>
+      </section>
+
+      <section id="lab" class="home-block page">
+        <h2>Lab</h2>
+        <p>Notes, experiments, and works in progress.</p>
+        {
+          labItems.length > 0 ? (
+            <Carousel
+              items={labItems}
+              basePath="/lab"
+              id="home-lab-carousel"
+              label="Lab items"
+            />
+          ) : (
+            <p class="home-empty">
+              Add Markdown files to <code>src/content/lab</code> to show items
+              here.
+            </p>
+          )
+        }
+        <a class="text-link home-link" href="/lab">View the lab -></a>
+      </section>
     </section>
+
+    <style>
+      .home-intro {
+        position: relative;
+        background:
+          radial-gradient(
+            100% 85% at 0% calc(100svh - 4.25rem),
+            color-mix(in srgb, var(--color-primary) 18%, transparent),
+            transparent 52%
+          ),
+          var(--color-background);
+      }
+
+      .hero {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: calc(100svh - 4.25rem);
+        padding: clamp(2.5rem, 6vw, 4rem) 0 clamp(4rem, 10vw, 6rem);
+        background:
+          radial-gradient(
+            120% 80% at 100% 0%,
+            color-mix(in srgb, var(--color-secondary) 28%, transparent),
+            transparent 55%
+          ),
+          transparent;
+      }
+
+      .hero__inner {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .hero__wordmark {
+        margin: 0 0 1rem;
+        font-size: clamp(0.85rem, 1.4vw, 0.95rem);
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--color-primary);
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        .hero__wordmark,
+        .hero h1,
+        .hero__lead,
+        .hero__actions {
+          animation: hero-rise 0.55s ease both;
+        }
+
+        .hero h1 {
+          animation-delay: 0.06s;
+        }
+
+        .hero__lead {
+          animation-delay: 0.12s;
+        }
+
+        .hero__actions {
+          animation-delay: 0.18s;
+        }
+      }
+
+      .hero h1 {
+        margin: 0;
+        max-width: 14ch;
+        font-size: clamp(2.5rem, 7.5vw, 4.25rem);
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+      }
+
+      .hero__lead {
+        max-width: 38rem;
+        margin: 1.25rem 0 0;
+        font-size: clamp(1rem, 1.6vw, 1.15rem);
+        line-height: 1.6;
+        color: color-mix(in srgb, var(--color-foreground) 78%, transparent);
+      }
+
+      .hero__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem 1rem;
+        margin-top: clamp(1.75rem, 4vw, 2.5rem);
+      }
+
+      .hero__scroll {
+        position: absolute;
+        left: 50%;
+        bottom: clamp(1.25rem, 4vw, 2rem);
+        transform: translateX(-50%);
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.35rem 0.5rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: color-mix(in srgb, var(--color-foreground) 55%, transparent);
+      }
+
+      .hero__scroll:hover {
+        color: var(--color-primary);
+      }
+
+      .hero__scroll:focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 4px;
+        border-radius: 0.25rem;
+      }
+
+      .hero__scroll-icon {
+        display: block;
+        width: 1.25rem;
+        height: 1.25rem;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: rotate(45deg) translateY(-2px);
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        .hero__scroll-icon {
+          animation: hero-scroll-hint 2s ease-in-out infinite;
+        }
+      }
+
+      @keyframes hero-scroll-hint {
+        0%,
+        100% {
+          transform: rotate(45deg) translateY(-2px);
+        }
+        50% {
+          transform: rotate(45deg) translateY(2px);
+        }
+      }
+
+      @keyframes hero-rise {
+        from {
+          opacity: 0;
+          transform: translateY(0.55rem);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .hero__scroll-icon {
+          animation: none;
+        }
+      }
+
+      .home-block {
+        padding: clamp(3rem, 8vw, 5rem) 0;
+        border-top: 1px solid
+          color-mix(in srgb, var(--color-foreground) 12%, transparent);
+      }
+
+      .about {
+        padding: clamp(3rem, 8vw, 5rem) 0;
+        border-top: none;
+        background: transparent;
+      }
+
+      .about h2,
+      .home-block h2 {
+        margin: 0 0 1rem;
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+        letter-spacing: -0.02em;
+      }
+
+      .about__subheading {
+        margin: clamp(2rem, 5vw, 2.75rem) 0 0;
+        font-size: clamp(1.25rem, 3vw, 1.5rem);
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        color: var(--color-primary);
+      }
+
+      .about p,
+      .home-block p {
+        max-width: 40rem;
+        margin: 0 0 1rem;
+        line-height: 1.65;
+        color: color-mix(in srgb, var(--color-foreground) 82%, transparent);
+      }
+
+      .home-empty {
+        margin: 0 0 1.25rem;
+      }
+
+      .home-block .home-link {
+        display: inline-block;
+        margin-top: 1.25rem;
+      }
+
+      .home-block code {
+        font-size: 0.9em;
+        background: var(--color-surface);
+        padding: 0.1rem 0.35rem;
+        border-radius: 0.25rem;
+      }
+    </style>
   </div>
-
-  <section id="work" class="home-block page">
-    <h2>Work</h2>
-    <p>Selected projects and case studies.</p>
-    {
-      workItems.length > 0 ? (
-        <Carousel
-          items={workItems}
-          basePath="/work"
-          id="home-work-carousel"
-          label="Work projects"
-        />
-      ) : (
-        <p class="home-empty">
-          Add Markdown files to <code>src/content/work</code> to show projects
-          here.
-        </p>
-      )
-    }
-    <a class="text-link home-link" href="/work">View all work -></a>
-  </section>
-
-  <section id="lab" class="home-block page">
-    <h2>Lab</h2>
-    <p>Notes, experiments, and works in progress.</p>
-    {
-      labItems.length > 0 ? (
-        <Carousel
-          items={labItems}
-          basePath="/lab"
-          id="home-lab-carousel"
-          label="Lab items"
-        />
-      ) : (
-        <p class="home-empty">
-          Add Markdown files to <code>src/content/lab</code> to show items here.
-        </p>
-      )
-    }
-    <a class="text-link home-link" href="/lab">View the lab -></a>
-  </section>
 </PageLayout>
-
-<style>
-  .home-intro {
-    position: relative;
-    background:
-      radial-gradient(
-        100% 85% at 0% calc(100svh - 4.25rem),
-        color-mix(in srgb, var(--color-primary) 18%, transparent),
-        transparent 52%
-      ),
-      var(--color-background);
-  }
-
-  .hero {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: calc(100svh - 4.25rem);
-    padding: clamp(2.5rem, 6vw, 4rem) 0 clamp(4rem, 10vw, 6rem);
-    background:
-      radial-gradient(
-        120% 80% at 100% 0%,
-        color-mix(in srgb, var(--color-secondary) 28%, transparent),
-        transparent 55%
-      ),
-      transparent;
-  }
-
-  .hero__inner {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .hero__wordmark {
-    margin: 0 0 1rem;
-    font-size: clamp(0.85rem, 1.4vw, 0.95rem);
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-primary);
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .hero__wordmark,
-    .hero h1,
-    .hero__lead,
-    .hero__actions {
-      animation: hero-rise 0.55s ease both;
-    }
-
-    .hero h1 {
-      animation-delay: 0.06s;
-    }
-
-    .hero__lead {
-      animation-delay: 0.12s;
-    }
-
-    .hero__actions {
-      animation-delay: 0.18s;
-    }
-  }
-
-  .hero h1 {
-    margin: 0;
-    max-width: 14ch;
-    font-size: clamp(2.5rem, 7.5vw, 4.25rem);
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-  }
-
-  .hero__lead {
-    max-width: 38rem;
-    margin: 1.25rem 0 0;
-    font-size: clamp(1rem, 1.6vw, 1.15rem);
-    line-height: 1.6;
-    color: color-mix(in srgb, var(--color-foreground) 78%, transparent);
-  }
-
-  .hero__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem 1rem;
-    margin-top: clamp(1.75rem, 4vw, 2.5rem);
-  }
-
-  .hero__scroll {
-    position: absolute;
-    left: 50%;
-    bottom: clamp(1.25rem, 4vw, 2rem);
-    transform: translateX(-50%);
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0.35rem 0.5rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: color-mix(in srgb, var(--color-foreground) 55%, transparent);
-  }
-
-  .hero__scroll:hover {
-    color: var(--color-primary);
-  }
-
-  .hero__scroll:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 4px;
-    border-radius: 0.25rem;
-  }
-
-  .hero__scroll-icon {
-    display: block;
-    width: 1.25rem;
-    height: 1.25rem;
-    border-right: 2px solid currentColor;
-    border-bottom: 2px solid currentColor;
-    transform: rotate(45deg) translateY(-2px);
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .hero__scroll-icon {
-      animation: hero-scroll-hint 2s ease-in-out infinite;
-    }
-  }
-
-  @keyframes hero-scroll-hint {
-    0%,
-    100% {
-      transform: rotate(45deg) translateY(-2px);
-    }
-    50% {
-      transform: rotate(45deg) translateY(2px);
-    }
-  }
-
-  @keyframes hero-rise {
-    from {
-      opacity: 0;
-      transform: translateY(0.55rem);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .hero__scroll-icon {
-      animation: none;
-    }
-  }
-
-  .home-block {
-    padding: clamp(3rem, 8vw, 5rem) 0;
-    border-top: 1px solid
-      color-mix(in srgb, var(--color-foreground) 12%, transparent);
-  }
-
-  .about {
-    padding: clamp(3rem, 8vw, 5rem) 0;
-    border-top: none;
-    background: transparent;
-  }
-
-  .about h2,
-  .home-block h2 {
-    margin: 0 0 1rem;
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    letter-spacing: -0.02em;
-  }
-
-  .about__subheading {
-    margin: clamp(2rem, 5vw, 2.75rem) 0 0;
-    font-size: clamp(1.25rem, 3vw, 1.5rem);
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    color: var(--color-primary);
-  }
-
-  .about p,
-  .home-block p {
-    max-width: 40rem;
-    margin: 0 0 1rem;
-    line-height: 1.65;
-    color: color-mix(in srgb, var(--color-foreground) 82%, transparent);
-  }
-
-  .home-empty {
-    margin: 0 0 1.25rem;
-  }
-
-  .home-block .home-link {
-    display: inline-block;
-    margin-top: 1.25rem;
-  }
-
-  .home-block code {
-    font-size: 0.9em;
-    background: var(--color-surface);
-    padding: 0.1rem 0.35rem;
-    border-radius: 0.25rem;
-  }
-</style>

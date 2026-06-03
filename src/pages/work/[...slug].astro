@@ -1,9 +1,15 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
-import { entriesFromGlob, slugFromPath, type MdModule } from "../../lib/md-entries";
+import {
+  entriesFromGlob,
+  slugFromPath,
+  type MdModule,
+} from "../../lib/md-entries";
 
 export function getStaticPaths() {
-  const modules = import.meta.glob<MdModule>("../../content/work/**/*.md", { eager: true });
+  const modules = import.meta.glob<MdModule>("../../content/work/**/*.md", {
+    eager: true,
+  });
   const entries = entriesFromGlob(modules, "work");
 
   return entries.map((entry) => ({
@@ -13,26 +19,95 @@ export function getStaticPaths() {
 }
 
 const { entry, modules } = Astro.props;
-const mod = Object.entries(modules).find(([path]) => slugFromPath(path, "work") === entry.slug)?.[1];
+const mod = Object.entries(modules).find(
+  ([path]) => slugFromPath(path, "work") === entry.slug,
+)?.[1];
 ---
 
-<PageLayout title={`${entry.title} | Work`} description={entry.description ?? entry.title}>
+<PageLayout
+  title={`${entry.title} | Work`}
+  description={entry.description ?? entry.title}
+>
   <article class="page page-hero">
     <a class="back-link" href="/work">← Back to work</a>
     <p class="eyebrow">Work</p>
     <h1>{entry.title}</h1>
-    {entry.date && (
-      <p class="work-date">
-        {new Date(entry.date).toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })}
-      </p>
-    )}
-    {entry.description && <p class="lead">{entry.description}</p>}
+    {
+      entry.date && (
+        <p class="work-date">
+          {new Date(entry.date).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+        </p>
+      )
+    }
+    <div class="lead-container">
+      {entry.description && <p class="lead">{entry.description}</p>}
+      {
+        entry.url && (
+          <a
+            class="button button--secondary button--small"
+            href={entry.url.startsWith("http") ? entry.url : `https://${entry.url}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            draggable="false"
+          >
+            Visit Site
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 16 16"
+              fill="none"
+              aria-hidden="true"
+              style="margin-left:0.3rem;"
+            >
+              <path
+                d="M5 3h8v8M13 3L3 13"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        )
+      }
+    </div>
     <div class="prose">
       {mod && <mod.Content />}
     </div>
   </article>
 </PageLayout>
+
+<style>
+  .lead-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 1.25rem;
+    margin-bottom: 2.5rem;
+    width: 100%;
+    max-width: 42rem;
+  }
+
+  .lead-container .lead {
+    margin: 0;
+    flex: 1;
+    max-width: none;
+  }
+
+  .lead-container .button {
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 600px) {
+    .lead-container {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+  }
+</style>

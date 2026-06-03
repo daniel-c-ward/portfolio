@@ -4,6 +4,6 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: "https://danielward.dev",
+  site: "https://danielcward.com",
   integrations: [mdx(), sitemap()],
 });

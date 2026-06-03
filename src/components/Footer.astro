@@ -11,7 +11,7 @@ const workModules = import.meta.glob("../content/work/**/*.md", {
 function extractPosts(modules) {
   return Object.entries(modules)
     .map(([path, mod]) => {
-      const meta = (mod as any).metadata || {};
+      const meta = (mod as any).frontmatter || (mod as any).metadata || {};
       let title = meta.title?.trim();
       if (!title) {
         // Derive title from filename when metadata title is absent
