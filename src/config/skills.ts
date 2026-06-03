@@ -22,13 +22,13 @@ export const skills: Skill[] = [
   {
     title: "Behavioral economical design",
     description:
-      "Bias, framing, and choice architecture so interfaces respect how people actually decide.",
+      "Bias, framing, and choice architecture so interfaces that are made for how people actually decide.",
     icon: "brain",
   },
   {
     title: "UX",
     description:
-      "Research, flows, and interface design that reduce friction and build trust where it matters.",
+      "Research, flows, and interface design that reduces friction and builds trust where it matters.",
     icon: "ux",
   },
 ];
