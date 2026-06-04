@@ -1,13 +1,13 @@
 ---
 title: J.O.B.S. Tracker
-description: A small webapp for building maintence, turned Google Sheet.
+description: A web app for building maintenancece, turned Google Sheet.
 img: 
 tags:
-  - - React
-    - NextJS
-    - PrismaORM
-    - Google Sheets
-    - Adaptablilty
+  - React
+  - NextJS
+  - PrismaORM
+  - Google Sheets
+  - Adaptablilty
 url: 
 logo: 
 ---
@@ -16,60 +16,61 @@ logo:
 
 ## Background
 
-This was an ever changing project. This was for a charity for building maintence. However, initially, a small React web app was tested, but after some internal process changes, the charity ended on a Google Sheet to manage this 
-process.
+This was an ever changing project to manage maintenance tasks for a charity building. Initially, a  React web app was prototyped and tested, but after some internal process changes, the charity opted to use a Google Sheet database to manage their maintenance tracking.
 
 
 ---
 
 ## Onboarding & Early Ideas
 
-The brief consistented of a few key points: 
- - 'Out current system is paper cards'
+The brief consisted of a few key points: 
+ - 'Our current system is paper cards'
  - 'Lots of jobs are being missed'
- - 'We need a fool proof system to help us keep up with it'.
+ - 'We need a foolproof system to help us keep up with it'.
 
-So I suggested a small web app. It would have:
-- Basic email and password authentication and Google auth using [Better auth](https://better-auth.com)
-- A small Prisma datebase behind it to handle both one off tasks and the recurring tasks
+So I suggested a web app. It would have:
+- Basic email and password authentication [Better auth](https://better-auth.com)
+- A Prisma database behind it to handle both one off tasks and the recurring tasks
 - Different user accounts for admin and users, with dynamic rendering for each 
 
 That way, tasks can't fall through the cracks as all due tasks appear in the dashboard of the admin, and they can assign them to the users to do, with information on how to complete the task allowing with the job.
 
-### Prototype of the React app
+### Prototype of the React App
 
 ![Picture of the prototype's login page.](/images/work/jobstracker/jobstracker-login.png)
 
 This prototype was created by me doing the Prisma database and basic outline, then styled and formatted by [Antigravity](https://antigravity.google) AI to speed up the prototyping stage.
 
-The client was very happy with the result. However, a change in the internal process change the brief slightly. Instead they were only to have a few people handle the admin side, with no user interaction. This meant that they would hand out the jobs manualy.
+The client was very happy with the result, but due to changes in their internal processes, it became necessary to change the approach. Instead they were only to have a few people handle the admin side, with no user interaction. This meant that they would hand out the jobs manually.
 
-After some thought and discussion with the client, we ended on a Google Sheet. This was deemed by both of us as the simplest method for their new circumstances and so I began the build.
+After some thought and discussion with the client, we ended on a Google Sheet database. This was deemed to be, not only the simplest approach, but also took into account long-term sustainability and the skillset of the users.
 
 ---
 
 ## The Build
 
-To keep the same basic structure, I recreated the basic Prisma architecture in the sheet, reflecting the table column names in the spreadsheet column names. This kept the same versatility and familiarity for the client.
+The work I had already completed on the web app, was integral to the initial build of the Google Sheets database. The column structure was modelled on the Prisma architecture, which allowed for a quicker set up and ensured familiarity for the client.
 
-For the JavaScript logic, I used some formulas for basic functions, but for more complicated robust logic as was in the React version, I used [AppScripts](https://workspace.google.com/products/apps-script/). Finally, for a similar visual cues, I used conditional formating to highlight key information at a glance, like due tasks, overdue, and who they were assigned to.
+Similarly, the JavaScript logic coupled with CSS, was replaced with standard formulas for basic functionality and then I used [AppScripts](https://workspace.google.com/products/apps-script/) for features requiring more robust logic.
+
+Finally, visual cues were emphasised using conditional formatting, which was important to the client and very much in line with the brief. It allowed users to see key information at a glance, for example, overdue tasks, tasks requiring follow-up work and assignments.
 
 ---
 
-## Outcome & Key takeaways
+## Outcome & Key Takeaways
 
 ### Outcome
 
-The final site gave them exactly what they needed:
+The final product gave them exactly what they needed:
 
-- A simple way to manage their maintenance tasks
-- Solutions not overkill for their situation
-- A robust method that is hard to break
+- A simple way to manage tasks
+- Solution was not too complicated and they felt confident in training others
+- A robust method with long-term sustainability
 
-Despite the mid development changes, it was an overall smooth project, resulting in a product both the client and I were happy with.
+Despite the mid-development changes, the finished product satisfied all parties and provided me with an additional learning opportunity.
 
 ### Key takeaways
 
-Despite the React web app not being used, it provided invaluable skills in live databases in the backend, and the most effective way to show it in the frontend. But the mid change further improved my adapablity skills, as I had to change mid project to suit new objectives, and critera.
+Even though the React web app was not rolled out, building it provided invaluable training in live backend databases, as well as the most effective way to present the frontend. As mentioned, the mid-development change allowed me to approach the task from another angle. This provided a learning opportunity, not only in using a different tool but it also improved my adapablity skills. I'm glad of the change in approach, as it opened me up to new ways of working and how the user experience is the most important thing. As a result, I am keen to learn more about tools such as Google apps, Microsoft 365 suite of apps and things like these.
 
 ---
