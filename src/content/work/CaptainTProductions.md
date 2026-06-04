@@ -1,7 +1,7 @@
 ---
 title: Captain T Productions
 description: A photography site for a local photographer, cinematography, and drone pilot.
-img: /images/captaintproductions/captaintproductions-logo.png
+img: /images/work/captaintproductions/captaintproductions-logo.png
 tags:
   - Client services
   - Wordpress Plugins
@@ -33,7 +33,7 @@ Due to the time contraints of this project, for brand design, I used a little tr
 
 ### Final design
 
-![Pictures of mockups done for the client](/images/captaintproductions/captaintproductions-mockups.png)
+![Pictures of mockups done for the client](/images/work/captaintproductions/captaintproductions-mockups.png)
 
 My client decided on idea five as the basic premise for the style. Since this was primarily a photography based site, I didn't do many additional mockups as my client had limited content at that time.
 

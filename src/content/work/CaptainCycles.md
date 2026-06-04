@@ -1,7 +1,7 @@
 ---
 title: Captain Cycles
 description: A service site offering different packages and repairs for bikes of all sorts.
-img: /images/captaincycles/captaincycles-logo.png
+img: /images/work/captaincycles/captaincycles-logo.png
 tags:
   - Client Services
   - Wordpress
@@ -32,7 +32,7 @@ I put together a few mockups exploring layout, colours, and general vibe. Once I
 
 ### Final design
 
-![Pictures of mockups done for the client](/images/captaincycles/captaincycles-mockups.png)
+![Pictures of mockups done for the client](/images/work/captaincycles/captaincycles-mockups.png)
 
 As you can see, they were not finished but due to time contraints I had to begin the build process.
 

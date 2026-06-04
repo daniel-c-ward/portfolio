@@ -76,10 +76,10 @@ const labItems = entriesFromGlob(labModules, "lab");
           that using an actual tool that is designed for coding (e.g.,
           Antigravity, Codex, Claude etc) is much more effective when paired
           with a carefully crafted prompt, ensuring it runs everything past me
-          before it is added to the codebase. I have found that this approach to
-          be much more effective than using a general purpose tool like ChatGPT
-          for development work, as it is more likely to understand the context
-          of the codebase and produce more accurate and relevant code.
+          before it is added to the codebase. This approach is much more
+          effective than using a general purpose tool like ChatGPT for
+          development work, as it is more likely to understand the context of
+          the codebase and produce more accurate and relevant code.
         </li>
         <li>
           <b>Ethics: </b>Before using AI for any task, I will always dicuss with
@@ -99,46 +99,46 @@ const labItems = entriesFromGlob(labModules, "lab");
     </section>
 
     <section id="work" class="home-block page">
-        <h2>Work</h2>
-        <p>Selected projects and case studies.</p>
-        {
-          workItems.length > 0 ? (
-            <Carousel
-              items={workItems}
-              basePath="/work"
-              id="home-work-carousel"
-              label="Work projects"
-            />
-          ) : (
-            <p class="home-empty">
-              Add Markdown files to <code>src/content/work</code> to show
-              projects here.
-            </p>
-          )
-        }
-        <a class="text-link home-link" href="/work">View all work -></a>
-      </section>
+      <h2>Work</h2>
+      <p>Selected projects and case studies.</p>
+      {
+        workItems.length > 0 ? (
+          <Carousel
+            items={workItems}
+            basePath="/work"
+            id="home-work-carousel"
+            label="Work projects"
+          />
+        ) : (
+          <p class="home-empty">
+            Add Markdown files to <code>src/content/work</code> to show projects
+            here.
+          </p>
+        )
+      }
+      <a class="text-link home-link" href="/work">View all work -></a>
+    </section>
 
-      <section id="lab" class="home-block page">
-        <h2>Lab</h2>
-        <p>Notes, experiments, and works in progress.</p>
-        {
-          labItems.length > 0 ? (
-            <Carousel
-              items={labItems}
-              basePath="/lab"
-              id="home-lab-carousel"
-              label="Lab items"
-            />
-          ) : (
-            <p class="home-empty">
-              Add Markdown files to <code>src/content/lab</code> to show items
-              here.
-            </p>
-          )
-        }
-        <a class="text-link home-link" href="/lab">View the lab -></a>
-      </section>
+    <section id="lab" class="home-block page">
+      <h2>Lab</h2>
+      <p>Notes, experiments, and works in progress.</p>
+      {
+        labItems.length > 0 ? (
+          <Carousel
+            items={labItems}
+            basePath="/lab"
+            id="home-lab-carousel"
+            label="Lab items"
+          />
+        ) : (
+          <p class="home-empty">
+            Add Markdown files to <code>src/content/lab</code> to show items
+            here.
+          </p>
+        )
+      }
+      <a class="text-link home-link" href="/lab">View the lab -></a>
+    </section>
 
     <style>
       .home-intro {
