@@ -1,37 +1,39 @@
 ---
 title: J.O.B.S. Tracker
 description: A web app for building maintenancece, turned Google Sheet.
-img: 
+img: /images/work/jobstracker/jobstracker-logo.png
 tags:
   - React
   - NextJS
   - PrismaORM
   - Google Sheets
   - Adaptablilty
-url: 
-logo: 
+url:
+logo: true
+date: 2026-06-04
 ---
 
 ---
 
 ## Background
 
-This was an ever changing project to manage maintenance tasks for a charity building. Initially, a  React web app was prototyped and tested, but after some internal process changes, the charity opted to use a Google Sheet database to manage their maintenance tracking.
-
+This was an ever changing project to manage maintenance tasks for a charity building. Initially, a React web app was prototyped and tested, but after some internal process changes, the charity opted to use a Google Sheet database to manage their maintenance tracking.
 
 ---
 
 ## Onboarding & Early Ideas
 
-The brief consisted of a few key points: 
- - 'Our current system is paper cards'
- - 'Lots of jobs are being missed'
- - 'We need a foolproof system to help us keep up with it'.
+The brief consisted of a few key points:
+
+- 'Our current system is paper cards'
+- 'Lots of jobs are being missed'
+- 'We need a foolproof system to help us keep up with it'.
 
 So I suggested a web app. It would have:
+
 - Basic email and password authentication [Better auth](https://better-auth.com)
 - A Prisma database behind it to handle both one off tasks and the recurring tasks
-- Different user accounts for admin and users, with dynamic rendering for each 
+- Different user accounts for admin and users, with dynamic rendering for each
 
 That way, tasks can't fall through the cracks as all due tasks appear in the dashboard of the admin, and they can assign them to the users to do, with information on how to complete the task allowing with the job.
 

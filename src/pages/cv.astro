@@ -1,0 +1,353 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+
+const cvPdfPath = "/cv/daniel-ward-cv.pdf";
+
+const experience = [
+  {
+    role: "UX Designer & Developer",
+    company: "Freelance",
+    period: "2022 – Present",
+    description:
+      "Designing and building websites and digital products grounded in behavioural economics and cognitive science. Working directly with clients to deliver intuitive, conversion-focused experiences.",
+  },
+];
+
+const education = [
+  {
+    qualification: "BSc Psychology",
+    institution: "University of Exeter",
+    period: "2019 – 2022",
+    description:
+      "Studied human behaviour, cognitive science, and research methods — forming the foundation of my approach to UX and behavioural design.",
+  },
+];
+
+const skills = [
+  { category: "Design", items: ["UX & UI Design", "Figma", "Prototyping", "Usability Testing", "Behavioural Economics"] },
+  { category: "Development", items: ["HTML & CSS", "JavaScript / TypeScript", "Astro", "React", "Node.js"] },
+  { category: "Strategy", items: ["Information Architecture", "Conversion Optimisation", "A/B Testing", "User Research"] },
+];
+---
+
+<PageLayout
+  title="CV | Daniel Ward"
+  description="Curriculum Vitae for Daniel Ward — UX designer and developer specialising in behavioural economics and human-centred design."
+>
+  <div class="page">
+    <header class="page-hero cv-hero">
+      <p class="eyebrow">Curriculum Vitae</p>
+      <h1>Daniel Ward</h1>
+      <p class="lead">
+        UX designer and developer specialising in behavioural economics —
+        building interfaces that respect how people think and decide.
+      </p>
+      <div class="cv-actions">
+        <a
+          id="cv-download-btn"
+          class="button button--primary cv-download"
+          href={cvPdfPath}
+          download="Daniel-Ward-CV.pdf"
+          aria-label="Download CV as PDF"
+        >
+          <svg
+            class="cv-download__icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+          Download CV (PDF)
+        </a>
+        <a class="button button--secondary" href="/contact">Get in touch</a>
+      </div>
+    </header>
+
+    <!-- Experience -->
+    <section class="cv-section content-section" aria-labelledby="experience-heading">
+      <h2 id="experience-heading">Experience</h2>
+      <ol class="timeline" role="list">
+        {
+          experience.map((item) => (
+            <li class="timeline__item">
+              <div class="timeline__marker" aria-hidden="true" />
+              <div class="timeline__body">
+                <span class="timeline__period">{item.period}</span>
+                <h3 class="timeline__role">{item.role}</h3>
+                <p class="timeline__company">{item.company}</p>
+                <p class="timeline__desc">{item.description}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <!-- Education -->
+    <section class="cv-section content-section" aria-labelledby="education-heading">
+      <h2 id="education-heading">Education</h2>
+      <ol class="timeline" role="list">
+        {
+          education.map((item) => (
+            <li class="timeline__item">
+              <div class="timeline__marker" aria-hidden="true" />
+              <div class="timeline__body">
+                <span class="timeline__period">{item.period}</span>
+                <h3 class="timeline__role">{item.qualification}</h3>
+                <p class="timeline__company">{item.institution}</p>
+                <p class="timeline__desc">{item.description}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <!-- Skills -->
+    <section class="cv-section content-section" aria-labelledby="skills-heading">
+      <h2 id="skills-heading">Skills</h2>
+      <div class="cv-skills">
+        {
+          skills.map((group) => (
+            <div class="cv-skills__group">
+              <h3 class="cv-skills__category">{group.category}</h3>
+              <ul class="cv-skills__list" role="list">
+                {group.items.map((skill) => (
+                  <li class="cv-skills__item">{skill}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <div class="cv-cta content-section">
+      <p class="cv-cta__text">Want the full details? Grab a copy of my CV or reach out directly.</p>
+      <div class="cv-actions">
+        <a
+          class="button button--primary cv-download"
+          href={cvPdfPath}
+          download="Daniel-Ward-CV.pdf"
+          aria-label="Download CV as PDF"
+        >
+          <svg
+            class="cv-download__icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+          Download CV (PDF)
+        </a>
+        <a class="button button--secondary" href="/contact">Get in touch</a>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    /* ─── Hero ──────────────────────────────────────────── */
+    .cv-hero {
+      padding-bottom: clamp(2rem, 5vw, 3rem);
+    }
+
+    .cv-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1rem;
+      margin-top: clamp(1.5rem, 3.5vw, 2rem);
+    }
+
+    .cv-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .cv-download__icon {
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+
+    .cv-download:hover .cv-download__icon {
+      transform: translateY(2px);
+    }
+
+    /* ─── Section headings ──────────────────────────────── */
+    .cv-section h2 {
+      margin: 0 0 2rem;
+      font-size: clamp(1.35rem, 3vw, 1.75rem);
+      letter-spacing: -0.015em;
+    }
+
+    /* ─── Timeline rail ─────────────────────────────────── */
+    /*
+      Layout:
+        [dot col 14px] [gap 20px] [content]
+      A single border-left on .timeline draws the continuous rail.
+      Each item's .timeline__marker sits centred on that rail.
+    */
+    .timeline {
+      list-style: none;
+      margin: 0 0 0 1rem;
+      padding: 0 0 0 calc(0.4375rem + 1px); /* half dot width + rail width */
+      border-left: 2px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
+    }
+
+    .timeline__item {
+      position: relative;
+      padding: 0 0 2.5rem 1.75rem;
+    }
+
+    .timeline__item:last-child {
+      padding-bottom: 0;
+    }
+
+    /* Filled dot — centred on the rail */
+    .timeline__marker {
+      position: absolute;
+      left: -0.4375rem; // half dot width aligns center with rail
+      /* = -(half dot) - rail width - half border */
+      top: 0.15rem;
+      width: 0.875rem;
+      height: 0.875rem;
+      border-radius: 50%;
+      background: var(--color-primary);
+      /* White halo to visually "cut" the rail behind the dot */
+      box-shadow:
+        0 0 0 2.5px var(--color-background),
+        0 0 0 4.5px color-mix(in srgb, var(--color-primary) 35%, transparent);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      z-index: 1;
+    }
+
+    .timeline__item:hover .timeline__marker {
+      transform: scale(1.25);
+      box-shadow:
+        0 0 0 2.5px var(--color-background),
+        0 0 0 5.5px color-mix(in srgb, var(--color-primary) 45%, transparent);
+    }
+
+    /* Period badge */
+    .timeline__period {
+      display: inline-block;
+      margin-bottom: 0.5rem;
+      padding: 0.2rem 0.65rem;
+      font-size: 0.73rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-primary);
+      background: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface));
+      border: 1px solid color-mix(in srgb, var(--color-primary) 28%, transparent);
+      border-radius: 999px;
+    }
+
+    .timeline__role {
+      margin: 0 0 0.2rem;
+      font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .timeline__company {
+      margin: 0 0 0.65rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: color-mix(in srgb, var(--color-foreground) 58%, transparent);
+    }
+
+    .timeline__desc {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: color-mix(in srgb, var(--color-foreground) 80%, transparent);
+      max-width: 38rem;
+    }
+
+    /* ─── Skills ────────────────────────────────────────── */
+    .cv-skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+      gap: 1.25rem;
+    }
+
+    .cv-skills__group {
+      background: var(--color-surface);
+      border: 1px solid color-mix(in srgb, var(--color-foreground) 10%, transparent);
+      border-radius: 0.75rem;
+      padding: 1.1rem 1.25rem 1.25rem;
+    }
+
+    .cv-skills__category {
+      margin: 0 0 0.75rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-primary);
+    }
+
+    .cv-skills__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .cv-skills__item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.92rem;
+      line-height: 1.4;
+      color: color-mix(in srgb, var(--color-foreground) 88%, transparent);
+    }
+
+    .cv-skills__item::before {
+      content: "";
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      flex-shrink: 0;
+    }
+
+    /* ─── Bottom CTA ────────────────────────────────────── */
+    .cv-cta {
+      padding-bottom: clamp(3rem, 8vw, 5rem);
+    }
+
+    .cv-cta__text {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: color-mix(in srgb, var(--color-foreground) 78%, transparent);
+      max-width: 40rem;
+    }
+  </style>
+</PageLayout>
