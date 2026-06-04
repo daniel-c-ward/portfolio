@@ -38,7 +38,7 @@ That way, tasks can't fall through the cracks as all due tasks appear in the das
 
 ### Prototype of the React app
 
-![Picture of the prototype's login page.](/images/work/jobstracker/jobstracker.png)
+![Picture of the prototype's login page.](/images/work/jobstracker/jobstracker-login.png)
 
 This prototype was created by me doing the Prisma database and basic outline, then styled and formatted by [Antigravity](https://antigravity.google) AI to speed up the prototyping stage.
 
