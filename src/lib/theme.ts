@@ -25,6 +25,7 @@ export function applyTheme(effective: ThemeMode): void {
   const stored = getStoredTheme();
 
   root.classList.toggle("dark", effective === "dark");
+  root.classList.toggle("light", effective === "light");
   root.dataset.theme = stored ?? "system";
   root.style.colorScheme = effective;
 }
@@ -62,4 +63,4 @@ export function initTheme(): ThemeMode {
 }
 
 /** Inline bootstrap for <head> — keep in sync with logic above. */
-export const themeInitScript = `(function(){var k='theme',s=localStorage.getItem(k),d=s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme: dark)').matches),r=document.documentElement;r.classList.toggle('dark',d);r.dataset.theme=s||'system';r.style.colorScheme=d?'dark':'light';})();`;
+export const themeInitScript = `(function(){var k='theme',s=localStorage.getItem(k),d=s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme: dark)').matches),r=document.documentElement;r.classList.toggle('dark',d);r.classList.toggle('light',!d);r.dataset.theme=s||'system';r.style.colorScheme=d?'dark':'light';})();`;

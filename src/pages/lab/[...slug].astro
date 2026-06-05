@@ -1,9 +1,15 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
-import { entriesFromGlob, slugFromPath, type MdModule } from "../../lib/md-entries";
+import {
+  entriesFromGlob,
+  slugFromPath,
+  type MdModule,
+} from "../../lib/md-entries";
 
 export function getStaticPaths() {
-  const modules = import.meta.glob<MdModule>("../../content/lab/**/*.md", { eager: true });
+  const modules = import.meta.glob<MdModule>("../../content/lab/**/*.md", {
+    eager: true,
+  });
   const entries = entriesFromGlob(modules, "lab");
 
   return entries.map((entry) => ({
@@ -13,10 +19,15 @@ export function getStaticPaths() {
 }
 
 const { entry, modules } = Astro.props;
-const mod = Object.entries(modules).find(([path]) => slugFromPath(path, "lab") === entry.slug)?.[1];
+const mod = Object.entries(modules).find(
+  ([path]) => slugFromPath(path, "lab") === entry.slug,
+)?.[1];
 ---
 
-<PageLayout title={`${entry.title} | Lab`} description={entry.description ?? entry.title}>
+<PageLayout
+  title={`Lab | ${entry.title}`}
+  description={entry.description ?? entry.title}
+>
   <article class="page page-hero">
     <a class="back-link" href="/lab">← Back to lab</a>
     <p class="eyebrow">Lab</p>

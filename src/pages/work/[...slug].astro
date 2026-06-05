@@ -25,7 +25,7 @@ const mod = Object.entries(modules).find(
 ---
 
 <PageLayout
-  title={`${entry.title} | Work`}
+  title={`Work | ${entry.title}`}
   description={entry.description ?? entry.title}
 >
   <article class="page page-hero">
@@ -49,7 +49,9 @@ const mod = Object.entries(modules).find(
         entry.url && (
           <a
             class="button button--secondary button--small"
-            href={entry.url.startsWith("http") ? entry.url : `https://${entry.url}`}
+            href={
+              entry.url.startsWith("http") ? entry.url : `https://${entry.url}`
+            }
             target="_blank"
             rel="noopener noreferrer"
             draggable="false"
@@ -81,33 +83,4 @@ const mod = Object.entries(modules).find(
   </article>
 </PageLayout>
 
-<style>
-  .lead-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 3rem;
-    margin-top: 1.25rem;
-    margin-bottom: 2.5rem;
-    width: 100%;
-    max-width: 42rem;
-  }
 
-  .lead-container .lead {
-    margin: 0;
-    flex: 1;
-    max-width: none;
-  }
-
-  .lead-container .button {
-    flex-shrink: 0;
-  }
-
-  @media (max-width: 600px) {
-    .lead-container {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1.5rem;
-    }
-  }
-</style>

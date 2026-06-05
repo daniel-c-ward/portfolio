@@ -3,18 +3,25 @@ import PageLayout from "../layouts/PageLayout.astro";
 import Carousel from "../components/Carousel.astro";
 import { entriesFromGlob, type MdModule } from "../lib/md-entries";
 
-const modules = import.meta.glob<MdModule>("../content/work/**/*.md", { eager: true });
+const modules = import.meta.glob<MdModule>("../content/work/**/*.md", {
+  eager: true,
+});
 const entries = entriesFromGlob(modules, "work");
 const basePath = "/work";
 ---
 
-<PageLayout title="Work | Daniel Ward" description="Projects and case studies by Daniel Ward.">
+<PageLayout
+  title="Daniel Ward | Work"
+  description="Projects and case studies by Daniel Ward."
+>
   <div class="page">
     <header class="page-hero">
       <p class="eyebrow">Work</p>
       <h1>Projects</h1>
       <p class="lead">
-        Here are a list of my projects made for real clients. They are mostly accompanied by case studies that go into more detail about the project, the process, and the outcome.
+        Here are a list of my projects made for real clients. They are mostly
+        accompanied by case studies that go into more detail about the project,
+        the process, and the outcome.
       </p>
     </header>
 

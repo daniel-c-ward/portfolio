@@ -2,22 +2,7 @@
 // src/components/SocialIcons.astro
 import { socialUrls } from "../config/contact";
 ---
-<style>
-  .social-links {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-  }
-  .social-links a img {
-    width: 24px;
-    height: 24px;
-    filter: brightness(0) saturate(100%) invert(36%) sepia(5%) saturate(1249%) hue-rotate(168deg) brightness(94%) contrast(86%);
-    transition: transform 0.2s ease;
-  }
-  .social-links a:hover img {
-    transform: translateY(-2px);
-  }
-</style>
+
 <div class="social-links">
   <a href={socialUrls.github} aria-label="GitHub" target="_blank" rel="noopener">
     <img src="/images/github.svg" alt="GitHub" />
