@@ -1,7 +1,7 @@
 ---
 title: J.O.B.S. Tracker
 description: A web app for building maintenancece, turned Google Sheet.
-featuredImage: /images/work/jobstracker/jobstracker-profile.png
+featuredImage: /images/work/jobstracker/jobstracker-login.png
 logoImage: /images/work/jobstracker/jobstracker-logo.png
 date: 2026-06-04
 tags:
@@ -11,7 +11,7 @@ tags:
   - Google Sheets
   - Adaptablilty
 url: danielcward.com
-projectColor: "#185a43"
+projectColor: "#B34E09"
 isCompact: false
 isLogo: true
 challenge: "The charity needed maintenance jobs to stop slipping through a paper-card process."

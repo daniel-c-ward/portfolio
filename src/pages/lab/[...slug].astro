@@ -1,8 +1,9 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
 import {
   entriesFromGlob,
-  slugFromPath,
+  labSectionsFromEntries,
   type MdModule,
 } from "../../lib/md-entries";
 
@@ -10,31 +11,41 @@ export function getStaticPaths() {
   const modules = import.meta.glob<MdModule>("../../content/lab/**/*.md", {
     eager: true,
   });
-  const entries = entriesFromGlob(modules, "lab");
+  const sections = labSectionsFromEntries(entriesFromGlob(modules, "lab"));
 
-  return entries.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry, modules },
+  return sections.map((section) => ({
+    params: { slug: section.slug },
+    props: { section },
   }));
 }
 
-const { entry, modules } = Astro.props;
-const mod = Object.entries(modules).find(
-  ([path]) => slugFromPath(path, "lab") === entry.slug,
-)?.[1];
+const { section } = Astro.props;
 ---
 
 <PageLayout
-  title={`Lab | ${entry.title}`}
-  description={entry.description ?? entry.title}
+  title={`Lab | ${section.title}`}
+  description={section.description ?? `${section.title} lab section by Daniel Ward.`}
 >
-  <article class="page page-hero">
-    <a class="back-link" href="/lab">← Back to lab</a>
-    <p class="eyebrow">Lab</p>
-    <h1>{entry.title}</h1>
-    {entry.description && <p class="lead">{entry.description}</p>}
-    <div class="prose">
-      {mod && <mod.Content />}
-    </div>
-  </article>
+  <div class="page">
+    <header class="page-hero">
+      <a class="back-link" href="/lab">Back to lab</a>
+      <p class="eyebrow">Lab</p>
+      <h1>{section.title}</h1>
+      {section.description && <p class="lead">{section.description}</p>}
+    </header>
+
+    <section class="lab-section-showcase" aria-label={`${section.title} entries`}>
+      {section.items.map((item, index) => (
+        <ProjectCard
+          item={item}
+          basePath="/lab"
+          isCompact={false}
+          index={index}
+          inCarousel={false}
+          showActions={false}
+          disableMediaLink={true}
+        />
+      ))}
+    </section>
+  </div>
 </PageLayout>

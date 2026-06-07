@@ -8,9 +8,10 @@ interface Props {
   id: string;
   label: string;
   isCompact?: boolean;
+  actionLabel?: string;
 }
 
-const { items, basePath, id, label, isCompact } = Astro.props;
+const { items, basePath, id, label, isCompact, actionLabel } = Astro.props;
 ---
 
 {
@@ -32,6 +33,7 @@ const { items, basePath, id, label, isCompact } = Astro.props;
             isCompact={isCompact}
             index={index}
             inCarousel={true}
+            actionLabel={actionLabel}
           />
         ))}
       </div>

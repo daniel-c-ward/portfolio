@@ -3,7 +3,12 @@ import PageLayout from "../layouts/PageLayout.astro";
 import Carousel from "../components/Carousel.astro";
 import InfoCards from "../components/InfoCards.astro";
 import { skills } from "../config/skills";
-import { entriesFromGlob, type MdModule } from "../lib/md-entries";
+import {
+  entriesFromGlob,
+  labSectionsFromEntries,
+  sectionCardFromLabSection,
+  type MdModule,
+} from "../lib/md-entries";
 
 const workModules = import.meta.glob<MdModule>("../content/work/**/*.md", {
   eager: true,
@@ -13,6 +18,7 @@ const labModules = import.meta.glob<MdModule>("../content/lab/**/*.md", {
 });
 const workItems = entriesFromGlob(workModules, "work");
 const labItems = entriesFromGlob(labModules, "lab");
+const labSectionItems = labSectionsFromEntries(labItems).map(sectionCardFromLabSection);
 ---
 
 <PageLayout
@@ -72,13 +78,14 @@ const labItems = entriesFromGlob(labModules, "lab");
       <h2>Lab</h2>
       <p>Notes, experiments, and works in progress.</p>
       {
-        labItems.length > 0 ? (
+        labSectionItems.length > 0 ? (
           <Carousel
-            items={labItems}
+            items={labSectionItems}
             basePath="/lab"
             id="home-lab-carousel"
-            label="Lab items"
+            label="Lab sections"
             isCompact={true}
+            actionLabel="View Section"
           />
         ) : (
           <p class="home-empty">

@@ -7,11 +7,17 @@ interface Props {
   isCompact?: boolean;
   index?: number;
   inCarousel?: boolean;
+  actionLabel?: string;
+  showActions?: boolean;
+  disableMediaLink?: boolean;
 }
 
 const { item, basePath, index = 0 } = Astro.props;
 const isCompact = Astro.props.isCompact ?? item.isCompact ?? false;
 const inCarousel = Astro.props.inCarousel ?? isCompact;
+const actionLabel = Astro.props.actionLabel ?? "Case Study";
+const showActions = Astro.props.showActions ?? true;
+const disableMediaLink = Astro.props.disableMediaLink ?? false;
 const showCompactLogo = isCompact && item.isLogo && item.logoImage;
 const showDetailLogo = !isCompact && item.isLogo && item.logoImage;
 const image = showCompactLogo ? item.logoImage : item.featuredImage;
@@ -24,7 +30,11 @@ const articleClass = [
   .filter(Boolean)
   .join(" ");
 const href = `${basePath}/${item.slug}`;
-const demoUrl = item.url?.startsWith("http") ? item.url : item.url ? `https://${item.url}` : undefined;
+const demoUrl = item.url?.startsWith("http")
+  ? item.url
+  : item.url
+    ? `https://${item.url}`
+    : undefined;
 const projectTheme = projectThemeFor(item);
 const formattedDate =
   item.date &&
@@ -35,8 +45,31 @@ const formattedDate =
   });
 ---
 
-<article class={articleClass} style={projectTheme} data-carousel-slide={inCarousel ? true : undefined}>
-  <a class="content-card__media" href={href} draggable="false" aria-label={item.title}>
+<article
+  class={articleClass}
+  style={projectTheme}
+  data-carousel-slide={inCarousel ? true : undefined}
+>
+  {disableMediaLink ? (
+    <figure class="content-card__media" aria-label={item.title}>
+      <img
+        class={`content-card__image${showCompactLogo ? " content-card__image--logo" : ""}`}
+        src={image}
+        alt=""
+        width="480"
+        height="270"
+        loading="lazy"
+        decoding="async"
+        draggable="false"
+      />
+    </figure>
+  ) : (
+    <a
+      class="content-card__media"
+      href={href}
+      draggable="false"
+      aria-label={item.title}
+    >
     <img
       class={`content-card__image${showCompactLogo ? " content-card__image--logo" : ""}`}
       src={image}
@@ -47,93 +80,121 @@ const formattedDate =
       decoding="async"
       draggable="false"
     />
-  </a>
+    </a>
+  )}
 
   <section class="content-card__body" aria-labelledby={`project-${item.slug}`}>
     <header class="content-card__header">
-      {showDetailLogo && (
-        <img
-          class="content-card__logo"
-          src={item.logoImage}
-          alt=""
-          width="160"
-          height="80"
-          loading="lazy"
-          decoding="async"
-        />
-      )}
+      {
+        showDetailLogo && (
+          <img
+            class="content-card__logo"
+            src={item.logoImage}
+            alt=""
+            width="160"
+            height="80"
+            loading="lazy"
+            decoding="async"
+          />
+        )
+      }
       <h3 id={`project-${item.slug}`}>{item.title}</h3>
-      {!isCompact && formattedDate && <p class="content-card__date">{formattedDate}</p>}
+      {
+        !isCompact && formattedDate && (
+          <p class="content-card__date">{formattedDate}</p>
+        )
+      }
     </header>
 
     {item.description && <p>{item.description}</p>}
 
-    {item.tags.length > 0 && (
-      <footer class="content-card__tags" aria-label="Tags">
-        {item.tags.map((tag) => (
-          <span class="content-card__label">{tag}</span>
-        ))}
-      </footer>
-    )}
+    {
+      item.tags.length > 0 && (
+        <footer class="content-card__tags" aria-label="Tags">
+          {item.tags.map((tag) => (
+            <span class="content-card__label">{tag}</span>
+          ))}
+        </footer>
+      )
+    }
 
-    {!isCompact && (
-      <dl class="content-card__meta">
-        {item.challenge && (
-          <>
-            <dt>Challenge</dt>
-            <dd>{item.challenge}</dd>
-          </>
-        )}
-        {item.solution && (
-          <>
-            <dt>Solution</dt>
-            <dd>{item.solution}</dd>
-          </>
-        )}
-        {item.impact && (
-          <>
-            <dt>Impact</dt>
-            <dd>{item.impact}</dd>
-          </>
-        )}
-        {item.labCategory && (
-          <>
-            <dt>Lab Category</dt>
-            <dd>{item.labCategory}</dd>
-          </>
-        )}
-        {item.difficulty && (
-          <>
-            <dt>Difficulty</dt>
-            <dd>{item.difficulty}</dd>
-          </>
-        )}
-        {item.inspiration && (
-          <>
-            <dt>Inspiration</dt>
-            <dd>{item.inspiration}</dd>
-          </>
-        )}
-      </dl>
-    )}
+    {
+      !isCompact && (
+        <dl class="content-card__meta">
+          {item.challenge && (
+            <>
+              <dt>Challenge</dt>
+              <dd>{item.challenge}</dd>
+            </>
+          )}
+          {item.solution && (
+            <>
+              <dt>Solution</dt>
+              <dd>{item.solution}</dd>
+            </>
+          )}
+          {item.impact && (
+            <>
+              <dt>Impact</dt>
+              <dd>{item.impact}</dd>
+            </>
+          )}
+          {item.labCategory && (
+            <>
+              <dt>Lab Category</dt>
+              <dd>{item.labCategory}</dd>
+            </>
+          )}
+          {item.difficulty && (
+            <>
+              <dt>Difficulty</dt>
+              <dd>{item.difficulty}</dd>
+            </>
+          )}
+          {item.inspiration && (
+            <>
+              <dt>Inspiration</dt>
+              <dd>{item.inspiration}</dd>
+            </>
+          )}
+        </dl>
+      )
+    }
 
-    {!isCompact && item.tools.length > 0 && (
-      <footer class="content-card__tags" aria-label="Tech Stack">
-        {item.tools.map((tool) => (
-          <span class="content-card__label">{tool}</span>
-        ))}
-      </footer>
-    )}
+    {
+      !isCompact && item.tools.length > 0 && (
+        <footer class="content-card__tags" aria-label="Tech Stack">
+          {item.tools.map((tool) => (
+            <span class="content-card__label">{tool}</span>
+          ))}
+        </footer>
+      )
+    }
 
-    <footer class="content-card__actions">
-      {!isCompact && item.hasLiveDemo && demoUrl && (
-        <a class="button button--secondary button--small" href={demoUrl} target="_blank" rel="noreferrer">
-          View
-        </a>
-      )}
-      <a class="button button--primary button--small content-card__link" href={href} draggable="false">
-        Case Study
+    {
+      showActions && (
+        <footer class="content-card__actions">
+      {
+        !isCompact && item.hasLiveDemo && demoUrl && (
+          <a
+            class="button button--secondary button--small"
+            href={demoUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            View Site
+          </a>
+        )
+      }
+      <a
+        class="button button--primary button--small content-card__link"
+        href={href}
+        draggable="false"
+      >
+        {actionLabel}
       </a>
-    </footer>
+        </footer>
+      )
+    }
   </section>
 </article>

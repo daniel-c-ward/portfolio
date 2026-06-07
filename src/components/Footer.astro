@@ -1,8 +1,13 @@
 ---
 // Import all markdown modules for Lab and Work
 import { contactInfo } from "../config/contact";
+import {
+  entriesFromGlob,
+  labSectionsFromEntries,
+  type MdModule,
+} from "../lib/md-entries";
 
-const labModules = import.meta.glob("../content/lab/**/*.md", { eager: true });
+const labModules = import.meta.glob<MdModule>("../content/lab/**/*.md", { eager: true });
 const workModules = import.meta.glob("../content/work/**/*.md", {
   eager: true,
 });
@@ -32,7 +37,7 @@ function extractPosts(modules) {
     .slice(0, 5);
 }
 
-const labPosts = extractPosts(labModules);
+const labSections = labSectionsFromEntries(entriesFromGlob(labModules, "lab"));
 const workPosts = extractPosts(workModules);
 ---
 
@@ -98,10 +103,10 @@ const workPosts = extractPosts(workModules);
         <h4 class="footer__info-title">Lab</h4>
         <ul class="footer__list">
           {
-            labPosts.map((post) => (
+            labSections.map((section) => (
               <li>
-                <a href={post.url} class="footer__info-link">
-                  {post.title}
+                <a href={`/lab/${section.slug}`} class="footer__info-link">
+                  {section.title}
                 </a>
               </li>
             ))

@@ -49,6 +49,14 @@ export interface MdEntry {
   hasLiveDemo?: boolean;
 }
 
+export interface LabSection {
+  slug: string;
+  title: string;
+  description?: string;
+  featuredImage: string;
+  items: MdEntry[];
+}
+
 const defaultImage = "/images/placeholder-card.svg";
 
 export function slugFromPath(path: string, collection: string): string {
@@ -66,7 +74,15 @@ function sectionFromPath(path: string, collection: string): string {
   return section || "uncategorised";
 }
 
-function normaliseSection(
+export function titleFromKey(key: string): string {
+  return key
+    .split("-")
+    .filter(Boolean)
+    .map((word) => word[0]?.toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
+export function normaliseSection(
   section: string | undefined,
   fallback: string,
 ): string {
@@ -86,6 +102,10 @@ export function entriesFromGlob(
     .map(([path, mod]) => {
       const frontmatter = mod.frontmatter;
       const fallbackSection = sectionFromPath(path, collection);
+      const section =
+        collection === "lab"
+          ? normaliseSection(fallbackSection, fallbackSection)
+          : normaliseSection(frontmatter.labCategory, fallbackSection);
 
       return {
         slug: slugFromPath(path, collection),
@@ -94,7 +114,7 @@ export function entriesFromGlob(
         featuredImage: frontmatter.featuredImage ?? defaultImage,
         logoImage: frontmatter.logoImage,
         tags: frontmatter.tags ?? [],
-        section: normaliseSection(frontmatter.labCategory, fallbackSection),
+        section,
         date: frontmatter.date,
         url: frontmatter.url,
         projectColor: frontmatter.projectColor,
@@ -143,4 +163,32 @@ export function groupBySection(entries: MdEntry[]): [string, MdEntry[]][] {
   }
 
   return Array.from(groups.entries());
+}
+
+export function labSectionsFromEntries(entries: MdEntry[]): LabSection[] {
+  return groupBySection(entries)
+    .map(([section, items]) => {
+      const [firstItem] = items;
+
+      return {
+        slug: section,
+        title: titleFromKey(section),
+        description: firstItem?.description,
+        featuredImage: firstItem?.featuredImage ?? defaultImage,
+        items,
+      };
+    })
+    .sort((a, b) => a.title.localeCompare(b.title));
+}
+
+export function sectionCardFromLabSection(section: LabSection): MdEntry {
+  return {
+    slug: section.slug,
+    title: section.title,
+    description: section.description,
+    featuredImage: section.featuredImage,
+    tags: [],
+    section: section.slug,
+    tools: [],
+  };
 }
