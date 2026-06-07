@@ -50,13 +50,13 @@ function sectionDescription(section: string): string | undefined {
       <p class="eyebrow">Lab</p>
       <h1>Lab</h1>
       <p class="lead">
-        Markdown files in <code>src/content/lab</code> are grouped by their <code>section</code> front matter. Each section loads as its own carousel.
+        Markdown files in <code>src/content/lab</code> are grouped by their <code>labCategory</code> front matter. Each section loads as its own carousel.
       </p>
     </header>
 
     {
       sections.length === 0 ? (
-        <p class="lead">No lab items yet. Add a <code>.md</code> file under <code>src/content/lab</code>.</p>
+        <p class="lead">No lab items yet. Add a <code>.mdx</code> file under <code>src/content/lab</code>.</p>
       ) : (
         sections.map(([section, sectionItems]) => (
           <section class="content-section" aria-labelledby={`lab-${section}`}>
@@ -67,6 +67,7 @@ function sectionDescription(section: string): string | undefined {
               basePath={basePath}
               id={`lab-carousel-${section}`}
               label={sectionLabel(section)}
+              isCompact={false}
             />
           </section>
         ))

@@ -1,6 +1,6 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
-import Carousel from "../components/Carousel.astro";
+import ProjectCard from "../components/ProjectCard.astro";
 import { entriesFromGlob, type MdModule } from "../lib/md-entries";
 
 const modules = import.meta.glob<MdModule>("../content/work/**/*.md", {
@@ -29,14 +29,17 @@ const basePath = "/work";
       entries.length === 0 ? (
         <p class="lead">No work entries yet.</p>
       ) : (
-        <div class="content-section">
-          <Carousel
-            items={entries}
-            basePath={basePath}
-            id="work-carousel"
-            label="Work projects"
-          />
-        </div>
+        <section class="project-showcase" aria-label="Work projects">
+          {entries.map((entry, index) => (
+            <ProjectCard
+              item={entry}
+              basePath={basePath}
+              isCompact={false}
+              index={index}
+              inCarousel={false}
+            />
+          ))}
+        </section>
       )
     }
   </div>

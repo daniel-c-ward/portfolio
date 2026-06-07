@@ -1,0 +1,139 @@
+---
+import { projectThemeFor, type MdEntry } from "../lib/md-entries";
+
+interface Props {
+  item: MdEntry;
+  basePath: string;
+  isCompact?: boolean;
+  index?: number;
+  inCarousel?: boolean;
+}
+
+const { item, basePath, index = 0 } = Astro.props;
+const isCompact = Astro.props.isCompact ?? item.isCompact ?? false;
+const inCarousel = Astro.props.inCarousel ?? isCompact;
+const showCompactLogo = isCompact && item.isLogo && item.logoImage;
+const showDetailLogo = !isCompact && item.isLogo && item.logoImage;
+const image = showCompactLogo ? item.logoImage : item.featuredImage;
+const articleClass = [
+  "content-card",
+  inCarousel ? "carousel__slide" : "",
+  isCompact ? "content-card--compact" : "content-card--detail",
+  !isCompact && index % 2 === 1 ? "content-card--media-right" : "",
+]
+  .filter(Boolean)
+  .join(" ");
+const href = `${basePath}/${item.slug}`;
+const demoUrl = item.url?.startsWith("http") ? item.url : item.url ? `https://${item.url}` : undefined;
+const projectTheme = projectThemeFor(item);
+const formattedDate =
+  item.date &&
+  new Date(item.date).toLocaleDateString("en-GB", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+---
+
+<article class={articleClass} style={projectTheme} data-carousel-slide={inCarousel ? true : undefined}>
+  <a class="content-card__media" href={href} draggable="false" aria-label={item.title}>
+    <img
+      class={`content-card__image${showCompactLogo ? " content-card__image--logo" : ""}`}
+      src={image}
+      alt=""
+      width="480"
+      height="270"
+      loading="lazy"
+      decoding="async"
+      draggable="false"
+    />
+  </a>
+
+  <section class="content-card__body" aria-labelledby={`project-${item.slug}`}>
+    <header class="content-card__header">
+      {showDetailLogo && (
+        <img
+          class="content-card__logo"
+          src={item.logoImage}
+          alt=""
+          width="160"
+          height="80"
+          loading="lazy"
+          decoding="async"
+        />
+      )}
+      <h3 id={`project-${item.slug}`}>{item.title}</h3>
+      {!isCompact && formattedDate && <p class="content-card__date">{formattedDate}</p>}
+    </header>
+
+    {item.description && <p>{item.description}</p>}
+
+    {item.tags.length > 0 && (
+      <footer class="content-card__tags" aria-label="Tags">
+        {item.tags.map((tag) => (
+          <span class="content-card__label">{tag}</span>
+        ))}
+      </footer>
+    )}
+
+    {!isCompact && (
+      <dl class="content-card__meta">
+        {item.challenge && (
+          <>
+            <dt>Challenge</dt>
+            <dd>{item.challenge}</dd>
+          </>
+        )}
+        {item.solution && (
+          <>
+            <dt>Solution</dt>
+            <dd>{item.solution}</dd>
+          </>
+        )}
+        {item.impact && (
+          <>
+            <dt>Impact</dt>
+            <dd>{item.impact}</dd>
+          </>
+        )}
+        {item.labCategory && (
+          <>
+            <dt>Lab Category</dt>
+            <dd>{item.labCategory}</dd>
+          </>
+        )}
+        {item.difficulty && (
+          <>
+            <dt>Difficulty</dt>
+            <dd>{item.difficulty}</dd>
+          </>
+        )}
+        {item.inspiration && (
+          <>
+            <dt>Inspiration</dt>
+            <dd>{item.inspiration}</dd>
+          </>
+        )}
+      </dl>
+    )}
+
+    {!isCompact && item.tools.length > 0 && (
+      <footer class="content-card__tags" aria-label="Tech Stack">
+        {item.tools.map((tool) => (
+          <span class="content-card__label">{tool}</span>
+        ))}
+      </footer>
+    )}
+
+    <footer class="content-card__actions">
+      {!isCompact && item.hasLiveDemo && demoUrl && (
+        <a class="button button--secondary button--small" href={demoUrl} target="_blank" rel="noreferrer">
+          View
+        </a>
+      )}
+      <a class="button button--primary button--small content-card__link" href={href} draggable="false">
+        Case Study
+      </a>
+    </footer>
+  </section>
+</article>

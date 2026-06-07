@@ -1,16 +1,32 @@
 ---
 title: J.O.B.S. Tracker
 description: A web app for building maintenancece, turned Google Sheet.
-img: /images/work/jobstracker/jobstracker-logo.png
+featuredImage: /images/work/jobstracker/jobstracker-profile.png
+logoImage: /images/work/jobstracker/jobstracker-logo.png
+date: 2026-06-04
 tags:
   - React
   - NextJS
   - PrismaORM
   - Google Sheets
   - Adaptablilty
-url:
-logo: true
-date: 2026-06-04
+url: danielcward.com
+projectColor: "#185a43"
+isCompact: false
+isLogo: true
+challenge: "The charity needed maintenance jobs to stop slipping through a paper-card process."
+solution: "A web-app prototype informed the data model before the final workflow moved into a sustainable Google Sheet system."
+impact: "The final Google Sheet gave the team a simple, sustainable way to track tasks and train others."
+tools:
+  - React
+  - NextJS
+  - PrismaORM
+  - Google Sheets
+status: "Completed"
+labCategory: ""
+difficulty: ""
+inspiration: ""
+hasLiveDemo: false
 ---
 
 ---

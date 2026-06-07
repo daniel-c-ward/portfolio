@@ -2,6 +2,7 @@
 import PageLayout from "../../layouts/PageLayout.astro";
 import {
   entriesFromGlob,
+  projectThemeFor,
   slugFromPath,
   type MdModule,
 } from "../../lib/md-entries";
@@ -22,65 +23,83 @@ const { entry, modules } = Astro.props;
 const mod = Object.entries(modules).find(
   ([path]) => slugFromPath(path, "work") === entry.slug,
 )?.[1];
+const projectTheme = projectThemeFor(entry);
+const demoUrl = entry.url?.startsWith("http") ? entry.url : entry.url ? `https://${entry.url}` : undefined;
+const formattedDate =
+  entry.date &&
+  new Date(entry.date).toLocaleDateString("en-GB", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
 ---
 
 <PageLayout
   title={`Work | ${entry.title}`}
   description={entry.description ?? entry.title}
 >
-  <article class="page page-hero">
-    <a class="back-link" href="/work">← Back to work</a>
-    <p class="eyebrow">Work</p>
-    <h1>{entry.title}</h1>
-    {
-      entry.date && (
-        <p class="work-date">
-          {new Date(entry.date).toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          })}
-        </p>
-      )
-    }
-    <div class="lead-container">
+  <article class="page page-hero case-study" style={projectTheme}>
+    <a class="back-link" href="/work">Back to work</a>
+    <header class="case-study__header">
+      {entry.isLogo && entry.logoImage && (
+        <img
+          class="content-card__logo"
+          src={entry.logoImage}
+          alt=""
+          width="160"
+          height="80"
+          loading="eager"
+          decoding="async"
+        />
+      )}
+      <p class="eyebrow">Work</p>
+      <h1>{entry.title}</h1>
+      {formattedDate && <p class="work-date">{formattedDate}</p>}
       {entry.description && <p class="lead">{entry.description}</p>}
-      {
-        entry.url && (
-          <a
-            class="button button--secondary button--small"
-            href={
-              entry.url.startsWith("http") ? entry.url : `https://${entry.url}`
-            }
-            target="_blank"
-            rel="noopener noreferrer"
-            draggable="false"
-          >
-            Visit Site
-            <svg
-              width="12"
-              height="12"
-              viewBox="0 0 16 16"
-              fill="none"
-              aria-hidden="true"
-              style="margin-left:0.3rem;"
-            >
-              <path
-                d="M5 3h8v8M13 3L3 13"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
+      {entry.tags.length > 0 && (
+        <footer class="content-card__tags" aria-label="Tags">
+          {entry.tags.map((tag) => (
+            <span class="content-card__label">{tag}</span>
+          ))}
+        </footer>
+      )}
+      <dl class="content-card__meta">
+        {entry.challenge && (
+          <>
+            <dt>Challenge</dt>
+            <dd>{entry.challenge}</dd>
+          </>
+        )}
+        {entry.solution && (
+          <>
+            <dt>Solution</dt>
+            <dd>{entry.solution}</dd>
+          </>
+        )}
+        {entry.impact && (
+          <>
+            <dt>Impact</dt>
+            <dd>{entry.impact}</dd>
+          </>
+        )}
+      </dl>
+      {entry.tools.length > 0 && (
+        <footer class="content-card__tags" aria-label="Tech Stack">
+          {entry.tools.map((tool) => (
+            <span class="content-card__label">{tool}</span>
+          ))}
+        </footer>
+      )}
+      {entry.hasLiveDemo && demoUrl && (
+        <footer class="content-card__actions">
+          <a class="button button--secondary button--small" href={demoUrl} target="_blank" rel="noreferrer">
+            View
           </a>
-        )
-      }
-    </div>
+        </footer>
+      )}
+    </header>
     <div class="prose">
       {mod && <mod.Content />}
     </div>
   </article>
 </PageLayout>
-
-

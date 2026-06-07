@@ -1,14 +1,30 @@
 ---
 title: Captain T Productions
 description: A photography site for a local photographer, cinematography, and drone pilot.
-img: /images/work/captaintproductions/captaintproductions-logo.png
+featuredImage: /images/work/captaintproductions/captaintproductions-home.jpeg
+logoImage: /images/work/captaintproductions/captaintproductions-logo.png
+date: 2026-05-21
 tags:
   - Client services
   - Wordpress Plugins
   - Adaptablitly
 url: https://captaintproductions.com
-logo: true
-date: 2026-05-21
+projectColor: "#7a3f31"
+isCompact: false
+isLogo: true
+challenge: "The site had to showcase photography, cinematography, and drone work while the business direction was still forming."
+solution: "A branded WordPress site shaped around the chosen visual direction, flexible media sections, and a more hands-on handover."
+impact: "The client received a branded WordPress site and a stronger handover process for editing future content."
+tools:
+  - WordPress
+  - Custom Theme
+  - Spectra
+  - Bluehost
+status: "Live"
+labCategory: ""
+difficulty: ""
+inspiration: ""
+hasLiveDemo: true
 ---
 
 ---

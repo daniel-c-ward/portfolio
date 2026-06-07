@@ -39,7 +39,7 @@ export function GET() {
         slug: item.slug,
         title: item.title,
         description: item.description,
-        img: item.img,
+        featuredImage: item.featuredImage,
         tags: item.tags,
       })),
     })),

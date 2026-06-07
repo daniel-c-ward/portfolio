@@ -1,14 +1,16 @@
 ---
 import type { MdEntry } from "../lib/md-entries";
+import ProjectCard from "./ProjectCard.astro";
 
 interface Props {
   items: MdEntry[];
   basePath: string;
   id: string;
   label: string;
+  isCompact?: boolean;
 }
 
-const { items, basePath, id, label } = Astro.props;
+const { items, basePath, id, label, isCompact } = Astro.props;
 ---
 
 {
@@ -23,79 +25,14 @@ const { items, basePath, id, label } = Astro.props;
         aria-label={label}
         tabindex="0"
       >
-        {items.map((item) => (
-          <div class="content-card carousel__slide" data-carousel-slide>
-            <img
-              class={`content-card__image${item.logo ? " content-card__image--logo" : ""}`}
-              src={item.img}
-              alt=""
-              width="480"
-              height="270"
-              loading="lazy"
-              decoding="async"
-              draggable="false"
-            />
-            <div class="content-card__body">
-              <h3>{item.title}</h3>
-              {item.date && (
-                <p class="content-card__date">
-                  {new Date(item.date).toLocaleDateString("en-UK", {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </p>
-              )}
-              {item.description && <p>{item.description}</p>}
-              {item.tags.length > 0 && (
-                <div class="content-card__tags" aria-label="Tags">
-                  {item.tags.map((tag) => (
-                    <span class="content-card__label">{tag}</span>
-                  ))}
-                </div>
-              )}
-            </div>
-            <div class="content-card__actions">
-              {item.url && (
-                <a
-                  class="button button--secondary button--small"
-                  href={
-                    item.url.startsWith("http")
-                      ? item.url
-                      : `https://${item.url}`
-                  }
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  draggable="false"
-                >
-                  Visit Site
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    aria-hidden="true"
-                    style="margin-left:0.3rem;"
-                  >
-                    <path
-                      d="M5 3h8v8M13 3L3 13"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </a>
-              )}
-              <a
-                class="button button--primary button--small"
-                href={`${basePath}/${item.slug}`}
-                draggable="false"
-              >
-                Case Study
-              </a>
-            </div>
-          </div>
+        {items.map((item, index) => (
+          <ProjectCard
+            item={item}
+            basePath={basePath}
+            isCompact={isCompact}
+            index={index}
+            inCarousel={true}
+          />
         ))}
       </div>
     </div>
