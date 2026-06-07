@@ -24,28 +24,34 @@ const { section } = Astro.props;
 
 <PageLayout
   title={`Lab | ${section.title}`}
-  description={section.description ?? `${section.title} lab section by Daniel Ward.`}
+  description={section.description ??
+    `${section.title} lab section by Daniel Ward.`}
 >
   <div class="page">
     <header class="page-hero">
-      <a class="back-link" href="/lab">Back to lab</a>
+      <a class="back-link" href="/lab"><- Back to lab</a>
       <p class="eyebrow">Lab</p>
       <h1>{section.title}</h1>
       {section.description && <p class="lead">{section.description}</p>}
     </header>
 
-    <section class="lab-section-showcase" aria-label={`${section.title} entries`}>
-      {section.items.map((item, index) => (
-        <ProjectCard
-          item={item}
-          basePath="/lab"
-          isCompact={false}
-          index={index}
-          inCarousel={false}
-          showActions={false}
-          disableMediaLink={true}
-        />
-      ))}
+    <section
+      class="lab-section-showcase"
+      aria-label={`${section.title} entries`}
+    >
+      {
+        section.items.map((item, index) => (
+          <ProjectCard
+            item={item}
+            basePath="/lab"
+            isCompact={false}
+            index={index}
+            inCarousel={false}
+            showActions={false}
+            disableMediaLink={true}
+          />
+        ))
+      }
     </section>
   </div>
 </PageLayout>

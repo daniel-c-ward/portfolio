@@ -11,7 +11,6 @@ tags:
   - Google Sheets
   - Adaptablilty
 url: danielcward.com
-projectColor: "#B34E09"
 isCompact: false
 isLogo: true
 challenge: "The charity needed maintenance jobs to stop slipping through a paper-card process."

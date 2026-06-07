@@ -18,7 +18,9 @@ const labModules = import.meta.glob<MdModule>("../content/lab/**/*.md", {
 });
 const workItems = entriesFromGlob(workModules, "work");
 const labItems = entriesFromGlob(labModules, "lab");
-const labSectionItems = labSectionsFromEntries(labItems).map(sectionCardFromLabSection);
+const labSectionItems = labSectionsFromEntries(labItems).map(
+  sectionCardFromLabSection,
+);
 ---
 
 <PageLayout
@@ -36,7 +38,7 @@ const labSectionItems = labSectionsFromEntries(labItems).map(sectionCardFromLabS
         </p>
         <div class="hero__actions">
           <a class="button button--secondary" href="/work">View work</a>
-          <a class="button button--primary" href="/contact">Get in touch</a>
+          <a class="button button--primary" href="/cv">View my CV</a>
         </div>
       </div>
     </section>
@@ -49,7 +51,7 @@ const labSectionItems = labSectionsFromEntries(labItems).map(sectionCardFromLabS
         UX and how to create interfaces that are intuitive, engaging, and
         aligned with users' goals and biases.
       </p>
-      <a href="/cv" class="text-link home-link">Read more on my CV →</a>
+      <a href="/cv" class="text-link home-link">Read more on my CV -></a>
     </section>
 
     <section id="work" class="home-block page">
@@ -88,15 +90,10 @@ const labSectionItems = labSectionsFromEntries(labItems).map(sectionCardFromLabS
             actionLabel="View Section"
           />
         ) : (
-          <p class="home-empty">
-            Add Markdown files to <code>src/content/lab</code> to show items
-            here.
-          </p>
+          <p class="home-empty">There are currently no lab entires.</p>
         )
       }
       <a class="text-link home-link" href="/lab">View the lab -></a>
     </section>
-
-    
   </div>
 </PageLayout>

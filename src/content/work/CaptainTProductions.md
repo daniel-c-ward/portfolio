@@ -9,7 +9,6 @@ tags:
   - Wordpress Plugins
   - Adaptablitly
 url: https://captaintproductions.com
-projectColor: "#7a3f31"
 isCompact: false
 isLogo: true
 challenge: "The site had to showcase photography, cinematography, and drone work while the business direction was still forming."

@@ -3,8 +3,8 @@ export const contactInfo = {
   phone: "+441234567890",
   phoneDisplay: "+44 1234 567890",
   github: "daniel-c-ward",
-  linkedin: "daniel-ward-927189397/",
-  instagram: "captaincycles.uk",
+  linkedin: "danielcwarduk/",
+  instagram: "anotherdanielward",
 } as const;
 
 // Helper to generate social URLs

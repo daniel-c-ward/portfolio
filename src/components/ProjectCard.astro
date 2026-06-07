@@ -1,5 +1,5 @@
 ---
-import { projectThemeFor, type MdEntry } from "../lib/md-entries";
+import type { MdEntry } from "../lib/md-entries";
 
 interface Props {
   item: MdEntry;
@@ -35,7 +35,6 @@ const demoUrl = item.url?.startsWith("http")
   : item.url
     ? `https://${item.url}`
     : undefined;
-const projectTheme = projectThemeFor(item);
 const formattedDate =
   item.date &&
   new Date(item.date).toLocaleDateString("en-GB", {
@@ -47,41 +46,42 @@ const formattedDate =
 
 <article
   class={articleClass}
-  style={projectTheme}
   data-carousel-slide={inCarousel ? true : undefined}
 >
-  {disableMediaLink ? (
-    <figure class="content-card__media" aria-label={item.title}>
-      <img
-        class={`content-card__image${showCompactLogo ? " content-card__image--logo" : ""}`}
-        src={image}
-        alt=""
-        width="480"
-        height="270"
-        loading="lazy"
-        decoding="async"
+  {
+    disableMediaLink ? (
+      <figure class="content-card__media" aria-label={item.title}>
+        <img
+          class={`content-card__image${showCompactLogo ? " content-card__image--logo" : ""}`}
+          src={image}
+          alt=""
+          width="480"
+          height="270"
+          loading="lazy"
+          decoding="async"
+          draggable="false"
+        />
+      </figure>
+    ) : (
+      <a
+        class="content-card__media"
+        href={href}
         draggable="false"
-      />
-    </figure>
-  ) : (
-    <a
-      class="content-card__media"
-      href={href}
-      draggable="false"
-      aria-label={item.title}
-    >
-    <img
-      class={`content-card__image${showCompactLogo ? " content-card__image--logo" : ""}`}
-      src={image}
-      alt=""
-      width="480"
-      height="270"
-      loading="lazy"
-      decoding="async"
-      draggable="false"
-    />
-    </a>
-  )}
+        aria-label={item.title}
+      >
+        <img
+          class={`content-card__image${showCompactLogo ? " content-card__image--logo" : ""}`}
+          src={image}
+          alt=""
+          width="480"
+          height="270"
+          loading="lazy"
+          decoding="async"
+          draggable="false"
+        />
+      </a>
+    )
+  }
 
   <section class="content-card__body" aria-labelledby={`project-${item.slug}`}>
     <header class="content-card__header">
@@ -106,17 +106,16 @@ const formattedDate =
       }
     </header>
 
-    {item.description && <p>{item.description}</p>}
-
     {
       item.tags.length > 0 && (
         <footer class="content-card__tags" aria-label="Tags">
           {item.tags.map((tag) => (
-            <span class="content-card__label">{tag}</span>
+            <span class="content-card__tag">{tag}</span>
           ))}
         </footer>
       )
     }
+    {item.description && <p>{item.description}</p>}
 
     {
       !isCompact && (
@@ -165,7 +164,7 @@ const formattedDate =
       !isCompact && item.tools.length > 0 && (
         <footer class="content-card__tags" aria-label="Tech Stack">
           {item.tools.map((tool) => (
-            <span class="content-card__label">{tool}</span>
+            <span class="content-card__tag">{tool}</span>
           ))}
         </footer>
       )
@@ -174,25 +173,19 @@ const formattedDate =
     {
       showActions && (
         <footer class="content-card__actions">
-      {
-        !isCompact && item.hasLiveDemo && demoUrl && (
-          <a
-            class="button button--secondary button--small"
-            href={demoUrl}
-            target="_blank"
-            rel="noreferrer"
-          >
-            View Site
+          {!isCompact && item.hasLiveDemo && demoUrl && (
+            <a
+              class="button button--secondary"
+              href={demoUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              View Site
+            </a>
+          )}
+          <a class="button button--primary" href={href} draggable="false">
+            {actionLabel}
           </a>
-        )
-      }
-      <a
-        class="button button--primary button--small content-card__link"
-        href={href}
-        draggable="false"
-      >
-        {actionLabel}
-      </a>
         </footer>
       )
     }

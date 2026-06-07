@@ -10,7 +10,6 @@ tags:
   - Hosting Support
   - User experience
 url: captaincycles.com
-projectColor: "#0E1524"
 isCompact: false
 isLogo: true
 challenge: "The client needed a clear, manageable site they could update without technical friction."
@@ -26,6 +25,8 @@ labCategory: ""
 difficulty: ""
 inspiration: ""
 hasLiveDemo: true
+colourlight: #ff0000
+### colourdark: #0000ff
 ---
 
 ---

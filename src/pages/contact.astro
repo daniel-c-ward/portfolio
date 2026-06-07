@@ -6,9 +6,8 @@ import { contactInfo, socialUrls } from "../config/contact";
 const contactCards = [
   {
     title: "Email",
-    description:
-      "Send me a direct message for inquiries and collaborations.",
-    link: { href: socialUrls.email, label: contactInfo.email },
+    description: "Send me a direct message for inquiries and collaborations.",
+    link: { href: socialUrls.email, label: "Send me an email ->" },
   },
   {
     title: "LinkedIn",
@@ -16,7 +15,7 @@ const contactCards = [
       "Connect with me on LinkedIn to see my professional profile and updates.",
     link: {
       href: socialUrls.linkedin,
-      label: "Visit LinkedIn →",
+      label: "Visit LinkedIn ->",
       external: true,
     },
   },
@@ -37,5 +36,3 @@ const contactCards = [
     <InfoCards items={contactCards} label="Contact options" />
   </div>
 </PageLayout>
-
-

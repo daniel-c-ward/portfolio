@@ -7,28 +7,39 @@ import {
   type MdModule,
 } from "../lib/md-entries";
 
-const modules = import.meta.glob<MdModule>("../content/lab/**/*.md", { eager: true });
+const modules = import.meta.glob<MdModule>("../content/lab/**/*.md", {
+  eager: true,
+});
 const items = entriesFromGlob(modules, "lab");
 const sections = labSectionsFromEntries(items);
 ---
 
-<PageLayout title="Lab | Daniel Ward" description="Notes, experiments, and prototypes from Daniel Ward.">
+<PageLayout
+  title="Lab | Daniel Ward"
+  description="Notes, experiments, and prototypes from Daniel Ward."
+>
   <div class="page">
     <header class="page-hero">
       <p class="eyebrow">Lab</p>
       <h1>Lab</h1>
       <p class="lead">
-        Lab folders are grouped automatically from <code>src/content/lab</code>. Each section gathers its own notes, prototypes, and experiments.
+        Lab folders are grouped automatically from <code>src/content/lab</code>.
+        Each section gathers its own notes, prototypes, and experiments.
       </p>
     </header>
 
     {
       sections.length === 0 ? (
-        <p class="lead">No lab sections yet. Add a folder under <code>src/content/lab</code>.</p>
+        <p class="lead">
+          No lab sections yet. Add a folder under <code>src/content/lab</code>.
+        </p>
       ) : (
         <section class="lab-directory" aria-label="Lab sections">
           {sections.map((section) => (
-            <article class="content-card lab-section-card" aria-labelledby={`lab-${section.slug}`}>
+            <article
+              class="content-card lab-section-card"
+              aria-labelledby={`lab-${section.slug}`}
+            >
               <img
                 class="content-card__image"
                 src={section.featuredImage}
@@ -44,7 +55,10 @@ const sections = labSectionsFromEntries(items);
                 </header>
                 {section.description && <p>{section.description}</p>}
                 <Carousel
-                  items={section.items.map((item) => ({ ...item, slug: section.slug }))}
+                  items={section.items.map((item) => ({
+                    ...item,
+                    slug: section.slug,
+                  }))}
                   basePath="/lab"
                   id={`lab-carousel-${section.slug}`}
                   label={`${section.title} previews`}
@@ -52,7 +66,10 @@ const sections = labSectionsFromEntries(items);
                   actionLabel="View Section"
                 />
                 <footer class="content-card__actions">
-                  <a class="button button--primary button--small content-card__link" href={`/lab/${section.slug}`}>
+                  <a
+                    class="button button--primary"
+                    href={`/lab/${section.slug}`}
+                  >
                     View Section
                   </a>
                 </footer>

@@ -6,7 +6,6 @@ export interface MdFrontmatter {
   date?: string | Date;
   tags?: string[];
   url?: string;
-  projectColor?: string;
   isCompact?: boolean;
   isLogo?: boolean;
   challenge?: string;
@@ -35,7 +34,6 @@ export interface MdEntry {
   section: string;
   date?: string | Date;
   url?: string;
-  projectColor?: string;
   isCompact?: boolean;
   isLogo?: boolean;
   challenge?: string;
@@ -117,7 +115,6 @@ export function entriesFromGlob(
         section,
         date: frontmatter.date,
         url: frontmatter.url,
-        projectColor: frontmatter.projectColor,
         isCompact: frontmatter.isCompact,
         isLogo: frontmatter.isLogo,
         challenge: frontmatter.challenge,
@@ -139,18 +136,6 @@ export function entriesFromGlob(
       if (b.date) return 1;
       return a.title.localeCompare(b.title);
     });
-}
-
-export function projectThemeFor(entry: Pick<MdEntry, "projectColor">): Record<string, string> {
-  const primary = entry.projectColor?.trim() || "var(--color-primary)";
-
-  return {
-    "--project-color": primary,
-    "--project-tint": `color-mix(in srgb, ${primary} 12%, var(--color-surface))`,
-    "--project-border": `color-mix(in srgb, ${primary} 34%, transparent)`,
-    "--project-hover": `color-mix(in srgb, ${primary} 88%, #000)`,
-    "--project-on-color": "var(--color-on-primary)",
-  };
 }
 
 export function groupBySection(entries: MdEntry[]): [string, MdEntry[]][] {
