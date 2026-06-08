@@ -1,28 +1,25 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
-import CvCard from "../components/CvCard.astro";
+import Timeline from "../components/Timeline.astro";
+import {
+  entriesFromModules,
+  mergeTimelineEntries,
+  type CvFrontmatter,
+} from "../lib/cv-entries";
 
-const experienceModules = import.meta.glob("../content/experience/*.md", {
-  eager: true,
-});
-const educationModules = import.meta.glob("../content/education/*.md", {
-  eager: true,
-});
+const experienceModules = import.meta.glob<{ frontmatter: CvFrontmatter }>(
+  "../content/experience/*.md",
+  { eager: true },
+);
+const educationModules = import.meta.glob<{ frontmatter: CvFrontmatter }>(
+  "../content/education/*.md",
+  { eager: true },
+);
 
-// Helper to safely extract metadata and sort
-const extractEntries = (modules: Record<string, any>) => {
-  return Object.values(modules)
-    .map((mod) => ({
-      ...mod.frontmatter,
-    }))
-    .sort((a, b) => {
-      // Simple sort by year descending if possible, or string compare
-      return String(b.year).localeCompare(String(a.year));
-    });
-};
-
-const experience = extractEntries(experienceModules);
-const education = extractEntries(educationModules);
+const timelineEntries = mergeTimelineEntries(
+  entriesFromModules(experienceModules, "experience"),
+  entriesFromModules(educationModules, "education"),
+);
 ---
 
 <PageLayout
@@ -37,7 +34,6 @@ const education = extractEntries(educationModules);
         This is my CV with the option of downloading the pdf version, and then
         some extra information at the end.
       </p>
-      <p></p>
       <a href="/Ward-Daniel-CV.pdf" class="button button--primary" download>
         <svg
           class="icon-download"
@@ -60,38 +56,9 @@ const education = extractEntries(educationModules);
       </a>
     </div>
 
-    <section class="cv-section">
-      <hr />
-      <h2>Experience</h2>
-      <div class="cv-grid">
-        {
-          experience.map((item) => (
-            <CvCard
-              year={item.year}
-              title={item.title}
-              position={item.position}
-              description={item.description}
-              casestudies={item.casestudies}
-            />
-          ))
-        }
-      </div>
-    </section>
-
-    <section class="cv-section">
-      <h2>Education</h2>
-      <div class="cv-grid">
-        {
-          education.map((item) => (
-            <CvCard
-              year={item.year}
-              title={item.title}
-              position={item.position}
-              description={item.description}
-            />
-          ))
-        }
-      </div>
+    <section class="cv-section" aria-labelledby="timeline-heading">
+      <h2 id="timeline-heading">Experience &amp; Education</h2>
+      <Timeline entries={timelineEntries} />
     </section>
   </div>
 </PageLayout>

@@ -9,9 +9,11 @@ interface Props {
   label: string;
   isCompact?: boolean;
   actionLabel?: string;
+  getHref?: (item: MdEntry) => string;
 }
 
-const { items, basePath, id, label, isCompact, actionLabel } = Astro.props;
+const { items, basePath, id, label, isCompact, actionLabel, getHref } =
+  Astro.props;
 ---
 
 {
@@ -34,6 +36,7 @@ const { items, basePath, id, label, isCompact, actionLabel } = Astro.props;
             index={index}
             inCarousel={true}
             actionLabel={actionLabel}
+            href={getHref?.(item)}
           />
         ))}
       </div>

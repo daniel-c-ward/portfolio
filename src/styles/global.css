@@ -139,6 +139,7 @@
     color-mix(in srgb, var(--color-primary) 18%, transparent);
 
   /* ---- Layout ---- */
+  --header-height: 4rem;
   --content-max: min(100% - 2rem, 1040px);
   --prose-max: 42rem;
 
@@ -552,8 +553,77 @@ main {
   margin-top: auto;
 }
 
+.content-card--compact {
+  background: var(--color-surface);
+  color: var(--color-foreground);
+}
+
 .content-card--detail {
   width: min(100%, 68rem);
+}
+
+.content-card--themed {
+  --card-bg: var(--project-colour-light);
+  --card-fg: var(--project-colour-dark);
+  background: var(--card-bg);
+  color: var(--card-fg);
+  border-color: color-mix(in srgb, var(--card-fg) 18%, transparent);
+}
+
+html.dark .content-card--themed {
+  --card-bg: var(--project-colour-dark);
+  --card-fg: var(--project-colour-light);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) .content-card--themed {
+    --card-bg: var(--project-colour-dark);
+    --card-fg: var(--project-colour-light);
+  }
+}
+
+.content-card--themed .content-card__body p {
+  color: color-mix(in srgb, var(--card-fg) 72%, transparent);
+}
+
+.content-card--themed .content-card__date {
+  color: color-mix(in srgb, var(--card-fg) 55%, transparent);
+}
+
+.content-card--themed .content-card__meta dt {
+  color: var(--card-fg);
+}
+
+.content-card--themed .content-card__meta dd {
+  color: color-mix(in srgb, var(--card-fg) 76%, transparent);
+}
+
+.content-card--themed .content-card__tag {
+  color: var(--card-fg);
+  background: color-mix(in srgb, var(--card-fg) 14%, var(--card-bg));
+  border-color: color-mix(in srgb, var(--card-fg) 30%, transparent);
+}
+
+.content-card--themed .button--primary {
+  background: var(--card-fg);
+  border-color: var(--card-fg);
+  color: var(--card-bg);
+}
+
+.content-card--themed .button--primary:hover {
+  background: color-mix(in srgb, var(--card-fg) 88%, #000);
+  border-color: color-mix(in srgb, var(--card-fg) 88%, #000);
+}
+
+.content-card--themed .button--secondary {
+  color: var(--card-fg);
+  border-color: color-mix(in srgb, var(--card-fg) 30%, transparent);
+  background: color-mix(in srgb, var(--card-bg) 65%, transparent);
+}
+
+.content-card--themed .button--secondary:hover {
+  border-color: var(--card-fg);
+  color: var(--card-fg);
 }
 
 .content-card--detail .content-card__body {
@@ -575,7 +645,7 @@ main {
   .content-card--detail {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.9fr);
-    min-height: 100svh;
+    min-height: calc(100vh - var(--header-height));
   }
 
   .content-card--detail .content-card__media {
@@ -587,15 +657,67 @@ main {
   }
 }
 
+.project-divider {
+  --divider-from-bg: var(--divider-from-light);
+  --divider-to-bg: var(--divider-to-light);
+  --divider-stroke-from: var(--divider-stroke-from-light);
+  --divider-stroke-to: var(--divider-stroke-to-light);
+  width: 100%;
+  line-height: 0;
+}
+
+html.dark .project-divider {
+  --divider-from-bg: var(--divider-from-dark);
+  --divider-to-bg: var(--divider-to-dark);
+  --divider-stroke-from: var(--divider-stroke-from-dark);
+  --divider-stroke-to: var(--divider-stroke-to-dark);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) .project-divider {
+    --divider-from-bg: var(--divider-from-dark);
+    --divider-to-bg: var(--divider-to-dark);
+    --divider-stroke-from: var(--divider-stroke-from-dark);
+    --divider-stroke-to: var(--divider-stroke-to-dark);
+  }
+}
+
+.project-divider__svg {
+  display: block;
+  width: 100%;
+  height: clamp(3.5rem, 9vw, 6.5rem);
+}
+
+.project-divider__fill--from {
+  fill: var(--divider-from-bg);
+}
+
+.project-divider__fill--to {
+  fill: var(--divider-to-bg);
+}
+
+.project-divider__stop--from {
+  stop-color: var(--divider-stroke-from);
+}
+
+.project-divider__stop--to {
+  stop-color: var(--divider-stroke-to);
+}
+
+.project-divider__curve {
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
 .project-showcase {
   display: grid;
   width: 100vw;
   margin-left: calc(50% - 50vw);
-  padding-bottom: var(--space-section-y-top);
 }
 
 .project-showcase .content-card--detail {
   width: 100%;
+  min-height: calc(100vh - var(--header-height));
   border: 0;
   border-radius: 0;
   box-shadow: none;
@@ -639,13 +761,21 @@ main {
   margin-top: var(--space-gap-md);
 }
 
-.lab-section-showcase {
+.lab-collection {
   display: grid;
-  gap: clamp(1.5rem, 5vw, 4rem);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  gap: var(--space-gap-lg);
   padding-bottom: var(--space-section-y-top);
 }
 
-.lab-section-showcase .content-card--detail {
+.lab-section-showcase {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  gap: var(--space-gap-lg);
+  padding-bottom: var(--space-section-y-top);
+}
+
+.lab-section-showcase .content-card--compact {
   width: 100%;
 }
 
@@ -715,10 +845,11 @@ main {
    HEADER / BANNER
    ============================================================ */
 .header {
+  position: sticky;
   top: 0;
   z-index: 9999;
   box-sizing: border-box;
-  height: 64px;
+  height: var(--header-height);
   background-color: var(--color-surface);
   border-bottom: 1px solid var(--color-foreground);
   padding: 0 var(--space-gap-lg);
@@ -1561,6 +1692,9 @@ html.dark .theme-toggle__icon--sun {
 }
 
 /* Download button — extends .button .button--primary */
+.cv-page .page-hero .button {
+  margin-top: var(--space-gap-xl);
+}
 .icon-download {
   flex-shrink: 0;
 }
@@ -1572,7 +1706,7 @@ html.dark .theme-toggle__icon--sun {
   position: relative;
   background:
     radial-gradient(
-      100% 85% at 0% calc(100svh - 4.25rem),
+      100% 85% at 0% calc(100svh - var(--header-height)),
       color-mix(in srgb, var(--color-primary) 18%, transparent),
       transparent 52%
     ),
@@ -1583,7 +1717,7 @@ html.dark .theme-toggle__icon--sun {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: calc(100svh - 4.25rem);
+  min-height: calc(100svh - var(--header-height));
   padding: clamp(2.5rem, 6vw, 4rem) 0 clamp(4rem, 10vw, 6rem);
   background:
     radial-gradient(
@@ -1775,6 +1909,7 @@ html.dark .theme-toggle__icon--sun {
   margin: 0 0 1.25rem;
 }
 
+.about .home-link,
 .home-block .home-link {
   display: inline-block;
   margin-top: 1.25rem;

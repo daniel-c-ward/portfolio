@@ -1,14 +1,49 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
+import Accordion from "../components/Accordion.astro";
 import Carousel from "../components/Carousel.astro";
-import InfoCards from "../components/InfoCards.astro";
-import { skills } from "../config/skills";
-import {
-  entriesFromGlob,
-  labSectionsFromEntries,
-  sectionCardFromLabSection,
-  type MdModule,
-} from "../lib/md-entries";
+import { entriesFromGlob, type MdModule } from "../lib/md-entries";
+
+const aboutAccordions = [
+  {
+    id: "ai",
+    title: "How I Use AI",
+    content: `
+    <p>I use AI throughout the entire build process to move faster, explore more ideas, and deliver better results.</p>
+
+    <ul>
+      <li><strong>Research:</strong> AI helps me explore similar projects, analyse how others solved comparable problems, and gather insights that shape early decisions.</li>
+
+      <li><strong>Design:</strong> I generate quick mockups and visual concepts with AI. They’re not final designs, but they provide fast, clear starting points for direction and discussion.</li>
+
+      <li><strong>Prototyping:</strong> AI allows me to create rapid prototypes that demonstrate layout, flow, and functionality. They’re not production‑ready, but they help clients visualise the product early.</li>
+
+      <li><strong>Build:</strong> I use AI for boilerplate code, setup tasks, and repetitive work. I keep full control of the core build to ensure quality, performance, and reliability.</li>
+
+      <li><strong>Content creation and editing:</strong> AI supports writing, refining, and adapting content to match tone, clarity, and purpose.</li>
+
+      <li><strong>Code generation and debugging:</strong> AI helps me spot issues, explore alternative solutions, and speed up problem‑solving.</li>
+
+      <li><strong>Testing and optimisation:</strong> I use AI to analyse performance, identify improvements, and refine the final product.</li>
+    </ul>
+  `,
+  },
+
+  {
+    id: "design",
+    title: "My design approach",
+    content: `<p>My process is structured and iterative: research first, then wireframes, then iteration, then refinement. Each step narrows uncertainty before visual polish.</p>
+<p>I prioritise simplicity, usability, and clarity — interfaces should feel obvious in use and honest about what they ask of people.</p>
+<ul>
+<li><strong>Research</strong> — understand goals, constraints, and user context</li>
+<li><strong>Wireframe</strong> — map structure before styling</li>
+<li><strong>Iteration</strong> — test flows and refine based on feedback</li>
+<li><strong>Refinement</strong> — tighten hierarchy, copy, and interaction details</li>
+</ul>`,
+  },
+];
+
+const HOME_LAB_LIMIT = 5;
 
 const workModules = import.meta.glob<MdModule>("../content/work/**/*.md", {
   eager: true,
@@ -17,10 +52,7 @@ const labModules = import.meta.glob<MdModule>("../content/lab/**/*.md", {
   eager: true,
 });
 const workItems = entriesFromGlob(workModules, "work");
-const labItems = entriesFromGlob(labModules, "lab");
-const labSectionItems = labSectionsFromEntries(labItems).map(
-  sectionCardFromLabSection,
-);
+const labItems = entriesFromGlob(labModules, "lab").slice(0, HOME_LAB_LIMIT);
 ---
 
 <PageLayout
@@ -51,6 +83,7 @@ const labSectionItems = labSectionsFromEntries(labItems).map(
         UX and how to create interfaces that are intuitive, engaging, and
         aligned with users' goals and biases.
       </p>
+      <Accordion items={aboutAccordions} />
       <a href="/cv" class="text-link home-link">Read more on my CV -></a>
     </section>
 
@@ -80,14 +113,15 @@ const labSectionItems = labSectionsFromEntries(labItems).map(
       <h2>Lab</h2>
       <p>Notes, experiments, and works in progress.</p>
       {
-        labSectionItems.length > 0 ? (
+        labItems.length > 0 ? (
           <Carousel
-            items={labSectionItems}
+            items={labItems}
             basePath="/lab"
             id="home-lab-carousel"
-            label="Lab sections"
+            label="Lab projects"
             isCompact={true}
             actionLabel="View Section"
+            getHref={(item) => `/lab/${item.section}`}
           />
         ) : (
           <p class="home-empty">There are currently no lab entires.</p>

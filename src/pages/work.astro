@@ -1,6 +1,7 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
 import ProjectCard from "../components/ProjectCard.astro";
+import ProjectDivider from "../components/ProjectDivider.astro";
 import { entriesFromGlob, type MdModule } from "../lib/md-entries";
 
 const modules = import.meta.glob<MdModule>("../content/work/**/*.md", {
@@ -30,15 +31,44 @@ const basePath = "/work";
         <p class="lead">No work entries yet.</p>
       ) : (
         <section class="project-showcase" aria-label="Work projects">
-          {entries.map((entry, index) => (
-            <ProjectCard
-              item={entry}
-              basePath={basePath}
-              isCompact={false}
-              index={index}
-              inCarousel={false}
-            />
-          ))}
+          <ProjectDivider
+            to={entries[0]}
+            index={0}
+            fromLight="var(--color-background)"
+            fromDark="var(--color-background)"
+            fromStrokeLight="var(--color-primary)"
+            fromStrokeDark="var(--color-primary)"
+          />
+          {
+            entries.flatMap((entry, index) => [
+              index > 0 ? (
+                <ProjectDivider
+                  from={entries[index - 1]}
+                  to={entry}
+                  index={index}
+                />
+              ) : null,
+              <ProjectCard
+                item={entry}
+                basePath={basePath}
+                isCompact={false}
+                index={index}
+                inCarousel={false}
+              />,
+            ])
+          }
+          {
+            entries.length > 0 && (
+              <ProjectDivider
+                from={entries[entries.length - 1]}
+                index={entries.length}
+                toLight="var(--color-background)"
+                toDark="var(--color-background)"
+                toStrokeLight="var(--color-primary)"
+                toStrokeDark="var(--color-primary)"
+              />
+            )
+          }
         </section>
       )
     }

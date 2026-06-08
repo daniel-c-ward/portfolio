@@ -17,6 +17,8 @@ export interface MdFrontmatter {
   difficulty?: string;
   inspiration?: string;
   hasLiveDemo?: boolean;
+  colourLight?: string;
+  colourDark?: string;
 }
 
 export interface MdModule {
@@ -45,6 +47,8 @@ export interface MdEntry {
   difficulty?: string;
   inspiration?: string;
   hasLiveDemo?: boolean;
+  colourLight?: string;
+  colourDark?: string;
 }
 
 export interface LabSection {
@@ -126,6 +130,8 @@ export function entriesFromGlob(
         difficulty: frontmatter.difficulty,
         inspiration: frontmatter.inspiration,
         hasLiveDemo: frontmatter.hasLiveDemo,
+        colourLight: frontmatter.colourLight,
+        colourDark: frontmatter.colourDark,
       };
     })
     .sort((a, b) => {

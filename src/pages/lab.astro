@@ -1,17 +1,12 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
-import Carousel from "../components/Carousel.astro";
-import {
-  entriesFromGlob,
-  labSectionsFromEntries,
-  type MdModule,
-} from "../lib/md-entries";
+import ProjectCard from "../components/ProjectCard.astro";
+import { entriesFromGlob, type MdModule } from "../lib/md-entries";
 
 const modules = import.meta.glob<MdModule>("../content/lab/**/*.md", {
   eager: true,
 });
 const items = entriesFromGlob(modules, "lab");
-const sections = labSectionsFromEntries(items);
 ---
 
 <PageLayout
@@ -23,58 +18,28 @@ const sections = labSectionsFromEntries(items);
       <p class="eyebrow">Lab</p>
       <h1>Lab</h1>
       <p class="lead">
-        Lab folders are grouped automatically from <code>src/content/lab</code>.
-        Each section gathers its own notes, prototypes, and experiments.
+        Notes, prototypes, and experiments from <code>src/content/lab</code>.
       </p>
     </header>
 
     {
-      sections.length === 0 ? (
+      items.length === 0 ? (
         <p class="lead">
-          No lab sections yet. Add a folder under <code>src/content/lab</code>.
+          No lab entries yet. Add Markdown files under{" "}
+          <code>src/content/lab</code>.
         </p>
       ) : (
-        <section class="lab-directory" aria-label="Lab sections">
-          {sections.map((section) => (
-            <article
-              class="content-card lab-section-card"
-              aria-labelledby={`lab-${section.slug}`}
-            >
-              <img
-                class="content-card__image"
-                src={section.featuredImage}
-                alt=""
-                width="480"
-                height="270"
-                loading="lazy"
-                decoding="async"
-              />
-              <section class="content-card__body">
-                <header class="content-card__header">
-                  <h2 id={`lab-${section.slug}`}>{section.title}</h2>
-                </header>
-                {section.description && <p>{section.description}</p>}
-                <Carousel
-                  items={section.items.map((item) => ({
-                    ...item,
-                    slug: section.slug,
-                  }))}
-                  basePath="/lab"
-                  id={`lab-carousel-${section.slug}`}
-                  label={`${section.title} previews`}
-                  isCompact={true}
-                  actionLabel="View Section"
-                />
-                <footer class="content-card__actions">
-                  <a
-                    class="button button--primary"
-                    href={`/lab/${section.slug}`}
-                  >
-                    View Section
-                  </a>
-                </footer>
-              </section>
-            </article>
+        <section class="lab-collection" aria-label="Lab projects">
+          {items.map((item, index) => (
+            <ProjectCard
+              item={item}
+              basePath="/lab"
+              isCompact={true}
+              index={index}
+              inCarousel={false}
+              actionLabel="View Section"
+              href={`/lab/${item.section}`}
+            />
           ))}
         </section>
       )

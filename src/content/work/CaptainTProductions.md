@@ -24,6 +24,8 @@ labCategory: ""
 difficulty: ""
 inspiration: ""
 hasLiveDemo: true
+colourLight: "#f5f0ea"
+colourDark: "#2c2420"
 ---
 
 ---

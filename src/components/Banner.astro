@@ -111,10 +111,10 @@ import ThemeToggle from "./ThemeToggle.astro";
     /* Drawer navigation */
     .drawer-nav {
       position: fixed;
-      top: 50px;
+      top: var(--header-height);
       right: 0;
       left: auto;
-      height: calc(100vh - 50px);
+      height: calc(100vh - var(--header-height));
       width: 85%;
       max-width: 320px;
       background: var(--color-surface);

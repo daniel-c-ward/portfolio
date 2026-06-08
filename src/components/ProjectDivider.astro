@@ -1,0 +1,80 @@
+---
+import type { MdEntry } from "../lib/md-entries";
+
+interface Props {
+  from?: MdEntry;
+  to?: MdEntry;
+  index?: number;
+  fromLight?: string;
+  fromDark?: string;
+  fromStrokeLight?: string;
+  fromStrokeDark?: string;
+  toLight?: string;
+  toDark?: string;
+  toStrokeLight?: string;
+  toStrokeDark?: string;
+}
+
+const { from, to, index = 0 } = Astro.props;
+const alternate = index % 2 === 1;
+const gradientId = `project-divider-gradient-${index}`;
+
+const fromPath = alternate
+  ? "M0,0 H1440 V68 C1080,68 1080,32 720,32 C360,32 360,68 0,68 Z"
+  : "M0,0 H1440 V52 C1080,52 1080,88 720,88 C360,88 360,52 0,52 Z";
+const toPath = alternate
+  ? "M0,68 C360,68 360,32 720,32 C1080,32 1080,68 1440,68 V120 H0 Z"
+  : "M0,52 C360,52 360,88 720,88 C1080,88 1080,52 1440,52 V120 H0 Z";
+const curvePath = alternate
+  ? "M0,68 C360,68 360,32 720,32 C1080,32 1080,68 1440,68"
+  : "M0,52 C360,52 360,88 720,88 C1080,88 1080,52 1440,52";
+const fromLight =
+  Astro.props.fromLight ?? from?.colourLight ?? "var(--color-surface)";
+const fromDark =
+  Astro.props.fromDark ?? from?.colourDark ?? "var(--color-foreground)";
+const fromStrokeLight =
+  Astro.props.fromStrokeLight ?? from?.colourDark ?? "var(--color-primary)";
+const fromStrokeDark =
+  Astro.props.fromStrokeDark ?? from?.colourLight ?? "var(--color-primary)";
+const toLight =
+  Astro.props.toLight ?? to?.colourLight ?? "var(--color-surface)";
+const toDark = Astro.props.toDark ?? to?.colourDark ?? "var(--color-foreground)";
+const toStrokeLight =
+  Astro.props.toStrokeLight ?? to?.colourDark ?? "var(--color-primary)";
+const toStrokeDark =
+  Astro.props.toStrokeDark ?? to?.colourLight ?? "var(--color-primary)";
+---
+
+<div
+  class="project-divider"
+  aria-hidden="true"
+  style={`--divider-from-light: ${fromLight}; --divider-from-dark: ${fromDark}; --divider-to-light: ${toLight}; --divider-to-dark: ${toDark}; --divider-stroke-from-light: ${fromStrokeLight}; --divider-stroke-from-dark: ${fromStrokeDark}; --divider-stroke-to-light: ${toStrokeLight}; --divider-stroke-to-dark: ${toStrokeDark};`}
+>
+  <svg
+    class="project-divider__svg"
+    viewBox="0 0 1440 120"
+    preserveAspectRatio="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" class="project-divider__stop project-divider__stop--from"
+        ></stop>
+        <stop
+          offset="100%"
+          class="project-divider__stop project-divider__stop--to"></stop>
+      </linearGradient>
+    </defs>
+    <path
+      class="project-divider__fill project-divider__fill--from"
+      d={fromPath}></path>
+    <path class="project-divider__fill project-divider__fill--to" d={toPath}
+    ></path>
+    <path
+      class="project-divider__curve"
+      d={curvePath}
+      fill="none"
+      stroke={`url(#${gradientId})`}
+      vector-effect="non-scaling-stroke"></path>
+  </svg>
+</div>
