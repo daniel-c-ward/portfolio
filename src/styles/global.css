@@ -1134,6 +1134,7 @@ html.dark .project-divider {
 .carousel {
   position: relative;
   margin-top: 1.25rem;
+  --carousel-control-size: clamp(2.65rem, 7vw, 3.25rem);
 }
 
 .carousel::before,
@@ -1167,6 +1168,71 @@ html.dark .project-divider {
   display: none;
 }
 
+.carousel__control {
+  position: absolute;
+  top: calc(50% - (var(--space-gap-md) / 2));
+  z-index: 2;
+  display: inline-grid;
+  place-items: center;
+  width: var(--carousel-control-size);
+  min-width: 44px;
+  height: clamp(4.25rem, 24vw, 7rem);
+  min-height: 44px;
+  padding: 0;
+  border: 1px solid color-mix(in srgb, var(--color-foreground) 16%, transparent);
+  color: var(--color-foreground);
+  background: color-mix(in srgb, var(--color-background) 78%, transparent);
+  box-shadow: 0 0.45rem 1rem
+    color-mix(in srgb, var(--color-foreground) 10%, transparent);
+  opacity: 0.74;
+  cursor: pointer;
+  transform: translateY(-50%);
+  backdrop-filter: blur(8px);
+}
+
+.carousel__control--previous {
+  left: 0;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.carousel__control--next {
+  right: 0;
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+.carousel__control:hover,
+.carousel__control:focus-visible {
+  color: var(--color-primary);
+  border-color: color-mix(in srgb, var(--color-primary) 42%, transparent);
+  opacity: 0.96;
+}
+
+.carousel__control:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.carousel__control:active {
+  transform: translateY(-50%) scale(0.98);
+}
+
+.carousel__control:disabled {
+  opacity: 0.28;
+  cursor: default;
+  box-shadow: none;
+}
+
+.carousel__control:disabled:hover {
+  color: var(--color-foreground);
+  border-color: color-mix(in srgb, var(--color-foreground) 16%, transparent);
+}
+
+.carousel__control svg {
+  width: 1.35rem;
+  height: 1.35rem;
+  pointer-events: none;
+}
+
 .carousel:focus-within::before,
 .carousel:focus-within::after,
 .carousel:hover::before,
@@ -1193,6 +1259,10 @@ html.dark .project-divider {
 @media (prefers-reduced-motion: reduce) {
   .carousel__track {
     scroll-behavior: auto;
+  }
+
+  .carousel__control {
+    transition: none;
   }
 }
 

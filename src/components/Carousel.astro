@@ -19,6 +19,27 @@ const { items, basePath, id, label, isCompact, actionLabel, getHref } =
 {
   items.length > 0 && (
     <div class="carousel" data-carousel>
+      {items.length > 1 && (
+        <button
+          class="carousel__control carousel__control--previous"
+          type="button"
+          data-carousel-control="previous"
+          aria-controls={id}
+          aria-label={`Previous ${label.toLowerCase()} card`}
+        >
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.25"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m15 18-6-6 6-6"></path>
+          </svg>
+        </button>
+      )}
       <div
         id={id}
         class="carousel__track"
@@ -40,6 +61,108 @@ const { items, basePath, id, label, isCompact, actionLabel, getHref } =
           />
         ))}
       </div>
+      {items.length > 1 && (
+        <button
+          class="carousel__control carousel__control--next"
+          type="button"
+          data-carousel-control="next"
+          aria-controls={id}
+          aria-label={`Next ${label.toLowerCase()} card`}
+        >
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.25"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m9 18 6-6-6-6"></path>
+          </svg>
+        </button>
+      )}
     </div>
   )
 }
+
+<style>
+  .carousel__track {
+    postion-anchor: --carousel;
+  }
+</style>
+
+<script>
+  const carousels = document.querySelectorAll("[data-carousel]");
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  );
+
+  carousels.forEach((carousel) => {
+    const track = carousel.querySelector("[data-carousel-track]");
+    const slides = [...carousel.querySelectorAll("[data-carousel-slide]")];
+    const previousButton = carousel.querySelector(
+      '[data-carousel-control="previous"]',
+    );
+    const nextButton = carousel.querySelector('[data-carousel-control="next"]');
+
+    if (!track || slides.length < 2 || !previousButton || !nextButton) {
+      return;
+    }
+
+    const slidePositions = () =>
+      slides.map((slide) => slide.offsetLeft - track.offsetLeft);
+
+    const currentIndex = () => {
+      const positions = slidePositions();
+
+      return positions.reduce(
+        (closest, position, index) => {
+          const distance = Math.abs(track.scrollLeft - position);
+          return distance < closest.distance ? { distance, index } : closest;
+        },
+        { distance: Number.POSITIVE_INFINITY, index: 0 },
+      ).index;
+    };
+
+    const scrollToSlide = (index) => {
+      const targetIndex = Math.max(0, Math.min(slides.length - 1, index));
+      const positions = slidePositions();
+
+      track.scrollTo({
+        left: positions[targetIndex],
+        behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+      });
+    };
+
+    const updateControls = () => {
+      const index = currentIndex();
+
+      previousButton.disabled = index === 0;
+      nextButton.disabled = index === slides.length - 1;
+    };
+
+    const handleControlClick = (event) => {
+      const direction = event.currentTarget.dataset.carouselControl;
+      const offset = direction === "next" ? 1 : -1;
+
+      scrollToSlide(currentIndex() + offset);
+    };
+
+    previousButton.addEventListener("click", handleControlClick);
+    nextButton.addEventListener("click", handleControlClick);
+
+    let frame = 0;
+    track.addEventListener(
+      "scroll",
+      () => {
+        cancelAnimationFrame(frame);
+        frame = requestAnimationFrame(updateControls);
+      },
+      { passive: true },
+    );
+
+    window.addEventListener("resize", updateControls);
+    updateControls();
+  });
+</script>

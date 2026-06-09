@@ -100,10 +100,7 @@ const labItems = entriesFromGlob(labModules, "lab").slice(0, HOME_LAB_LIMIT);
             isCompact={true}
           />
         ) : (
-          <p class="home-empty">
-            Add Markdown files to <code>src/content/work</code> to show projects
-            here.
-          </p>
+          <p class="home-empty">There are currently no lab entries.</p>
         )
       }
       <a class="text-link home-link" href="/work">View all work -></a>
