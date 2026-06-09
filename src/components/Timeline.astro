@@ -195,20 +195,27 @@ const { entries } = Astro.props;
   }
 
   @media (max-width: 767px) {
+    .timeline {
+      --timeline-track: 2.25rem;
+      padding-right: calc(var(--timeline-track) + var(--space-gap-md));
+    }
+
     .timeline::before {
-      left: 0.65rem;
-      transform: none;
+      left: calc(var(--timeline-track) / 2);
+      transform: translateX(-50%);
     }
 
     .timeline__item,
     .timeline__item--left,
     .timeline__item--right {
-      grid-template-columns: auto minmax(0, 1fr);
+      grid-template-columns: var(--timeline-track) minmax(0, 1fr);
       gap: var(--space-gap-md);
     }
 
     .timeline__marker {
       grid-column: 1;
+      justify-content: center;
+      width: 100%;
       padding-top: 1.1rem;
     }
 

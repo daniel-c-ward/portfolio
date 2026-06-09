@@ -20,11 +20,7 @@ tools:
   - Custom Theme
   - Bluehost
   - Yoast SEO
-status: "Live"
-labCategory: ""
-difficulty: ""
-inspiration: ""
-hasLiveDemo: true
+
 colourLight: "#e3f3fc"
 colourDark: "#151c3d"
 ---
