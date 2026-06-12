@@ -1,5 +1,5 @@
 export const contactInfo = {
-  email: "danielward.pw@gmail.com",
+  email: "danielcwardprojects@gmail.com",
   phone: "+441234567890",
   phoneDisplay: "+44 1234 567890",
   github: "daniel-c-ward",
