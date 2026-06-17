@@ -10,6 +10,7 @@ tags:
   - Hosting Support
   - User experience
 url: captaincycles.com
+hasLiveDemo: true
 isCompact: false
 isLogo: true
 challenge: "The client needed a clear, manageable site they could update without technical friction."
