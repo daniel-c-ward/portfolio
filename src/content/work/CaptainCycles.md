@@ -13,6 +13,7 @@ url: captaincycles.com
 hasLiveDemo: true
 isCompact: false
 isLogo: true
+circleLogo: true
 challenge: "The client needed a clear, manageable site they could update without technical friction."
 solution: "A lightweight custom WordPress theme with simple navigation, editable content, and essential SEO tooling."
 impact: "The finished WordPress site gave the business a professional web presence with simple content ownership."

@@ -475,6 +475,14 @@ main {
   object-fit: contain;
 }
 
+.content-card__logo--circle {
+  background-color: var(--project-colour-light, var(--color-surface));
+  border-radius: 50%;
+  aspect-ratio: 1;
+  padding: var(--space-gap-md);
+  box-sizing: border-box;
+}
+
 .content-card__body {
   display: flex;
   flex-direction: column;

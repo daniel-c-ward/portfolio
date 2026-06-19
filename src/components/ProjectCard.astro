@@ -108,7 +108,7 @@ const formattedDate =
       {
         showDetailLogo && (
           <img
-            class="content-card__logo"
+            class={`content-card__logo${item.circleLogo ? " content-card__logo--circle" : ""}`}
             src={item.logoImage}
             alt=""
             width="160"

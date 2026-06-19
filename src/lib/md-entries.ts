@@ -8,6 +8,7 @@ export interface MdFrontmatter {
   url?: string;
   isCompact?: boolean;
   isLogo?: boolean;
+  circleLogo?: boolean;
   challenge?: string;
   solution?: string;
   impact?: string;
@@ -38,6 +39,7 @@ export interface MdEntry {
   url?: string;
   isCompact?: boolean;
   isLogo?: boolean;
+  circleLogo?: boolean;
   challenge?: string;
   solution?: string;
   impact?: string;
@@ -121,6 +123,7 @@ export function entriesFromGlob(
         url: frontmatter.url,
         isCompact: frontmatter.isCompact,
         isLogo: frontmatter.isLogo,
+        circleLogo: frontmatter.circleLogo,
         challenge: frontmatter.challenge,
         solution: frontmatter.solution,
         impact: frontmatter.impact,
