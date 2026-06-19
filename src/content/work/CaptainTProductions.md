@@ -11,6 +11,7 @@ tags:
 url: https://captaintproductions.com
 isCompact: false
 isLogo: true
+circleLogo: true
 challenge: "The site had to showcase photography, cinematography, and drone work while the business direction was still forming."
 solution: "A branded WordPress site shaped around the chosen visual direction, flexible media sections, and a more hands-on handover."
 impact: "The client received a branded WordPress site and a stronger handover process for editing future content."

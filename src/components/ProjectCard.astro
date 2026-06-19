@@ -91,7 +91,10 @@ const formattedDate =
         </a>
       )
     ) : item.hasLiveDemo && demoUrl ? (
-      <figure class="content-card__media content-card__media--iframe" aria-label={`${item.title} live preview`}>
+      <figure
+        class="content-card__media content-card__media--iframe"
+        aria-label={`${item.title} live preview`}
+      >
         <iframe
           class="content-card__iframe"
           src={demoUrl}
@@ -211,3 +214,9 @@ const formattedDate =
     }
   </section>
 </article>
+
+<style>
+  iframe {
+    overflow-x: hidden;
+  }
+</style>
