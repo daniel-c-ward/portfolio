@@ -57,38 +57,50 @@ const formattedDate =
   data-carousel-slide={inCarousel ? true : undefined}
 >
   {
-    disableMediaLink ? (
-      <figure class="content-card__media" aria-label={item.title}>
-        <img
-          class={`content-card__image${showCompactLogo ? " content-card__image--logo" : ""}`}
-          src={image}
-          alt=""
-          width="auto"
-          height="auto"
-          loading="eager"
-          decoding="async"
+    isCompact ? (
+      disableMediaLink ? (
+        <figure class="content-card__media" aria-label={item.title}>
+          <img
+            class={`content-card__image${showCompactLogo ? " content-card__image--logo" : ""}`}
+            src={image}
+            alt=""
+            width="auto"
+            height="auto"
+            loading="eager"
+            decoding="async"
+            draggable="false"
+          />
+        </figure>
+      ) : (
+        <a
+          class="content-card__media"
+          href={href}
           draggable="false"
+          aria-label={item.title}
+        >
+          <img
+            class={`content-card__image${showCompactLogo ? " content-card__image--logo" : ""}`}
+            src={image}
+            alt=""
+            width="480"
+            height="270"
+            loading="lazy"
+            decoding="async"
+            draggable="false"
+          />
+        </a>
+      )
+    ) : item.hasLiveDemo && demoUrl ? (
+      <figure class="content-card__media content-card__media--iframe" aria-label={`${item.title} live preview`}>
+        <iframe
+          class="content-card__iframe"
+          src={demoUrl}
+          title={`${item.title} live preview`}
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin"
         />
       </figure>
-    ) : (
-      <a
-        class="content-card__media"
-        href={href}
-        draggable="false"
-        aria-label={item.title}
-      >
-        <img
-          class={`content-card__image${showCompactLogo ? " content-card__image--logo" : ""}`}
-          src={image}
-          alt=""
-          width="480"
-          height="270"
-          loading="lazy"
-          decoding="async"
-          draggable="false"
-        />
-      </a>
-    )
+    ) : null
   }
 
   <section class="content-card__body" aria-labelledby={`project-${item.slug}`}>
