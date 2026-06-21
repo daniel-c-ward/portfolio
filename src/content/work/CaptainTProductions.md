@@ -6,7 +6,7 @@ logoImage: /images/work/captaintproductions/captaintproductions-logo.png
 date: 2026-05-21
 tags:
   - Client services
-  - Wordpress Plugins
+  - WordPress Plugins
   - Adaptablitly
 url: https://captaintproductions.com
 isCompact: false
@@ -27,8 +27,6 @@ inspiration: ""
 hasLiveDemo: true
 colourLight: "#f5f0ea"
 colourDark: "#2c2420"
----
-
 ---
 
 ## Background

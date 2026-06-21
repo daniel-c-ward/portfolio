@@ -1,4 +1,4 @@
-export type SkillIconName = "astro" | "react" | "brain" | "ux";
+export type SkillIconName = "astro" | "react" | "brain" | "ux" | "python" | "laravel";
 
 export type Skill = {
   title: string;
@@ -30,5 +30,17 @@ export const skills: Skill[] = [
     description:
       "Research, flows, and interface design that reduces friction and builds trust where it matters.",
     icon: "ux",
+  },
+  {
+    title: "Python",
+    description:
+      "Versatile language for backend services, data analysis, and scripting.",
+    icon: "python",
+  },
+  {
+    title: "Laravel (Learning)",
+    description:
+      "Modern PHP framework for building robust web applications with expressive syntax.",
+    icon: "laravel",
   },
 ];

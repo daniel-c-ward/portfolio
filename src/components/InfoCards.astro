@@ -19,6 +19,7 @@ type Props = {
   titleTag?: "h2" | "h3" | "h4";
   layout?: "row" | "grid";
   size?: "default" | "compact";
+  columns?: 2 | 3 | 4;
 };
 
 const {
@@ -27,6 +28,7 @@ const {
   titleTag = "h2",
   layout = "row",
   size = "default",
+  columns,
 } = Astro.props;
 const Title = titleTag;
 ---
@@ -35,6 +37,7 @@ const Title = titleTag;
   class:list={[
     "info-cards",
     layout === "grid" && "info-cards--grid",
+    layout === "grid" && columns && `info-cards--grid-${columns}`,
     size === "compact" && "info-cards--compact",
   ]}
   aria-label={label}

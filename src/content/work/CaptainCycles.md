@@ -6,9 +6,9 @@ logoImage: /images/work/captaincycles/captaincycles-logo.png
 date: 2026-05-14
 tags:
   - Client Services
-  - Wordpress
+  - WordPress
   - Hosting Support
-  - User experience
+  - User Experience
 url: captaincycles.com
 hasLiveDemo: true
 isCompact: false

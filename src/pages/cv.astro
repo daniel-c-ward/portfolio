@@ -1,6 +1,8 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
 import Timeline from "../components/Timeline.astro";
+import InfoCards from "../components/InfoCards.astro";
+import { skills } from "../config/skills";
 import {
   entriesFromModules,
   mergeTimelineEntries,
@@ -60,6 +62,11 @@ const timelineEntries = mergeTimelineEntries(
         Download My CV (PDF)
       </a>
     </div>
+
+    <section class="cv-section" aria-labelledby="skills-heading">
+      <h2 id="skills-heading">Skills</h2>
+      <InfoCards items={skills} layout="grid" columns={2} />
+    </section>
 
     <section class="cv-section" aria-labelledby="timeline-heading">
       <h2 id="timeline-heading">Experience &amp; Education</h2>

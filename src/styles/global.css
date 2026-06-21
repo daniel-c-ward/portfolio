@@ -1611,6 +1611,14 @@ html.dark .project-divider {
   flex: unset;
   min-height: unset;
 }
+.info-cards--grid-2 {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+@media (min-width: 640px) {
+  .info-cards--grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 .info-cards--compact .info-card {
   padding: var(--space-gap-lg) 1.1rem;
   gap: 0.45rem;

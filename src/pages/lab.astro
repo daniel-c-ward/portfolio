@@ -18,16 +18,13 @@ const items = entriesFromGlob(modules, "lab");
       <p class="eyebrow">Lab</p>
       <h1>Lab</h1>
       <p class="lead">
-        Notes, prototypes, and experiments from <code>src/content/lab</code>.
+        Some small personal projects where I am trying new features, experimenting with new techniques and working with 
       </p>
     </header>
 
     {
       items.length === 0 ? (
-        <p class="lead">
-          No lab entries yet. Add Markdown files under{" "}
-          <code>src/content/lab</code>.
-        </p>
+        <p class="lead">There are currently no lab entries.</p>
       ) : (
         <section class="lab-collection" aria-label="Lab projects">
           {items.map((item, index) => (

@@ -196,7 +196,7 @@ const formattedDate =
     {
       showActions && (
         <footer class="content-card__actions">
-          {!isCompact && item.hasLiveDemo && demoUrl && (
+          { item.hasLiveDemo && demoUrl && (
             <a
               class="button button--secondary"
               href={demoUrl}
