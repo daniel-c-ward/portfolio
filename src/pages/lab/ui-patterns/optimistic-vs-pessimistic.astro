@@ -1,0 +1,201 @@
+---
+import PageLayout from "../../../layouts/PageLayout.astro";
+import HeartButton from "../../../components/demos/HeartButton.astro";
+import ToggleSwitch from "../../../components/demos/ToggleSwitch.astro";
+---
+
+<PageLayout
+  title="Lab | Optimistic vs Pessimistic UI"
+  description="A decision guide with interactive examples showing when to use optimistic vs pessimistic UI updates."
+>
+  <article class="page case-study">
+    <a class="back-link" href="/lab"><- Back to lab</a>
+
+    <header class="page-hero case-study__header">
+      <p class="eyebrow">Lab / UI Patterns</p>
+      <h1>Optimistic vs Pessimistic UI</h1>
+      <p class="lead">
+        Both patterns solve the same problem&mdash;how does the UI respond after
+        a user action while waiting for the server? The choice depends on what
+        you&rsquo;re willing to be wrong about.
+      </p>
+    </header>
+
+    <div class="prose guide-body">
+      <section>
+        <h2>What it is</h2>
+        <p>
+          Two strategies for handling the gap between a user action and the
+          server response:
+        </p>
+        <ul>
+          <li>
+            <strong>Pessimistic</strong> &mdash; wait for the server to confirm
+            before updating the UI. The user sees a loading state until the
+            server responds.
+          </li>
+          <li>
+            <strong>Optimistic</strong> &mdash; update the UI immediately as if
+            the action succeeded, then reconcile with the server in the
+            background. If the server fails, roll back.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>How it works</h2>
+        <p>
+          The difference is just a single step reordered. Both patterns send the
+          same request and take the same time. The only question is
+          <strong>when</strong> the UI reflects the result.
+        </p>
+
+        <h3>Pessimistic flow</h3>
+        <pre><code>User clicks &#x2192; show loading &#x2192; server responds &#x2192; update UI &#x2192; done</code></pre>
+        <p>
+          Every step is sequential. The UI never shows a state that hasn&rsquo;t
+          been confirmed by the server. Safe, but the user waits on every action.
+        </p>
+
+        <h3>Optimistic flow</h3>
+        <pre><code>User clicks &#x2192; update UI &#x2192; server responds &#x2192; reconcile &#x2192; done</code></pre>
+        <p>
+          The UI updates on click, then the server call happens in parallel. If
+          the server succeeds, nothing changes. If it fails, the UI rolls back
+          and shows an error.
+        </p>
+
+        <h3>The tradeoff</h3>
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Pessimistic</th>
+              <th>Optimistic</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Perceived speed</td>
+              <td>Slow &mdash; user waits for server</td>
+              <td>Instant &mdash; feels responsive</td>
+            </tr>
+            <tr>
+              <td>Correctness on error</td>
+              <td>Always correct &mdash; never lies</td>
+              <td>Must roll back on failure</td>
+            </tr>
+            <tr>
+              <td>Cost of being wrong</td>
+              <td>Low &mdash; user sees a spinner</td>
+              <td>Higher &mdash; rollback can confuse users</td>
+            </tr>
+            <tr>
+              <td>Complexity</td>
+              <td>Trivial</td>
+              <td>Low to moderate &mdash; need undo logic</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>See it in action</h2>
+        <p>
+          Tap each heart below. Watch how the <strong>UI</strong> and the
+          <strong>server panel</strong> behave differently under each strategy.
+        </p>
+      </section>
+    </div>
+
+    <aside class="guide-demo" aria-label="Interactive demo: heart button comparison">
+      <HeartButton />
+    </aside>
+
+    <div class="prose guide-body">
+      <section>
+        <h3>What to notice</h3>
+        <ul>
+          <li>
+            <strong>Pessimistic:</strong> The heart stays empty while the server
+            processes. The status shows a spinner. Only after the server responds
+            (201 Created) does the heart fill. The user waits the full round trip.
+          </li>
+          <li>
+            <strong>Optimistic:</strong> The heart fills instantly. The server
+            panel still shows the request in flight, but the UI already reflects
+            the new state. The user moves on while the server catches up.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Example: a settings toggle</h2>
+        <p>
+          Two identical settings toggles below. Both connect to the same mocked
+          server and take the same time to respond. The only difference is the
+          UI strategy.
+        </p>
+        <p>
+          Click each one and watch how they handle the delay.
+        </p>
+      </section>
+    </div>
+
+    <aside class="guide-demo" aria-label="Interactive demo: toggle switch comparison">
+      <ToggleSwitch />
+    </aside>
+
+    <div class="prose guide-body">
+      <section>
+        <h3>What to notice</h3>
+        <ul>
+          <li>
+            <strong>Pessimistic:</strong> The toggle stays put while the request
+            is in flight. The knob pulses to show loading. After ~1.2&thinsp;s
+            the switch moves. The user waits.
+          </li>
+          <li>
+            <strong>Optimistic:</strong> The toggle slides immediately on click.
+            The server still takes ~1.2&thinsp;s, but the UI already reflects
+            the new state. The user moves on.
+          </li>
+        </ul>
+
+        <h3>Should you always be optimistic?</h3>
+        <p>No. A settings toggle is a safe case for optimism because:</p>
+        <ul>
+          <li>The action is trivial to undo</li>
+          <li>The user can&rsquo;t act on wrong data (it&rsquo;s just a toggle)</li>
+          <li>Failure is rare and rollback is simple</li>
+        </ul>
+        <p>
+          But for actions like submitting a payment or changing an email address,
+          pessimism is safer &mdash; the user needs to know the action actually
+          succeeded before moving on.
+        </p>
+      </section>
+
+      <section>
+        <h2>More examples coming soon</h2>
+        <p>
+          This guide will grow to cover delete actions, payment forms, chat
+          messages, drag-and-drop reordering, and settings changes &mdash; each
+          with its own interactive demo and reasoning.
+        </p>
+      </section>
+    </div>
+  </article>
+</PageLayout>
+
+<style>
+  .guide-demo {
+    max-width: 42rem;
+    margin: var(--space-gap-2xl) auto;
+    padding: var(--space-gap-xl);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--color-surface) 50%, transparent);
+    box-shadow: var(--shadow-sm);
+  }
+</style>

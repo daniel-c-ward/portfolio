@@ -1,0 +1,32 @@
+---
+import ToggleSwitch from "../../../../components/demos/ToggleSwitch.astro";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toggle switch demo</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: "Lexend", sans-serif;
+        background: #f3f0e8;
+        color: #24322b;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 1rem;
+      }
+      html.dark body {
+        background: #1a221e;
+        color: #e8ebe4;
+      }
+    </style>
+  </head>
+  <body>
+    <ToggleSwitch />
+  </body>
+</html>

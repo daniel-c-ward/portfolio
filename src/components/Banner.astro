@@ -1,5 +1,4 @@
 ---
-import "../styles/global.css";
 import ThemeToggle from "./ThemeToggle.astro";
 ---
 
@@ -172,6 +171,10 @@ import ThemeToggle from "./ThemeToggle.astro";
         menu.setAttribute("aria-label", "Close navigation");
       }
       document.body.style.overflow = "hidden";
+
+      if (window.umami) {
+        window.umami.track("Mobile Menu Open");
+      }
     }
 
     if (menu && drawer) {

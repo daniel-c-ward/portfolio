@@ -453,7 +453,6 @@ main {
   aspect-ratio: 16 / 9;
   object-fit: cover;
   object-position: top center;
-  width: 100%;
   height: 100%;
   object-position: top;
 }
@@ -1362,6 +1361,13 @@ html.dark .project-divider {
 /* ============================================================
    COMPONENT: FOOTER
    ============================================================ */
+.footer__logo {
+  font-size: 2rem;
+  font-weight: var(--weight-extrabold);
+  color: var(--color-primary);
+  line-height: 1;
+}
+
 .footer h4 {
   line-height: var(--leading-tight);
   margin: 0;

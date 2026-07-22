@@ -1,0 +1,377 @@
+---
+interface Props {
+  prefix?: string;
+}
+
+const { prefix = "hb" } = Astro.props;
+const id = (name: string) => `${prefix}-${name}`;
+---
+
+<div class="hb-demo">
+  <div class="hb-card" id={id("pess")}>
+    <span class="hb-card__approach">Pessimistic</span>
+
+    <button class="hb-btn" id={id("pess-btn")} aria-label="Like (pessimistic)">♡</button>
+    <div class="hb-status" id={id("pess-status")}>Tap the heart to try it</div>
+
+    <div class="hb-track">
+      <span class="hb-track__label">Client</span>
+      <div class="hb-track__line">
+        <span class="hb-track__dot" id={id("pess-dot")}></span>
+      </div>
+      <span class="hb-track__label">Server</span>
+    </div>
+
+    <div class="hb-server" id={id("pess-server")}>
+      <div class="hb-server__row">
+        <span class="hb-server__label">Request</span>
+        <span class="hb-server__value" id={id("pess-req")}>—</span>
+      </div>
+      <div class="hb-server__row">
+        <span class="hb-server__label">Status</span>
+        <span class="hb-server__value" id={id("pess-srv-status")}>idle</span>
+      </div>
+      <div class="hb-server__row">
+        <span class="hb-server__label">Response</span>
+        <span class="hb-server__value" id={id("pess-res")}>—</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hb-card" id={id("opt")}>
+    <span class="hb-card__approach">Optimistic</span>
+
+    <button class="hb-btn" id={id("opt-btn")} aria-label="Like (optimistic)">♡</button>
+    <div class="hb-status" id={id("opt-status")}>Tap the heart to try it</div>
+
+    <div class="hb-track">
+      <span class="hb-track__label">Client</span>
+      <div class="hb-track__line">
+        <span class="hb-track__dot" id={id("opt-dot")}></span>
+      </div>
+      <span class="hb-track__label">Server</span>
+    </div>
+
+    <div class="hb-server" id={id("opt-server")}>
+      <div class="hb-server__row">
+        <span class="hb-server__label">Request</span>
+        <span class="hb-server__value" id={id("opt-req")}>—</span>
+      </div>
+      <div class="hb-server__row">
+        <span class="hb-server__label">Status</span>
+        <span class="hb-server__value" id={id("opt-srv-status")}>idle</span>
+      </div>
+      <div class="hb-server__row">
+        <span class="hb-server__label">Response</span>
+        <span class="hb-server__value" id={id("opt-res")}>—</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .hb-demo {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hb-card {
+    flex: 1 1 280px;
+    max-width: 340px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hb-card__approach {
+    font-size: 0.75rem;
+    font-weight: var(--weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-subtle);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-pill);
+    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  }
+
+  .hb-btn {
+    background: none;
+    border: none;
+    font-size: 2.8rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.5rem;
+    transition: transform var(--transition-base);
+    color: inherit;
+  }
+
+  .hb-btn:hover {
+    transform: scale(1.2);
+  }
+
+  .hb-btn:active {
+    transform: scale(0.9);
+  }
+
+  .hb-btn:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
+  .hb-btn--liked {
+    color: #e74c3c;
+  }
+
+  html.dark .hb-btn--liked {
+    color: #ff6b6b;
+  }
+
+  .hb-btn--pess-loading {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .hb-status {
+    font-size: var(--text-sm);
+    line-height: 1.5;
+    min-height: 2rem;
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  .hb-status--success {
+    color: var(--color-primary);
+    font-weight: var(--weight-semibold);
+  }
+
+  .hb-status--pending {
+    color: var(--color-text-subtle);
+    font-style: italic;
+  }
+
+  .hb-track {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .hb-track__label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-text-subtle);
+    font-weight: var(--weight-semibold);
+    flex-shrink: 0;
+  }
+
+  .hb-track__line {
+    flex: 1;
+    height: 4px;
+    background: color-mix(in srgb, var(--color-foreground) 14%, transparent);
+    border-radius: 2px;
+    position: relative;
+  }
+
+  .hb-track__dot {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-foreground);
+    transform: translate(-50%, -50%);
+  }
+
+  .hb-track__dot--at-server {
+    background: var(--color-primary);
+  }
+
+  html.dark .hb-track__dot--at-server {
+    background: #6db896;
+  }
+
+  .hb-server {
+    width: 100%;
+    background: color-mix(in srgb, var(--color-background) 80%, transparent);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 0.5rem 0.65rem;
+    font-size: var(--text-xs);
+    font-family: ui-monospace, monospace;
+  }
+
+  .hb-server__row {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    line-height: 1.6;
+  }
+
+  .hb-server__label {
+    color: var(--color-text-subtle);
+  }
+
+  .hb-server__value {
+    text-align: right;
+    color: var(--color-foreground);
+    word-break: break-all;
+  }
+
+  .hb-server__value--active {
+    color: var(--color-secondary);
+  }
+
+  .hb-server__value--success {
+    color: var(--color-primary);
+  }
+
+  .hb-spinner {
+    display: inline-block;
+    width: 0.85rem;
+    height: 0.85rem;
+    border: 2px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: hb-spin 0.6s linear infinite;
+    vertical-align: middle;
+  }
+
+  @keyframes hb-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hb-btn { transition: none; }
+    .hb-spinner { animation: none; }
+  }
+</style>
+
+<script>
+  const PESS_DELAY = 3000;
+  const OPT_DELAY = 1200;
+
+  function setupHeartDemo(prefix) {
+    const pessBtn = document.getElementById(`${prefix}-pess-btn`);
+    const pessStatus = document.getElementById(`${prefix}-pess-status`);
+    const pessDot = document.getElementById(`${prefix}-pess-dot`);
+    const pessReq = document.getElementById(`${prefix}-pess-req`);
+    const pessSrvStatus = document.getElementById(`${prefix}-pess-srv-status`);
+    const pessRes = document.getElementById(`${prefix}-pess-res`);
+
+    const optBtn = document.getElementById(`${prefix}-opt-btn`);
+    const optStatus = document.getElementById(`${prefix}-opt-status`);
+    const optDot = document.getElementById(`${prefix}-opt-dot`);
+    const optReq = document.getElementById(`${prefix}-opt-req`);
+    const optSrvStatus = document.getElementById(`${prefix}-opt-srv-status`);
+    const optRes = document.getElementById(`${prefix}-opt-res`);
+
+    function setServer(el, req, status, res, statusClass) {
+      el.req.textContent = req;
+      el.srvStatus.textContent = status;
+      el.srvStatus.className = "hb-server__value" + (statusClass ? " " + statusClass : "");
+      el.res.textContent = res;
+    }
+
+    const pessEl = { req: pessReq, srvStatus: pessSrvStatus, res: pessRes };
+    const optEl = { req: optReq, srvStatus: optSrvStatus, res: optRes };
+
+    let pessLiked = false;
+    let optLiked = false;
+
+    function moveDot(dot, delay, onReach) {
+      const track = dot.parentElement;
+      const maxLeft = track.clientWidth;
+
+      dot.classList.remove("hb-track__dot--at-server");
+      dot.style.transition = "none";
+      dot.style.left = "0px";
+
+      const handler = (e) => {
+        if (e.propertyName !== "left") return;
+        dot.removeEventListener("transitionend", handler);
+        dot.classList.add("hb-track__dot--at-server");
+        onReach();
+      };
+      dot.addEventListener("transitionend", handler);
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          dot.style.transition = `left ${delay}ms linear`;
+          dot.style.left = maxLeft + "px";
+        });
+      });
+    }
+
+    function resetDot(dot) {
+      dot.classList.remove("hb-track__dot--at-server");
+      dot.style.transition = "none";
+      dot.style.left = "0px";
+    }
+
+    function pessClick() {
+      if (pessBtn.dataset.loading === "true") return;
+
+      pessBtn.dataset.loading = "true";
+      pessBtn.classList.add("hb-btn--pess-loading");
+      pessStatus.className = "hb-status hb-status--pending";
+      pessStatus.innerHTML = '<span class="hb-spinner"></span> Saving&hellip;';
+
+      const method = pessLiked ? "DELETE" : "POST";
+      const path = "/api/like";
+      setServer(pessEl, `${method} ${path}`, "saving…", "—", "hb-server__value--active");
+
+      moveDot(pessDot, PESS_DELAY, () => {
+        pessLiked = !pessLiked;
+        pessBtn.textContent = pessLiked ? "♥" : "♡";
+        if (pessLiked) pessBtn.classList.add("hb-btn--liked");
+        else pessBtn.classList.remove("hb-btn--liked");
+        pessBtn.dataset.loading = "false";
+        pessBtn.classList.remove("hb-btn--pess-loading");
+        pessStatus.className = "hb-status hb-status--success";
+        pessStatus.textContent = pessLiked ? "Liked!" : "Unliked";
+        const code = pessLiked ? "201 Created" : "204 No Content";
+        setServer(pessEl, `${method} ${path}`, "complete", code, "hb-server__value--success");
+      });
+    }
+
+    function optClick() {
+      if (optBtn.dataset.loading === "true") return;
+
+      optLiked = !optLiked;
+      optBtn.textContent = optLiked ? "♥" : "♡";
+      if (optLiked) optBtn.classList.add("hb-btn--liked");
+      else optBtn.classList.remove("hb-btn--liked");
+      optBtn.dataset.loading = "true";
+      optStatus.className = "hb-status hb-status--pending";
+      optStatus.textContent = optLiked ? "Liking…" : "Unliking…";
+
+      const method = optLiked ? "POST" : "DELETE";
+      const path = "/api/like";
+      setServer(optEl, `${method} ${path}`, "saving…", "—", "hb-server__value--active");
+
+      moveDot(optDot, OPT_DELAY, () => {
+        optBtn.dataset.loading = "false";
+        optStatus.className = "hb-status hb-status--success";
+        optStatus.textContent = optLiked ? "Liked!" : "Unliked";
+        const code = optLiked ? "201 Created" : "204 No Content";
+        setServer(optEl, `${method} ${path}`, "complete", code, "hb-server__value--success");
+      });
+    }
+
+    pessBtn.onclick = pessClick;
+    optBtn.onclick = optClick;
+  }
+
+  setupHeartDemo("hb");
+</script>

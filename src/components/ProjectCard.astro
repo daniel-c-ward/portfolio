@@ -77,6 +77,9 @@ const formattedDate =
           href={href}
           draggable="false"
           aria-label={item.title}
+          data-umami-event="Project Click"
+          data-umami-event-project={item.title}
+          data-umami-event-location="carousel"
         >
           <img
             class={`content-card__image${showCompactLogo ? " content-card__image--logo" : ""}`}
@@ -161,22 +164,10 @@ const formattedDate =
               <dd>{item.impact}</dd>
             </>
           )}
-          {item.labCategory && (
+          {item.category && (
             <>
-              <dt>Lab Category</dt>
-              <dd>{item.labCategory}</dd>
-            </>
-          )}
-          {item.difficulty && (
-            <>
-              <dt>Difficulty</dt>
-              <dd>{item.difficulty}</dd>
-            </>
-          )}
-          {item.inspiration && (
-            <>
-              <dt>Inspiration</dt>
-              <dd>{item.inspiration}</dd>
+              <dt>Category</dt>
+              <dd>{item.category}</dd>
             </>
           )}
         </dl>
@@ -202,11 +193,20 @@ const formattedDate =
               href={demoUrl}
               target="_blank"
               rel="noreferrer"
+              data-umami-event="Demo Visit"
+              data-umami-event-project={item.title}
             >
               View Site
             </a>
           )}
-          <a class="button button--primary" href={href} draggable="false">
+          <a
+            class="button button--primary"
+            href={href}
+            draggable="false"
+            data-umami-event="Project Click"
+            data-umami-event-project={item.title}
+            data-umami-event-location={inCarousel ? "carousel" : "list"}
+          >
             {actionLabel}
           </a>
         </footer>

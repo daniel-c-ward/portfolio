@@ -188,6 +188,12 @@ const { items } = Astro.props;
         const panel = document.getElementById(panelId);
         if (!panel) return;
 
+        if (window.umami) {
+          window.umami.track("Accordion Open", {
+            section: trigger.querySelector("span")?.textContent?.trim(),
+          });
+        }
+
         triggers.forEach((other) => {
           if (other !== trigger) closePanel(other);
         });

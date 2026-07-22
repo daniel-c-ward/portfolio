@@ -86,11 +86,6 @@ const { items, basePath, id, label, isCompact, actionLabel, getHref } =
   )
 }
 
-<style>
-  .carousel__track {
-    postion-anchor: --carousel;
-  }
-</style>
 
 <script>
   const carousels = document.querySelectorAll("[data-carousel]");
@@ -145,6 +140,13 @@ const { items, basePath, id, label, isCompact, actionLabel, getHref } =
     const handleControlClick = (event) => {
       const direction = event.currentTarget.dataset.carouselControl;
       const offset = direction === "next" ? 1 : -1;
+
+      if (window.umami) {
+        window.umami.track("Carousel Click", {
+          carousel: carousel.id,
+          direction,
+        });
+      }
 
       scrollToSlide(currentIndex() + offset);
     };

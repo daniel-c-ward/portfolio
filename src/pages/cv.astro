@@ -29,7 +29,7 @@ const timelineEntries = mergeTimelineEntries(
   description="Daniel Ward's Curriculum Vitae - Experience and Education."
 >
   <div class="cv-page page">
-    <div class="page-hero">
+    <header class="page-hero">
       <p class="eyebrow">Curriculum Vitae</p>
       <h1>Daniel Ward</h1>
       <p class="lead">
@@ -39,7 +39,7 @@ const timelineEntries = mergeTimelineEntries(
       <a
         href="/Ward-Daniel-CV.pdf"
         class="button button--primary"
-        onclick="umami('cv-download')"
+        data-umami-event="cv-download"
         download
       >
         <svg
@@ -61,7 +61,7 @@ const timelineEntries = mergeTimelineEntries(
         </svg>
         Download My CV (PDF)
       </a>
-    </div>
+    </header>
 
     <section class="cv-section" aria-labelledby="skills-heading">
       <h2 id="skills-heading">Skills</h2>

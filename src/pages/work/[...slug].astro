@@ -12,16 +12,18 @@ export function getStaticPaths() {
   });
   const entries = entriesFromGlob(modules, "work");
 
-  return entries.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry, modules },
-  }));
+  return entries.map((entry) => {
+    const modEntry = Object.entries(modules).find(
+      ([path]) => slugFromPath(path, "work") === entry.slug,
+    );
+    return {
+      params: { slug: entry.slug },
+      props: { entry, Content: modEntry?.[1]?.Content },
+    };
+  });
 }
 
-const { entry, modules } = Astro.props;
-const mod = Object.entries(modules).find(
-  ([path]) => slugFromPath(path, "work") === entry.slug,
-)?.[1];
+const { entry, Content } = Astro.props;
 const demoUrl = entry.url?.startsWith("http")
   ? entry.url
   : entry.url
@@ -113,7 +115,7 @@ const formattedDate =
       }
     </header>
     <div class="prose">
-      {mod && <mod.Content />}
+      {Content && <Content />}
     </div>
   </article>
 </PageLayout>

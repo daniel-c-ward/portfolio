@@ -46,7 +46,7 @@
 
 
 <script>
-  import { getEffectiveTheme, initTheme, toggleTheme } from "../lib/theme.ts";
+  import { getEffectiveTheme, toggleTheme } from "../lib/theme.ts";
 
   function updateToggleState(button: HTMLButtonElement): void {
     const isDark = getEffectiveTheme() === "dark";
@@ -60,10 +60,15 @@
   const button = document.querySelector<HTMLButtonElement>(".theme-toggle");
 
   if (button) {
-    initTheme();
     updateToggleState(button);
 
     button.addEventListener("click", () => {
+      const nextTheme = getEffectiveTheme() === "dark" ? "light" : "dark";
+
+      if (window.umami) {
+        window.umami.track("Theme Toggle", { theme: nextTheme });
+      }
+
       toggleTheme();
       updateToggleState(button);
     });

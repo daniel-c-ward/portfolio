@@ -1,44 +1,19 @@
 ---
-// Import all markdown modules for Lab and Work
-import { contactInfo } from "../config/contact";
+import { socialUrls } from "../config/contact";
 import {
   entriesFromGlob,
   labSectionsFromEntries,
+  type MdEntry,
   type MdModule,
 } from "../lib/md-entries";
 
 const labModules = import.meta.glob<MdModule>("../content/lab/**/*.md", { eager: true });
-const workModules = import.meta.glob("../content/work/**/*.md", {
+const workModules = import.meta.glob<MdModule>("../content/work/**/*.md", {
   eager: true,
 });
 
-// Helper to safely extract metadata
-function extractPosts(modules) {
-  return Object.entries(modules)
-    .map(([path, mod]) => {
-      const meta = (mod as any).frontmatter || (mod as any).metadata || {};
-      let title = meta.title?.trim();
-      if (!title) {
-        // Derive title from filename when metadata title is absent
-        const name = path.split("/").pop()?.replace(/\.md$/, "") ?? "";
-        title = name
-          .replace(/[-_]+/g, " ")
-          .replace(/\b\w/g, (c) => c.toUpperCase());
-      }
-      return {
-        title,
-        url:
-          "/" +
-          path.replace(/^\.\.\/(?:\.\.\/)?content\//, "").replace(/\.md$/, ""),
-        date: new Date(meta.date || 0),
-      };
-    })
-    .sort((a, b) => b.date - a.date)
-    .slice(0, 5);
-}
-
 const labSections = labSectionsFromEntries(entriesFromGlob(labModules, "lab"));
-const workPosts = extractPosts(workModules);
+const workPosts: MdEntry[] = entriesFromGlob(workModules, "work").slice(0, 5);
 ---
 
 <footer class="footer">
@@ -48,7 +23,7 @@ const workPosts = extractPosts(workModules);
       <hr />
       <div class="footer__social">
         <a
-          href={`https://github.com/${contactInfo.github}`}
+          href={socialUrls.github}
           aria-label="GitHub"
           target="_blank"
           rel="noopener noreferrer"
@@ -68,7 +43,7 @@ const workPosts = extractPosts(workModules);
           </svg>
         </a>
         <a
-          href={`https://www.linkedin.com/in/${contactInfo.linkedin}`}
+          href={socialUrls.linkedin}
           aria-label="LinkedIn"
           target="_blank"
           rel="noopener noreferrer"
@@ -119,7 +94,7 @@ const workPosts = extractPosts(workModules);
           {
             workPosts.map((post) => (
               <li>
-                <a href={post.url} class="footer__info-link">
+                <a href={`/work/${post.slug}`} class="footer__info-link">
                   {post.title}
                 </a>
               </li>

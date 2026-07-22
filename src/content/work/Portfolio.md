@@ -25,7 +25,7 @@ colourDark: "#0f3d2e"
 
 ## Background
 
-I needed a simple, clear way to show all of my work, plus share some infomation about myself. It also needed to save some information about how people use the site so that I could improve it.
+I needed a simple, clear way to show all of my work, plus share some information about myself. It also needed to save some information about how people use the site so that I could improve it.
 
 ## Early Ideas
 
@@ -35,7 +35,7 @@ I took inspiration from **photography sites**, they employ negative space, with 
 
 ## Initial Designs
 
-I used Gemeni to quickly make prototypes of what I had envisioned so that I could see if my idea would work in practice. While non of them truly captured idea, it gave me enough inspiration to create what I wanted myself; a minimalistic site, Lexend font, and subtle greens (no other reason than it being my favourite colour).
+I used Gemini to quickly make prototypes of what I had envisioned so that I could see if my idea would work in practice. While none of them truly captured the idea, it gave me enough inspiration to create what I wanted myself; a minimalistic site, Lexend font, and subtle greens (no other reason than it being my favourite colour).
 
 ## The Build
 
@@ -47,7 +47,7 @@ I then later set up [Umami](https://umami.is/) which made it possible to set up 
 
 For deployment I used [Vercel](https://vercel.com). I set up my primary site from my _main_ branch and then my _stage_ branch went to a staging .vercel.app link so I could see how it would turn out, aside from my dev server. It also gave me the opportunity to gather feedback before deploying a possibly bad idea, and make any necessary improvements.
 
-For DNS I used [123Reg](https://123reg.com) at the reccomendation of someone I know. It was very simple to setup, and allowed me to have my custom domain, just to add the personality.
+For DNS I used [123Reg](https://123reg.com) at the recommendation of someone I know. It was very simple to setup, and allowed me to have my custom domain, just to add the personality.
 
 ## Final touches
 

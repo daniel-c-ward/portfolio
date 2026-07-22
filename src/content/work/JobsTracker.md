@@ -1,6 +1,6 @@
 ---
 title: J.O.B.S. Tracker
-description: A web app for building maintenancece, turned Google Sheet.
+description: A web app for building maintenance, turned Google Sheet.
 featuredImage: /images/work/jobstracker/jobstracker-login.png
 logoImage: /images/work/jobstracker/jobstracker-logo.png
 date: 2026-06-04
@@ -9,7 +9,7 @@ tags:
   - NextJS
   - PrismaORM
   - Google Sheets
-  - Adaptablilty
+  - Adaptability
 url: danielcward.com
 isCompact: false
 isLogo: true
@@ -22,9 +22,6 @@ tools:
   - PrismaORM
   - Google Sheets
 status: "Completed"
-labCategory: ""
-difficulty: ""
-inspiration: ""
 hasLiveDemo: false
 colourLight: "#f5d1ae"
 colourDark: "#522c07"
@@ -90,6 +87,6 @@ Despite the mid-development changes, the finished product satisfied all parties 
 
 ### Key takeaways
 
-Even though the React web app was not rolled out, building it provided invaluable training in live backend databases, as well as the most effective way to present the frontend. As mentioned, the mid-development change allowed me to approach the task from another angle. This provided a learning opportunity, not only in using a different tool but it also improved my adapablity skills. I'm glad of the change in approach, as it opened me up to new ways of working and how the user experience is the most important thing. As a result, I am keen to learn more about tools such as Google apps, Microsoft 365 suite of apps and things like these.
+Even though the React web app was not rolled out, building it provided invaluable training in live backend databases, as well as the most effective way to present the frontend. As mentioned, the mid-development change allowed me to approach the task from another angle. This provided a learning opportunity, not only in using a different tool but it also improved my adaptability skills. I'm glad of the change in approach, as it opened me up to new ways of working and how the user experience is the most important thing. As a result, I am keen to learn more about tools such as Google apps, Microsoft 365 suite of apps and things like these.
 
 ---

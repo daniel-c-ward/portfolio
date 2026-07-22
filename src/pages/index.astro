@@ -9,36 +9,28 @@ const aboutAccordions = [
     id: "ai",
     title: "How I Use AI",
     content: `
-    <p>I use AI throughout the entire build process to move faster, explore more ideas, and deliver better results.</p>
-
-    <ul>
-      <li><strong>Research:</strong> AI helps me explore similar projects, analyse how others solved comparable problems, and gather insights that shape early decisions.</li>
-
-      <li><strong>Design:</strong> I generate quick mockups and visual concepts with AI. They’re not final designs, but they provide fast, clear starting points for direction and discussion.</li>
-
-      <li><strong>Prototyping:</strong> AI allows me to create rapid prototypes that demonstrate layout, flow, and functionality. They’re not production‑ready, but they help clients visualise the product early.</li>
-
-      <li><strong>Build:</strong> I use AI for boilerplate code, setup tasks, and repetitive work. I keep full control of the core build to ensure quality, performance, and reliability.</li>
-
-      <li><strong>Content creation and editing:</strong> AI supports writing, refining, and adapting content to match tone, clarity, and purpose.</li>
-
-      <li><strong>Code generation and debugging:</strong> AI helps me spot issues, explore alternative solutions, and speed up problem‑solving.</li>
-
-      <li><strong>Testing and optimisation:</strong> I use AI to analyse performance, identify improvements, and refine the final product.</li>
-    </ul>
+    <p>I follow a structured AI workflow — a variation of Matt Pocock's 7-phase system — that alternates between human-led decisions and agent-led execution. I define the problem and desired outcome, then use AI for research and rapid prototyping. Once the spec is locked, AI handles implementation task by task while I review and QA each one.</p>
   `,
   },
 
   {
     id: "design",
     title: "My design approach",
-    content: `<p>My process is structured and iterative: research first, then wireframes, then iteration, then refinement. Each step narrows uncertainty before visual polish.</p>
-<p>I prioritise simplicity, usability, and clarity — interfaces should feel obvious in use and honest about what they ask of people.</p>
+    content: `<p>I start with rough shape and layout using a canvas tool like tldraw or Excalidraw. Once the structure feels right I convert to Penpot or Figma for proper design work, then use AI to generate a clickable prototype.</p>
+<p>I prioritise simplicity, usability, and clarity — interfaces should feel obvious in use and honest about what they ask of people.</p>`,
+  },
+
+  {
+    id: "tools",
+    title: "Tools & stack",
+    content: `<p>I work across the full stack with a lean, focused toolset:</p>
 <ul>
-<li><strong>Research</strong> — understand goals, constraints, and user context</li>
-<li><strong>Wireframe</strong> — map structure before styling</li>
-<li><strong>Iteration</strong> — test flows and refine based on feedback</li>
-<li><strong>Refinement</strong> — tighten hierarchy, copy, and interaction details</li>
+<li><strong>Design:</strong> tldraw / Excalidraw for rough layouts, Penpot / Figma for polished design</li>
+<li><strong>Frontend:</strong> Astro, React, TypeScript</li>
+<li><strong>Backend:</strong> Node.js, Go</li>
+<li><strong>AI:</strong> opencode, Gemini, Pi</li>
+<li><strong>Version control:</strong> Git and GitHub</li>
+<li><strong>Deployment:</strong> Vercel, static hosting</li>
 </ul>`,
   },
 ];
@@ -57,16 +49,15 @@ const labItems = entriesFromGlob(labModules, "lab").slice(0, HOME_LAB_LIMIT);
 
 <PageLayout
   title="Daniel Ward | Portfolio"
-  description="Daniel Ward - UX and behavioural economics. Websites for how people decide."
+  description="Daniel Ward - Behavioural product design for how people actually decide."
 >
   <div class="home-intro">
     <section class="hero" aria-labelledby="hero-heading">
       <div class="hero__inner page">
         <p class="hero__wordmark">Daniel Ward</p>
-        <h1 id="hero-heading">Products built on human judgement</h1>
+        <h1 id="hero-heading">Products built around how people actually decide — not how we wish they did.</h1>
         <p class="hero__lead">
-          UX and behavioural economics; I build websites and systems that align
-          with how people think, decide, and act.
+          Backend, frontend, UX, UI — grounded in behavioural science.
         </p>
         <div class="hero__actions">
           <a class="button button--secondary" href="/work">View work</a>
@@ -100,7 +91,7 @@ const labItems = entriesFromGlob(labModules, "lab").slice(0, HOME_LAB_LIMIT);
             isCompact={true}
           />
         ) : (
-          <p class="home-empty">There are currently no lab entries.</p>
+          <p class="home-empty">There are currently no work entries.</p>
         )
       }
       <a class="text-link home-link" href="/work">View all work -></a>

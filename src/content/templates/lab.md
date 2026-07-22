@@ -10,9 +10,7 @@ url: ""
 isCompact: false
 isLogo: false
 circleLogo: false
-labCategory: ""
-difficulty: ""
-inspiration: ""
+category: ""
 tools:
   - 
 status: ""
@@ -20,8 +18,4 @@ hasLiveDemo: false
 colourLight: ""
 colourDark: ""
 ---
-
-## Overview
-
-## Implementation
 

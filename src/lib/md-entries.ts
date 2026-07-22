@@ -14,9 +14,7 @@ export interface MdFrontmatter {
   impact?: string;
   tools?: string[];
   status?: string;
-  labCategory?: string;
-  difficulty?: string;
-  inspiration?: string;
+  category?: string;
   hasLiveDemo?: boolean;
   colourLight?: string;
   colourDark?: string;
@@ -45,9 +43,7 @@ export interface MdEntry {
   impact?: string;
   tools: string[];
   status?: string;
-  labCategory?: string;
-  difficulty?: string;
-  inspiration?: string;
+  category?: string;
   hasLiveDemo?: boolean;
   colourLight?: string;
   colourDark?: string;
@@ -82,7 +78,9 @@ export function titleFromKey(key: string): string {
   return key
     .split("-")
     .filter(Boolean)
-    .map((word) => word[0]?.toUpperCase() + word.slice(1))
+    .map((word) =>
+      /^[A-Z]{2,}$/i.test(word) ? word.toUpperCase() : word[0]?.toUpperCase() + word.slice(1),
+    )
     .join(" ");
 }
 
@@ -109,7 +107,7 @@ export function entriesFromGlob(
       const section =
         collection === "lab"
           ? normaliseSection(fallbackSection, fallbackSection)
-          : normaliseSection(frontmatter.labCategory, fallbackSection);
+          : normaliseSection(frontmatter.category, fallbackSection);
 
       return {
         slug: slugFromPath(path, collection),
@@ -129,9 +127,7 @@ export function entriesFromGlob(
         impact: frontmatter.impact,
         tools: frontmatter.tools ?? [],
         status: frontmatter.status,
-        labCategory: frontmatter.labCategory,
-        difficulty: frontmatter.difficulty,
-        inspiration: frontmatter.inspiration,
+        category: frontmatter.category,
         hasLiveDemo: frontmatter.hasLiveDemo,
         colourLight: frontmatter.colourLight,
         colourDark: frontmatter.colourDark,

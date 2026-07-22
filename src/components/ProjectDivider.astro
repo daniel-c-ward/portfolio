@@ -17,7 +17,7 @@ interface Props {
 
 const { from, to, index = 0 } = Astro.props;
 const alternate = index % 2 === 1;
-const gradientId = `project-divider-gradient-${index}`;
+
 
 const fromPath = alternate
   ? "M0,0 H1440 V68 C1080,68 1080,32 720,32 C360,32 360,68 0,68 Z"
@@ -56,15 +56,6 @@ const toStrokeDark =
     preserveAspectRatio="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <defs>
-      <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" class="project-divider__stop project-divider__stop--from"
-        ></stop>
-        <stop
-          offset="100%"
-          class="project-divider__stop project-divider__stop--to"></stop>
-      </linearGradient>
-    </defs>
     <path
       class="project-divider__fill project-divider__fill--from"
       d={fromPath}></path>
@@ -74,7 +65,7 @@ const toStrokeDark =
       class="project-divider__curve"
       d={curvePath}
       fill="none"
-      stroke={`url(#${gradientId})`}
+      stroke={fromStrokeLight}
       vector-effect="non-scaling-stroke"></path>
   </svg>
 </div>
