@@ -9,7 +9,17 @@ const aboutAccordions = [
     id: "ai",
     title: "How I Use AI",
     content: `
-    <p>I follow a structured AI workflow — a variation of Matt Pocock's 7-phase system — that alternates between human-led decisions and agent-led execution. I define the problem and desired outcome, then use AI for research and rapid prototyping. Once the spec is locked, AI handles implementation task by task while I review and QA each one.</p>
+    <p>I follow a structured AI workflow — a variation of Matt Pocock's 7-phase system — that alternates between human-led decisions and agent-led execution, keeping every session in the smart zone.</p>
+
+    <ol>
+      <li><strong>Idea</strong> — <em>I define the problem and desired outcome, then use AI to explore possibilities and refine the concept so we both have a shared design concept.</em></li>
+      <li><strong>Research</strong> — <em>I explore questions and hypotheses using AI to gather insights and validate assumptions.</em></li>
+      <li><strong>Prototype</strong> — <em>I use Gemini with canvas to create very quick prototypes; I also use CLI AI to create higher quality ones for finding issues before implementation.</em></li>
+      <li><strong>Spec</strong> — <em>Using a skill, I convert the idea, research, and prototype into a detailed specification.</em></li>
+      <li><strong>Kanban Board</strong> — <em>I use a skill to translate the spec into actionable tasks.</em></li>
+      <li><strong>Execution</strong> — <em>AI implements each task from the Kanban Board, with a fresh context window for each one.</em></li>
+      <li><strong>QA</strong> — <em>I review the implementation, ensuring tests pass and the user experience is satisfactory.</em></li>
+    </ol>
   `,
   },
 
@@ -17,21 +27,7 @@ const aboutAccordions = [
     id: "design",
     title: "My design approach",
     content: `<p>I start with rough shape and layout using a canvas tool like tldraw or Excalidraw. Once the structure feels right I convert to Penpot or Figma for proper design work, then use AI to generate a clickable prototype.</p>
-<p>I prioritise simplicity, usability, and clarity — interfaces should feel obvious in use and honest about what they ask of people.</p>`,
-  },
-
-  {
-    id: "tools",
-    title: "Tools & stack",
-    content: `<p>I work across the full stack with a lean, focused toolset:</p>
-<ul>
-<li><strong>Design:</strong> tldraw / Excalidraw for rough layouts, Penpot / Figma for polished design</li>
-<li><strong>Frontend:</strong> Astro, React, TypeScript</li>
-<li><strong>Backend:</strong> Node.js, Go</li>
-<li><strong>AI:</strong> opencode, Gemini, Pi</li>
-<li><strong>Version control:</strong> Git and GitHub</li>
-<li><strong>Deployment:</strong> Vercel, static hosting</li>
-</ul>`,
+<p>I prioritise simplicity, usability, and clarity; interfaces should feel obvious in use and honest about what they ask of people.</p>`,
   },
 ];
 
@@ -49,18 +45,18 @@ const labItems = entriesFromGlob(labModules, "lab").slice(0, HOME_LAB_LIMIT);
 
 <PageLayout
   title="Daniel Ward | Portfolio"
-  description="Daniel Ward - Behavioural product design for how people actually decide."
+  description="Daniel Ward - UX and behavioural economics. Websites for how people decide."
 >
   <div class="home-intro">
     <section class="hero" aria-labelledby="hero-heading">
       <div class="hero__inner page">
         <p class="hero__wordmark">Daniel Ward</p>
         <h1 id="hero-heading">
-          Products built around how people actually decide — not how we wish
-          they did.
+          Products designed for how humans think, not how we wish they did.
         </h1>
         <p class="hero__lead">
-          Backend, frontend, UX, UI — grounded in behavioural science.
+          UX and behavioural economics; I build websites and systems that align
+          with how people think, decide, and act.
         </p>
         <div class="hero__actions">
           <a class="button button--secondary" href="/work">View work</a>
@@ -94,7 +90,7 @@ const labItems = entriesFromGlob(labModules, "lab").slice(0, HOME_LAB_LIMIT);
             isCompact={true}
           />
         ) : (
-          <p class="home-empty">There are currently no work entries.</p>
+          <p class="home-empty">There are currently no lab entries.</p>
         )
       }
       <a class="text-link home-link" href="/work">View all work -></a>
