@@ -12,7 +12,7 @@ url:
 isCompact: false
 isLogo: true
 challenge: "Create a website that showcased my work in a simple, clear way."
-solution: "An Astro site that focus on MDX content collections to allow ease of use."
+solution: "An Astro site built around MDX content collections for ease of use."
 impact: "A site that represented me and showcased my work effectively."
 tools:
   - Astro
@@ -31,7 +31,7 @@ I needed a simple, clear way to show all of my work, plus share some information
 
 I went through so many designs, more than I care to recall. Some had many animations, fancy designs, colours everywhere. But in the end I chose a simple, minimal site.
 
-I took inspiration from **photography sites**, they employ negative space, with one colour so all the focus is on the work (much like [CT Productions](./CaptainTProductions).
+I took inspiration from **photography sites**, they employ negative space, with one colour so all the focus is on the work (much like [CT Productions](./CaptainTProductions)).
 
 ## Initial Designs
 
@@ -47,8 +47,8 @@ I then later set up [Umami](https://umami.is/) which made it possible to set up 
 
 For deployment I used [Vercel](https://vercel.com). I set up my primary site from my _main_ branch and then my _stage_ branch went to a staging .vercel.app link so I could see how it would turn out, aside from my dev server. It also gave me the opportunity to gather feedback before deploying a possibly bad idea, and make any necessary improvements.
 
-For DNS I used [123Reg](https://123reg.com) at the recommendation of someone I know. It was very simple to setup, and allowed me to have my custom domain, just to add the personality.
+For DNS I used [123Reg](https://123reg.com) at the recommendation of someone I know. It was very simple to set up, and allowed me to have my custom domain, just to add the personality.
 
 ## Final touches
 
-Following the launch, feedback from peers demonstrated the need for further enhancements, e.g., buttons on the carousel(they were lost in a git revert after bugs appeared) upon adding them, it made the carousel easier to use on desktop, as it stopped me from relying on the user knowing to press `Shift + Scroll` to use it.
+Following the launch, feedback from peers demonstrated the need for further enhancements, e.g., buttons on the carousel (they were lost in a git revert after bugs appeared). Upon adding them, it made the carousel easier to use on desktop, as it stopped me from relying on the user knowing to press `Shift + Scroll` to use it.

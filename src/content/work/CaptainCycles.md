@@ -49,7 +49,7 @@ I put together a few mockups exploring layout, colours, and general vibe. Once I
 
 ![Pictures of mockups done for the client](/images/work/captaincycles/captaincycles-mockups.png)
 
-As you can see, they were not finished but due to time constraints I had to begin the build process.
+They weren't finished — time constraints meant I had to begin the build.
 
 ---
 
@@ -101,13 +101,13 @@ The finished site gave the client a professional web presence they could manage 
 
 ### Key takeaways
 
-Due to the simplicity of the site, I focused on my interactions with the client, making sure they were fully involved every step of the way, and letting them weigh in at key steps.
-I also strengthened my adaptability throughout the project. At times, the client needed more time to respond or provide information due to other commitments, so I learned to make the most of my time by progressing with the elements I could. I worked flexibly, often moving forward without full design mockups or final copy while still meeting deadlines without compromising the concept. Most importantly, I ensured the client stayed informed and involved as the project progressed.
+With the site simple, I focused on my relationship with the client, keeping them informed and involved at every key step.
+I also strengthened my adaptability. When the client needed more time to respond, I made the most of my time by progressing with the elements I could — often without full mockups or final copy — while still meeting deadlines and protecting the concept.
 
 ### Hindsight
 
-In hindsight, I would have definitely changed the way I handled onboarding. I initially sent them a quick form, no longer than ten brief questions, but I would now say that a meeting would be more effective. It is something that cannot be overlooked, and the client can share in much greater detail, their ideas.
+In hindsight, I would definitely have handled onboarding differently. I sent a short form of ten questions, but a meeting would have let the client share their ideas in far more detail.
 
-Also I would have changed the way I taught them to use WordPress. In this instance, as the ultimate goal was for them to take full ownership of the site and handle the content changes, I would have worked with them, as the first large content changes took place, I would have helped _them_ through it. This would mean they would learn better than me teaching them at a separate time.
+I would also have taught them WordPress differently. Instead of training them separately, I would have worked _with_ them as the first large content changes arrived — people learn better doing it than watching a separate tutorial.
 
 ---

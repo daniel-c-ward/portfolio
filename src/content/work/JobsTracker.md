@@ -31,7 +31,7 @@ colourDark: "#522c07"
 
 ## Background
 
-This was an ever changing project to manage maintenance tasks for a charity building. Initially, a React web app was prototyped and tested, but after some internal process changes, the charity opted to use a Google Sheet database to manage their maintenance tracking.
+This was an ever-changing project to manage maintenance tasks for a charity building. Initially, a React web app was prototyped and tested, but after some internal process changes, the charity opted to use a Google Sheet database to manage their maintenance tracking.
 
 ---
 
@@ -49,7 +49,7 @@ So I suggested a web app. It would have:
 - A Prisma database behind it to handle both one off tasks and the recurring tasks
 - Different user accounts for admin and users, with dynamic rendering for each
 
-That way, tasks can't fall through the cracks as all due tasks appear in the dashboard of the admin, and they can assign them to the users to do, with information on how to complete the task allowing with the job.
+That way, tasks can't fall through the cracks as all due tasks appear in the dashboard of the admin, and they can assign them to the users to do, with information on how to complete the task along with the job.
 
 ### Prototype of the React App
 
@@ -87,6 +87,6 @@ Despite the mid-development changes, the finished product satisfied all parties 
 
 ### Key takeaways
 
-Even though the React web app was not rolled out, building it provided invaluable training in live backend databases, as well as the most effective way to present the frontend. As mentioned, the mid-development change allowed me to approach the task from another angle. This provided a learning opportunity, not only in using a different tool but it also improved my adaptability skills. I'm glad of the change in approach, as it opened me up to new ways of working and how the user experience is the most important thing. As a result, I am keen to learn more about tools such as Google apps, Microsoft 365 suite of apps and things like these.
+Even though the React web app wasn't rolled out, building it gave me invaluable practice with live backend databases and frontend presentation. The mid-development change let me approach the work from another angle — learning a different tool and improving my adaptability. It also reinforced that user experience is the most important thing, and I'm keen to explore tools such as Google apps, the Microsoft 365 suite and similar.
 
 ---

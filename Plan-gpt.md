@@ -28,3 +28,4 @@ Review source: ChatGPT 5.5, score: **8.8/10**
 ## Phase 5: More work entries (long-term)
 
 - [ ] Target 8-12 total case studies — redesigns, behavioural UX investigations, open-source, side projects
+- [ ] Add the case study for comms-cli
