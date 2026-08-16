@@ -3,7 +3,8 @@ import PageLayout from "../../layouts/PageLayout.astro";
 import ProjectCard from "../../components/ProjectCard.astro";
 import {
   entriesFromGlob,
-  labSectionsFromEntries,
+  groupBySection,
+  slugFromPath,
   type MdModule,
 } from "../../lib/md-entries";
 
@@ -11,47 +12,130 @@ export function getStaticPaths() {
   const modules = import.meta.glob<MdModule>("../../content/lab/**/*.md", {
     eager: true,
   });
-  const sections = labSectionsFromEntries(entriesFromGlob(modules, "lab"));
+  const entries = entriesFromGlob(modules, "lab");
 
-  return sections.map((section) => ({
-    params: { slug: section.slug },
-    props: { section },
-  }));
+  // Per-entry case-study pages, mirroring the work section.
+  const entryPaths = entries.map((entry) => {
+    const modEntry = Object.entries(modules).find(
+      ([path]) => slugFromPath(path, "lab") === entry.slug,
+    );
+    return {
+      params: { slug: entry.slug },
+      props: { entry, Content: modEntry?.[1]?.Content, section: null },
+    };
+  });
+
+  // Section index pages — only for sections with more than one entry,
+  // so single-entry sections render their case study directly instead.
+  const sectionPaths = groupBySection(entries)
+    .filter(([, items]) => items.length > 1)
+    .map(([slug, items]) => ({
+      params: { slug },
+      props: { entry: null, Content: null, section: { slug, items } },
+    }));
+
+  return [...sectionPaths, ...entryPaths];
 }
 
-const { section } = Astro.props;
+const { entry, Content, section } = Astro.props;
+const isSection = entry === null;
+const formattedDate =
+  entry &&
+  entry.date &&
+  new Date(entry.date).toLocaleDateString("en-GB", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
 ---
 
-<PageLayout
-  title={`Lab | ${section.title}`}
-  description={section.description ??
-    `${section.title} lab section by Daniel Ward.`}
->
-  <div class="page">
-    <header class="page-hero">
-      <a class="back-link" href="/lab"><- Back to lab</a>
-      <p class="eyebrow">Lab</p>
-      <h1>{section.title}</h1>
-      {section.description && <p class="lead">{section.description}</p>}
-    </header>
+{isSection ? (
+  <PageLayout
+    title={`Lab | ${section.title}`}
+    description={`${section.title} lab section by Daniel Ward.`}
+  >
+    <div class="page">
+      <header class="page-hero">
+        <a class="back-link" href="/lab"><- Back to lab</a>
+        <p class="eyebrow">Lab</p>
+        <h1>{section.title}</h1>
+        {section.description && <p class="lead">{section.description}</p>}
+      </header>
 
-    <section
-      class="lab-section-showcase"
-      aria-label={`${section.title} entries`}
-    >
-      {
-        section.items.map((item, index) => (
+      <section
+        class="lab-section-showcase"
+        aria-label={`${section.title} entries`}
+      >
+        {section.items.map((item, index) => (
           <ProjectCard
             item={item}
             basePath="/lab"
             isCompact={true}
             index={index}
             inCarousel={false}
-            showActions={false}
-            disableMediaLink={true}
           />
-        ))
-      }
-    </section>
-  </div>
-</PageLayout>
+        ))}
+      </section>
+    </div>
+  </PageLayout>
+) : (
+  <PageLayout
+    title={`Lab | ${entry.title}`}
+    description={entry.description ?? entry.title}
+  >
+    <article class="page page-hero case-study">
+      <a class="back-link" href="/lab"><- Back to lab</a>
+      <header class="case-study__header">
+        <p class="eyebrow">Lab</p>
+        <h1>{entry.title}</h1>
+        {formattedDate && <p class="work-date">{formattedDate}</p>}
+        {entry.description && <p class="lead">{entry.description}</p>}
+        {
+          entry.tags.length > 0 && (
+            <dl class="content-card__meta">
+              <dt>Tags</dt>
+              <dd>
+                <footer class="content-card__tags" aria-label="Tags">
+                  {entry.tags.map((tag) => (
+                    <span class="content-card__tag">{tag}</span>
+                  ))}
+                </footer>
+              </dd>
+            </dl>
+          )
+        }
+        {
+          entry.tools.length > 0 && (
+            <dl class="content-card__meta">
+              <dt>Tech Stack</dt>
+              <dd>
+                <footer class="content-card__tags" aria-label="Tech Stack">
+                  {entry.tools.map((tool) => (
+                    <span class="content-card__tag">{tool}</span>
+                  ))}
+                </footer>
+              </dd>
+            </dl>
+          )
+        }
+        {
+          entry.hasLiveDemo && entry.url && (
+            <footer class="content-card__actions">
+              <a
+                class="button button--secondary"
+                href={entry.url.startsWith("http") ? entry.url : `https://${entry.url}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                View Site
+              </a>
+            </footer>
+          )
+        }
+      </header>
+      <div class="prose">
+        {Content && <Content />}
+      </div>
+    </article>
+  </PageLayout>
+)}

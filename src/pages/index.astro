@@ -107,8 +107,7 @@ const labItems = entriesFromGlob(labModules, "lab").slice(0, HOME_LAB_LIMIT);
             id="home-lab-carousel"
             label="Lab projects"
             isCompact={true}
-            actionLabel="View Section"
-            getHref={(item) => `/lab/${item.section}`}
+            actionLabel="Case Study"
           />
         ) : (
           <p class="home-empty">There are currently no lab entries.</p>
