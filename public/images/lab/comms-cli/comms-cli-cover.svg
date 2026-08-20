@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="270" viewBox="0 0 480 270" role="img" aria-label="comms-cli placeholder cover">
+  <rect width="480" height="270" fill="#e3f3fc"/>
+  <defs>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="#151c3d" opacity="0.09"/>
+    </pattern>
+  </defs>
+  <rect width="480" height="270" fill="url(#dots)"/>
+  <g>
+    <g stroke="#151c3d" stroke-width="7" stroke-linecap="round">
+      <line x1="240" y1="116" x2="150" y2="74"/>
+      <line x1="240" y1="116" x2="330" y2="74"/>
+      <line x1="240" y1="116" x2="150" y2="158"/>
+      <line x1="240" y1="116" x2="330" y2="158"/>
+    </g>
+    <!-- pending agents rendered as dashed cards -->
+    <rect x="132" y="58" width="36" height="32" rx="6" fill="none" stroke="#151c3d" stroke-width="2.5" stroke-dasharray="6 5" opacity="0.45"/>
+    <rect x="312" y="58" width="36" height="32" rx="6" fill="none" stroke="#151c3d" stroke-width="2.5" stroke-dasharray="6 5" opacity="0.45"/>
+    <rect x="132" y="142" width="36" height="32" rx="6" fill="none" stroke="#151c3d" stroke-width="2.5" stroke-dasharray="6 5" opacity="0.45"/>
+    <rect x="312" y="142" width="36" height="32" rx="6" fill="none" stroke="#151c3d" stroke-width="2.5" stroke-dasharray="6 5" opacity="0.45"/>
+    <rect x="220" y="96" width="40" height="40" rx="8" fill="#151c3d"/>
+  </g>
+  <text x="240" y="220" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="34" font-weight="600" letter-spacing="2" fill="#151c3d">comms-cli</text>
+  <text x="240" y="243" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1" fill="#151c3d" opacity="0.65">every agent, under your control</text>
+</svg>

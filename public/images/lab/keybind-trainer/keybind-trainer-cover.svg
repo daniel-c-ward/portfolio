@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="270" viewBox="0 0 480 270" role="img" aria-label="Keybind Trainer placeholder cover">
+  <rect width="480" height="270" fill="#e3f5e8"/>
+  <defs>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="#12251a" opacity="0.09"/>
+    </pattern>
+  </defs>
+  <rect width="480" height="270" fill="url(#dots)"/>
+  <g font-family="ui-monospace, Menlo, Consolas, monospace">
+    <rect x="128" y="82" width="104" height="52" rx="8" fill="#12251a"/>
+    <text x="180" y="114" text-anchor="middle" font-size="18" font-weight="600" fill="#e3f5e8">Space</text>
+    <rect x="238" y="82" width="44" height="52" rx="8" fill="#12251a"/>
+    <text x="260" y="114" text-anchor="middle" font-size="22" font-weight="600" fill="#e3f5e8">s</text>
+    <rect x="288" y="82" width="44" height="52" rx="8" fill="#12251a"/>
+    <text x="310" y="114" text-anchor="middle" font-size="22" font-weight="600" fill="#e3f5e8">f</text>
+    <!-- the next key to press -->
+    <rect x="344" y="82" width="44" height="52" rx="8" fill="none" stroke="#12251a" stroke-width="2.5" stroke-dasharray="6 5" opacity="0.6"/>
+    <text x="366" y="114" text-anchor="middle" font-size="22" font-weight="600" fill="#12251a" opacity="0.45">?</text>
+  </g>
+  <text x="240" y="206" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="30" font-weight="600" letter-spacing="3" fill="#12251a">Keybind Trainer</text>
+  <text x="240" y="230" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1" fill="#12251a" opacity="0.65">see the action: press the keys</text>
+</svg>

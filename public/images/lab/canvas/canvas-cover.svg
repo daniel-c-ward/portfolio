@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="270" viewBox="0 0 480 270" role="img" aria-label="Canvas, a local AI-gated diagramming tool placeholder cover">
+  <rect width="480" height="270" fill="#f3efe8"/>
+  <defs>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="#2d2419" opacity="0.09"/>
+    </pattern>
+  </defs>
+  <rect width="480" height="270" fill="url(#dots)"/>
+  <g>
+    <rect x="128" y="86" width="80" height="56" rx="8" fill="#2d2419"/>
+    <line x1="208" y1="114" x2="242" y2="114" stroke="#2d2419" stroke-width="4"/>
+    <path d="M238 108 L250 114 L238 120 Z" fill="#2d2419"/>
+    <rect x="250" y="90" width="72" height="48" rx="8" fill="#2d2419"/>
+    <!-- pending import: dashed outline box at 56% opacity -->
+    <rect x="336" y="92" width="72" height="48" rx="8" fill="none" stroke="#2d2419" stroke-width="2" stroke-dasharray="6 5" opacity="0.56"/>
+    <rect x="348" y="106" width="14" height="14" rx="3" fill="#2d2419" opacity="0.35"/>
+  </g>
+  <text x="240" y="206" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="38" font-weight="600" letter-spacing="4" fill="#2d2419">Canvas</text>
+  <text x="240" y="230" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="14" letter-spacing="2" fill="#2d2419" opacity="0.65">AI edits, human-approved</text>
+</svg>
