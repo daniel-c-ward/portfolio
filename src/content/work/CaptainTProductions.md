@@ -28,7 +28,7 @@ colourDark: "#2c2420"
 
 ## Background
 
-Captain T Productions was a photography project for a client who wanted a site to showcase and advertise their work. The business was young, so the build had to support growth — but the uncertainty of its direction created an interesting challenge.
+Captain T Productions was a photography project for a client who wanted a site to showcase and advertise their work. The business was young, so the build had to support growth, but the uncertainty of its direction created an interesting challenge.
 
 ---
 
@@ -42,7 +42,7 @@ The brief was basically:
 
 I researched similar websites, for ideas on best practice and to understand how best to showcase this kind of work. The client provided their logo and using this, I created mockups which explored layout, colours, and general vibe of their brand.
 
-Pressed for time on the brand, I reused a trick from my own site: **business cards**. These show the logo, the typeface and the decorative elements, pinning the site's style — so I could get on with the bulk of the job, the WordPress theme.
+Pressed for time on the brand, I reused a trick from my own site: **business cards**. These show the logo, the typeface and the decorative elements, pinning the site's style, so I could get on with the bulk of the job, the WordPress theme.
 
 ### Final design
 
@@ -68,7 +68,7 @@ As this was a portfolio project, I offered a free round of edits to the site. Ho
 
 ## Hosting & Deployment
 
-For hosting, I recommended **[Bluehost](https://bluehost.com)** — it's reliable, affordable, and easy to use.
+For hosting, I recommended **[Bluehost](https://bluehost.com)**; it's reliable, affordable, and easy to use.
 
 To help with SEO, analytics, and reviews, I installed:
 
@@ -84,7 +84,7 @@ This was deemed by the client and myself to be the essentials of what was needed
 
 ### Outcome
 
-The client got a branded WordPress site with flexible media sections for their photography, cinematography, and drone work. Crucially, this project improved my handover process — working *with* the client on edits instead of handing off a finished site.
+The client got a branded WordPress site with flexible media sections for their photography, cinematography, and drone work. Crucially, this project improved my handover process: working *with* the client on edits instead of handing off a finished site.
 
 ### Key takeaways
 

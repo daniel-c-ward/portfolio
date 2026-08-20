@@ -1,8 +1,7 @@
 ---
 title: comms-cli
 description: A CLI tool for managing the comms hub and pi agents
-featuredImage: /images/lab/comms-cli/comms-cli-cover.png
-logoImage: /images/lab/comms-cli/comms-cli-logo.png
+featuredImage: /images/lab/comms-cli/comms-cli-cover.svg
 date: 2026-08-10
 tags:
   - Go
@@ -11,8 +10,8 @@ tags:
   - Open Source
 url: https://github.com/daniel-c-ward/comms-cli
 isCompact: false
-isLogo: true
-circleLogo: true
+isLogo: false
+circleLogo: false
 category: tools
 tools:
   - Go

@@ -87,6 +87,6 @@ Despite the mid-development changes, the finished product satisfied all parties 
 
 ### Key takeaways
 
-Even though the React web app wasn't rolled out, building it gave me invaluable practice with live backend databases and frontend presentation. The mid-development change let me approach the work from another angle — learning a different tool and improving my adaptability. It also reinforced that user experience is the most important thing, and I'm keen to explore tools such as Google apps, the Microsoft 365 suite and similar.
+Even though the React web app wasn't rolled out, building it gave me invaluable practice with live backend databases and frontend presentation. The mid-development change let me approach the work from another angle, learning a different tool and improving my adaptability. It also reinforced that user experience is the most important thing, and I'm keen to explore tools such as Google apps, the Microsoft 365 suite and similar.
 
 ---

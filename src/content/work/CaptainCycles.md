@@ -31,7 +31,7 @@ colourDark: "#151c3d"
 
 ## Background
 
-Captain Cycles was a project for a client who needed a simple, easy‑to‑manage website to advertise bike repair services. They didn’t want anything complicated — just something clean, clear, and reliable that they could update themselves without worrying about breaking something and compromising the site. With that in mind, I kept the design lightweight and straightforward so the upkeep would stay stress‑free.
+Captain Cycles was a project for a client who needed a simple, easy‑to‑manage website to advertise bike repair services. They didn’t want anything complicated, just something clean, clear, and reliable that they could update themselves without worrying about breaking something and compromising the site. With that in mind, I kept the design lightweight and straightforward so the upkeep would stay stress‑free.
 
 ---
 
@@ -49,7 +49,7 @@ I put together a few mockups exploring layout, colours, and general vibe. Once I
 
 ![Pictures of mockups done for the client](/images/work/captaincycles/captaincycles-mockups.png)
 
-They weren't finished — time constraints meant I had to begin the build.
+They weren't finished; time constraints meant I had to begin the build.
 
 ---
 
@@ -74,7 +74,7 @@ Since this was a portfolio project and done at no cost, I gave them a final revi
 
 ## Hosting & Deployment
 
-For hosting, I recommended **[Bluehost](https://bluehost.com)** — it’s reliable, affordable, and easy to use, regardless of your level of technical experience.
+For hosting, I recommended **[Bluehost](https://bluehost.com)**; it’s reliable, affordable, and easy to use, regardless of your level of technical experience.
 
 The setup process was straightforward:
 
@@ -97,17 +97,17 @@ These gave the client the essentials without overwhelming them with too many too
 
 ### Outcome
 
-The finished site gave the client a professional web presence they could manage themselves — clean, on-brand, and built without unnecessary complexity. This was my first full handover, and it made clear how important structured onboarding is.
+The finished site gave the client a professional web presence they could manage themselves: clean, on-brand, and built without unnecessary complexity. This was my first full handover, and it made clear how important structured onboarding is.
 
 ### Key takeaways
 
 With the site simple, I focused on my relationship with the client, keeping them informed and involved at every key step.
-I also strengthened my adaptability. When the client needed more time to respond, I made the most of my time by progressing with the elements I could — often without full mockups or final copy — while still meeting deadlines and protecting the concept.
+I also strengthened my adaptability. When the client needed more time to respond, I made the most of my time by progressing with the elements I could, often without full mockups or final copy, while still meeting deadlines and protecting the concept.
 
 ### Hindsight
 
 In hindsight, I would definitely have handled onboarding differently. I sent a short form of ten questions, but a meeting would have let the client share their ideas in far more detail.
 
-I would also have taught them WordPress differently. Instead of training them separately, I would have worked _with_ them as the first large content changes arrived — people learn better doing it than watching a separate tutorial.
+I would also have taught them WordPress differently. Instead of training them separately, I would have worked _with_ them as the first large content changes arrived; people learn better doing it than watching a separate tutorial.
 
 ---
